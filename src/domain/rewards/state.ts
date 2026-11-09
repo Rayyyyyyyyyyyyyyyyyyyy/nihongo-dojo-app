@@ -21,3 +21,7 @@ export const initialRewardState = (today: LocalDate): RewardState => ({
   },
   nameTag: '我',
 });
+
+// 今日目標完成（由學習規則的今日任務判定）時記錄；修行帳實心印與寶箱開啟條件都讀這裡。
+export const recordGoalCompleted = (state: RewardState, date: LocalDate): RewardState =>
+  state.goalCompletedDates.includes(date) ? state : { ...state, goalCompletedDates: [...state.goalCompletedDates, date] };
