@@ -1,3 +1,4 @@
+import { celebrateRanks } from '../domain/rewards'
 // 單一 store：擁有 AppStateDoc，所有變更經 core.ts 的交易產生完整 next doc 再一次寫入。
 // 一般操作先套用記憶體再保存（失敗只亮 saveError 橫條）；匯入／還原／撤銷先存快照與文件，失敗就不套用。
 import type { LevelBank } from '../data/bank'
@@ -114,6 +115,13 @@ export function createAppStore({ storage, clock, newId }: { storage: AppStorage;
       const r = core.openChest(doc(), clock)
       if (r) commit(r.doc)
       return r?.result ?? null
+    },
+    // S6 恢復：XP 已跨段但 celebratedRanks 未記（例如匯入、儀式中關閉而未保存），補播一次。
+    celebratePending() {
+      if (state.status !== 'ready') return null
+      const { state: rewards, ceremony } = celebrateRanks(doc().rewards)
+      if (ceremony) commit({ ...doc(), rewards })
+      return ceremony
     },
     // App 啟動與回到前景時呼叫：用保護卡、結算提醒回應。
     refreshDay() {

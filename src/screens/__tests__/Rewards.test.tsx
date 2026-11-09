@@ -123,8 +123,12 @@ describe('S6 升段儀式', () => {
     expect(await screen.findByRole('button', { name: '開始' })).toBeOnTheScreen()
     expect(screen.queryByText('橙帶')).not.toBeOnTheScreen()
   })
-  // 缺功能：S2（Dojo.tsx）與 store 尚無「載入後補播未慶祝段位」，超出本次可改檔案，留待後續。
-  test.todo('恢復：celebratedRanks 未含此段時，重開後 S2 載入完成重播一次')
+  test('恢復：celebratedRanks 未含此段時，重開後 S2 載入完成重播一次', async () => {
+    const s = makeServices({ doc: readyDoc((d) => ({ ...d, rewards: { ...d.rewards, xpTotal: 650, celebratedRanks: [2] } })) })
+    await renderApp(s, '/')
+    expect(await screen.findByText('橙帶')).toBeOnTheScreen()
+    expect(s.store.getState().doc!.rewards.celebratedRanks).toEqual([2, 3])
+  })
   test('重複操作：一次跨兩段只播最高段並列出經過的段位；同段不再播', async () => {
     const s = makeServices({ doc: goalDone({ xpTotal: 590, chest: { ...readyDoc().rewards.chest, lastOpenedDate: '2026-11-09' } }) })
     await renderApp(s, grammarLesson)

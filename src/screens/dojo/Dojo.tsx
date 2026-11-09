@@ -17,6 +17,10 @@ export default function Dojo() {
   const today = useToday()
   const { store } = useServices()
   const router = useRouter()
+  useEffect(() => {
+    const c = store.celebratePending()
+    if (c) router.push({ pathname: '/ceremony', params: { rank: String(c.rank), passed: c.passed.join(',') } })
+  }, [store, router])
   const go = useNavLock()
   const level = doc.learning.level
   const bank = useLevelBank(level)
