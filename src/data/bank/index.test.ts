@@ -14,3 +14,31 @@ it('keeps other levels separate', () => {
   expect(loadLevel('n5').reading.every((x) => x.level === 'n5')).toBe(true)
   expect(loadLevel('n5').grammar).toHaveLength(80)
 })
+
+it('adds unreviewed drafts, still marked ai-draft, only when the dev opt-in is set', () => {
+  process.env.EXPO_PUBLIC_DOJO_INCLUDE_DRAFTS = '1'
+  try {
+    jest.isolateModules(() => {
+      const draft = {
+        id: 'g-n3-999',
+        q: '雨＿＿降る。',
+        answer: 'が',
+        distractors: ['を', 'に', 'で'],
+        explanation: '解',
+        grammarPoint: '〜が',
+        origin: 'ai-draft',
+        draftedAt: '2026-11-09',
+        source: 'AI 起草（未經人工審閱）2026-11-09',
+      }
+      jest.doMock('../drafts/n3/grammar.json', () => [draft])
+      const { loadLevel: load } = require('./index')
+      const ids = load('n3').grammar.map((x: { id: string }) => x.id)
+      expect(ids).toContain(draft.id)
+      expect(load('n3').grammar.find((x: { id: string }) => x.id === draft.id).origin).toBe('ai-draft')
+      expect(new Set(ids).size).toBe(ids.length)
+    })
+  } finally {
+    delete process.env.EXPO_PUBLIC_DOJO_INCLUDE_DRAFTS
+  }
+  expect(loadLevel('n3').grammar.every((x) => x.origin !== 'ai-draft')).toBe(true)
+})

@@ -13,6 +13,7 @@ export interface Question {
 }
 export interface Grammar extends Question {
   id: string
+  origin?: string
 }
 export interface Reading {
   id: string
@@ -22,11 +23,13 @@ export interface Reading {
   text: string
   notes: { term: string; meaning: string }[]
   questions: (Question & { id: string })[]
+  origin?: string
 }
 export interface Listening extends Question {
   id: string
   level: Level
   script: string
+  origin?: string
 }
 export interface Banks {
   vocab: Vocab

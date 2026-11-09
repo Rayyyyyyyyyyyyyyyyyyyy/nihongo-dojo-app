@@ -77,11 +77,12 @@ it('retires exactly the unsourced U2 items: g-n3-001–020, reading r1, listenin
 
 const read = (name: string) =>
   JSON.parse(readFileSync(join(__dirname, '../../data/bank', `${name}.json`), 'utf8'))
+const reviewed = read('reviewed')
 const real = (): ValidBanks => ({
   vocab: mapLevels((lv) => read(`vocab-${lv}`)),
-  grammar: mapLevels((lv) => read(`grammar-${lv}`)),
-  reading: read('reading'),
-  listening: read('listening'),
+  grammar: mapLevels((lv) => [...read(`grammar-${lv}`), ...reviewed.grammar[lv]]),
+  reading: [...read('reading'), ...reviewed.reading],
+  listening: [...read('listening'), ...reviewed.listening],
 })
 
 it('committed manifest.json matches the banks (run npm run check:data -- --write when stale)', () => {

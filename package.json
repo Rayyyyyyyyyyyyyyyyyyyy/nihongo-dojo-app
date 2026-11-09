@@ -37,7 +37,8 @@
     "typecheck": "tsc --noEmit",
     "check:hex": "node scripts/check-no-hex.mjs",
     "check:data": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-data.mjs",
-    "check": "tsc --noEmit && npm run -s check:hex && npm run -s check:data && jest",
+    "check:review": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-review.mjs",
+    "check": "tsc --noEmit && npm run -s check:hex && npm run -s check:data && npm run -s check:review && jest",
     "export:ios": "expo export --platform ios --output-dir dist"
   },
   "private": true,
