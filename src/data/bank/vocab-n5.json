@@ -1,0 +1,4310 @@
+[
+ {
+  "w": "ああ",
+  "r": "ああ",
+  "en": "Ah!, Oh!",
+  "zh": "啊、噢"
+ },
+ {
+  "w": "会う",
+  "r": "あう",
+  "en": "to meet, to see",
+  "zh": "見面、碰面"
+ },
+ {
+  "w": "青",
+  "r": "あお",
+  "en": "blue",
+  "zh": "藍色、青色"
+ },
+ {
+  "w": "青い",
+  "r": "あおい",
+  "en": "blue",
+  "zh": "藍的、青的"
+ },
+ {
+  "w": "赤",
+  "r": "あか",
+  "en": "red",
+  "zh": "紅色"
+ },
+ {
+  "w": "赤い",
+  "r": "あかい",
+  "en": "red",
+  "zh": "紅的"
+ },
+ {
+  "w": "明るい",
+  "r": "あかるい",
+  "en": "bright (in reference to personality or weather); cheerful",
+  "zh": "明亮的、開朗的"
+ },
+ {
+  "w": "秋",
+  "r": "あき",
+  "en": "fall (season)",
+  "zh": "秋天"
+ },
+ {
+  "w": "開く",
+  "r": "あく",
+  "en": "to open, to become open",
+  "zh": "開、打開（自動詞）"
+ },
+ {
+  "w": "開ける",
+  "r": "あける",
+  "en": "to open (v.t.)",
+  "zh": "打開、開啟（他動詞）"
+ },
+ {
+  "w": "上げる",
+  "r": "あげる",
+  "en": "to raise, to lift",
+  "zh": "舉起、抬高、給予"
+ },
+ {
+  "w": "朝",
+  "r": "あさ",
+  "en": "morning",
+  "zh": "早上、早晨"
+ },
+ {
+  "w": "朝御飯",
+  "r": "あさごはん",
+  "en": "breakfast",
+  "zh": "早餐"
+ },
+ {
+  "w": "明後日",
+  "r": "あさって",
+  "en": "day after tomorrow",
+  "zh": "後天"
+ },
+ {
+  "w": "足; 脚",
+  "r": "あし",
+  "en": "foot; leg",
+  "zh": "腳、腿"
+ },
+ {
+  "w": "明日",
+  "r": "あした",
+  "en": "tomorrow",
+  "zh": "明天"
+ },
+ {
+  "w": "あそこ",
+  "r": "あそこ",
+  "en": "there, over there, that place",
+  "zh": "那裡、那邊"
+ },
+ {
+  "w": "遊ぶ",
+  "r": "あそぶ",
+  "en": "to play; to spend time pleasantly; to hang out",
+  "zh": "玩、遊玩"
+ },
+ {
+  "w": "暖かい",
+  "r": "あたたかい",
+  "en": "warm",
+  "zh": "溫暖的"
+ },
+ {
+  "w": "頭",
+  "r": "あたま",
+  "en": "head",
+  "zh": "頭、頭腦"
+ },
+ {
+  "w": "新しい",
+  "r": "あたらしい",
+  "en": "new",
+  "zh": "新的"
+ },
+ {
+  "w": "あちら",
+  "r": "あちら",
+  "en": "this way (polite)",
+  "zh": "那邊、那位（禮貌）"
+ },
+ {
+  "w": "暑い",
+  "r": "あつい",
+  "en": "hot (in reference to weather), warm",
+  "zh": "熱的（天氣）"
+ },
+ {
+  "w": "熱い",
+  "r": "あつい",
+  "en": "hot (objects)",
+  "zh": "燙的、熱的（東西）"
+ },
+ {
+  "w": "厚い",
+  "r": "あつい",
+  "en": "kind, warm(hearted), thick, deep",
+  "zh": "厚的"
+ },
+ {
+  "w": "あっち",
+  "r": "あっち",
+  "en": "over there",
+  "zh": "那邊"
+ },
+ {
+  "w": "後",
+  "r": "あと",
+  "en": "afterwards (later); in the future; the rest; since then",
+  "zh": "之後、以後、剩下的"
+ },
+ {
+  "w": "あなた",
+  "r": "あなた",
+  "en": "you",
+  "zh": "你、您"
+ },
+ {
+  "w": "兄",
+  "r": "あに",
+  "en": "(my) older brother (humble)",
+  "zh": "哥哥、家兄"
+ },
+ {
+  "w": "姉",
+  "r": "あね",
+  "en": "(my) older sister (humble)",
+  "zh": "姊姊、家姊"
+ },
+ {
+  "w": "アパート",
+  "r": "アパート",
+  "en": "apartment (abbr.)",
+  "zh": "公寓"
+ },
+ {
+  "w": "あの",
+  "r": "あの",
+  "en": "that over there; like that, that way; um...",
+  "zh": "那個、那樣、嗯（發語詞）"
+ },
+ {
+  "w": "浴びる",
+  "r": "あびる",
+  "en": "to bathe, to shower",
+  "zh": "淋浴、沖澡"
+ },
+ {
+  "w": "危ない",
+  "r": "あぶない",
+  "en": "dangerous, critical",
+  "zh": "危險的"
+ },
+ {
+  "w": "甘い",
+  "r": "あまい",
+  "en": "generous, sweet",
+  "zh": "甜的、寬鬆的"
+ },
+ {
+  "w": "余り",
+  "r": "あまり",
+  "en": "not very; surplus",
+  "zh": "不太…、剩餘"
+ },
+ {
+  "w": "雨",
+  "r": "あめ",
+  "en": "rain",
+  "zh": "雨"
+ },
+ {
+  "w": "飴",
+  "r": "あめ",
+  "en": "(hard) candy",
+  "zh": "糖果"
+ },
+ {
+  "w": "洗う",
+  "r": "あらう",
+  "en": "to wash",
+  "zh": "洗、清洗"
+ },
+ {
+  "w": "在る",
+  "r": "ある",
+  "en": "to be, to have",
+  "zh": "有、在（無生命）"
+ },
+ {
+  "w": "有る",
+  "r": "ある",
+  "en": "to be, to have",
+  "zh": "有、擁有"
+ },
+ {
+  "w": "歩く",
+  "r": "あるく",
+  "en": "to walk",
+  "zh": "走、步行"
+ },
+ {
+  "w": "あれ",
+  "r": "あれ",
+  "en": "that one (over there)",
+  "zh": "那個"
+ },
+ {
+  "w": "いい; よい",
+  "r": "いい; よい",
+  "en": "good",
+  "zh": "好的、良好"
+ },
+ {
+  "w": "いいえ",
+  "r": "いいえ",
+  "en": "no, not at all",
+  "zh": "不、不是"
+ },
+ {
+  "w": "言う",
+  "r": "いう",
+  "en": "to say",
+  "zh": "說、講"
+ },
+ {
+  "w": "家",
+  "r": "いえ",
+  "en": "house, home",
+  "zh": "家、房子"
+ },
+ {
+  "w": "いかが",
+  "r": "いかが",
+  "en": "how, in what way",
+  "zh": "如何、怎麼樣"
+ },
+ {
+  "w": "行く",
+  "r": "いく; ゆく",
+  "en": "to go",
+  "zh": "去、前往"
+ },
+ {
+  "w": "いくつ",
+  "r": "いくつ",
+  "en": "how many, how old",
+  "zh": "幾個、幾歲"
+ },
+ {
+  "w": "いくら",
+  "r": "いくら",
+  "en": "how much, how many",
+  "zh": "多少錢、多少"
+ },
+ {
+  "w": "池",
+  "r": "いけ",
+  "en": "pond",
+  "zh": "池塘"
+ },
+ {
+  "w": "医者",
+  "r": "いしゃ",
+  "en": "doctor; physician",
+  "zh": "醫生"
+ },
+ {
+  "w": "椅子",
+  "r": "いす",
+  "en": "chair",
+  "zh": "椅子"
+ },
+ {
+  "w": "忙しい",
+  "r": "いそがしい",
+  "en": "busy (people, days)",
+  "zh": "忙碌的"
+ },
+ {
+  "w": "痛い",
+  "r": "いたい",
+  "en": "hurt; painful; sore",
+  "zh": "痛的"
+ },
+ {
+  "w": "一",
+  "r": "いち",
+  "en": "one",
+  "zh": "一"
+ },
+ {
+  "w": "一日",
+  "r": "いちにち",
+  "en": "one day (duration)",
+  "zh": "一天、一號"
+ },
+ {
+  "w": "一番",
+  "r": "いちばん",
+  "en": "best (most), first, number one",
+  "zh": "第一、最…"
+ },
+ {
+  "w": "いつ",
+  "r": "いつ",
+  "en": "when",
+  "zh": "什麼時候"
+ },
+ {
+  "w": "五日",
+  "r": "いつか",
+  "en": "five days; fifth day of the month",
+  "zh": "五天、五號"
+ },
+ {
+  "w": "一緒",
+  "r": "いっしょ",
+  "en": "together",
+  "zh": "一起、一同"
+ },
+ {
+  "w": "五つ",
+  "r": "いつつ",
+  "en": "five things",
+  "zh": "五個"
+ },
+ {
+  "w": "いつも",
+  "r": "いつも",
+  "en": "always, usually, every time, never (with neg. verb)",
+  "zh": "總是、經常"
+ },
+ {
+  "w": "犬",
+  "r": "いぬ",
+  "en": "dog",
+  "zh": "狗"
+ },
+ {
+  "w": "今",
+  "r": "いま",
+  "en": "now",
+  "zh": "現在、此刻"
+ },
+ {
+  "w": "意味",
+  "r": "いみ",
+  "en": "meaning, significance",
+  "zh": "意思、意義"
+ },
+ {
+  "w": "妹",
+  "r": "いもうと",
+  "en": "younger sister (humble)",
+  "zh": "妹妹"
+ },
+ {
+  "w": "嫌",
+  "r": "いや",
+  "en": "disagreeable, detestable, unpleasant",
+  "zh": "討厭、不喜歡"
+ },
+ {
+  "w": "入口",
+  "r": "いりぐち",
+  "en": "entrance",
+  "zh": "入口"
+ },
+ {
+  "w": "居る",
+  "r": "いる",
+  "en": "(humble) to be (animate), to exist",
+  "zh": "在、有（人或動物）"
+ },
+ {
+  "w": "要る",
+  "r": "いる",
+  "en": "to need",
+  "zh": "需要"
+ },
+ {
+  "w": "入れる",
+  "r": "いれる",
+  "en": "to put in",
+  "zh": "放入、裝進"
+ },
+ {
+  "w": "色",
+  "r": "いろ",
+  "en": "color",
+  "zh": "顏色"
+ },
+ {
+  "w": "色々",
+  "r": "いろいろ",
+  "en": "various",
+  "zh": "各式各樣、種種"
+ },
+ {
+  "w": "上",
+  "r": "うえ",
+  "en": "above (up, top, etc.), over, on top of",
+  "zh": "上面、上方"
+ },
+ {
+  "w": "後ろ",
+  "r": "うしろ",
+  "en": "back, behind, rear",
+  "zh": "後面、背後"
+ },
+ {
+  "w": "薄い",
+  "r": "うすい",
+  "en": "thin, weak",
+  "zh": "薄的、淡的"
+ },
+ {
+  "w": "歌",
+  "r": "うた",
+  "en": "a song",
+  "zh": "歌、歌曲"
+ },
+ {
+  "w": "歌う",
+  "r": "うたう",
+  "en": "to sing",
+  "zh": "唱歌"
+ },
+ {
+  "w": "うち",
+  "r": "うち",
+  "en": "home; house; my place",
+  "zh": "家、自己家"
+ },
+ {
+  "w": "生まれる",
+  "r": "うまれる",
+  "en": "to be born",
+  "zh": "出生、誕生"
+ },
+ {
+  "w": "海",
+  "r": "うみ",
+  "en": "sea, beach",
+  "zh": "海、海邊"
+ },
+ {
+  "w": "売る",
+  "r": "うる",
+  "en": "to sell (v.t.)",
+  "zh": "賣、販售"
+ },
+ {
+  "w": "うるさい",
+  "r": "うるさい",
+  "en": "noisy; annoying",
+  "zh": "吵鬧的、煩人的"
+ },
+ {
+  "w": "上着",
+  "r": "うわぎ",
+  "en": "coat, jacket",
+  "zh": "外套、上衣"
+ },
+ {
+  "w": "絵",
+  "r": "え",
+  "en": "a painting; a picture; a drawing",
+  "zh": "畫、圖畫"
+ },
+ {
+  "w": "映画",
+  "r": "えいが",
+  "en": "movie, film",
+  "zh": "電影"
+ },
+ {
+  "w": "映画館",
+  "r": "えいがかん",
+  "en": "movie theater, cinema",
+  "zh": "電影院"
+ },
+ {
+  "w": "英語",
+  "r": "えいご",
+  "en": "English (language)",
+  "zh": "英語、英文"
+ },
+ {
+  "w": "ええ",
+  "r": "ええ",
+  "en": "yes",
+  "zh": "嗯、是的"
+ },
+ {
+  "w": "駅",
+  "r": "えき",
+  "en": "station",
+  "zh": "車站"
+ },
+ {
+  "w": "エレベーター",
+  "r": "エレベーター",
+  "en": "elevator",
+  "zh": "電梯"
+ },
+ {
+  "w": "～円",
+  "r": "～えん",
+  "en": "Yen",
+  "zh": "日圓"
+ },
+ {
+  "w": "鉛筆",
+  "r": "えんぴつ",
+  "en": "pencil",
+  "zh": "鉛筆"
+ },
+ {
+  "w": "お～",
+  "r": "お～",
+  "en": "honorable ~ (honorific)",
+  "zh": "表尊敬、美化的接頭語"
+ },
+ {
+  "w": "美味しい",
+  "r": "おいしい",
+  "en": "delicious, tasty",
+  "zh": "好吃的、美味的"
+ },
+ {
+  "w": "多い",
+  "r": "おおい",
+  "en": "many; there are a lot",
+  "zh": "多的、很多"
+ },
+ {
+  "w": "大きい",
+  "r": "おおきい",
+  "en": "big, large",
+  "zh": "大的"
+ },
+ {
+  "w": "大きな",
+  "r": "おおきな",
+  "en": "big",
+  "zh": "大的"
+ },
+ {
+  "w": "大勢",
+  "r": "おおぜい",
+  "en": "great number of people",
+  "zh": "很多人、眾多"
+ },
+ {
+  "w": "お母さん",
+  "r": "おかあさん",
+  "en": "mother (formal)",
+  "zh": "母親、媽媽"
+ },
+ {
+  "w": "お菓子",
+  "r": "おかし",
+  "en": "confections, sweets, snack",
+  "zh": "點心、零食"
+ },
+ {
+  "w": "お金",
+  "r": "おかね",
+  "en": "money",
+  "zh": "錢"
+ },
+ {
+  "w": "起きる",
+  "r": "おきる",
+  "en": "to get up (e.g., from sleeping); to happen",
+  "zh": "起床、起來、發生"
+ },
+ {
+  "w": "置く",
+  "r": "おく",
+  "en": "to put; to lay; to place",
+  "zh": "放置、擺放"
+ },
+ {
+  "w": "奥さん",
+  "r": "おくさん",
+  "en": "(someone else's) wife (hon.)",
+  "zh": "太太、夫人（他人的妻子）"
+ },
+ {
+  "w": "お酒",
+  "r": "おさけ",
+  "en": "sake; alcohol",
+  "zh": "酒"
+ },
+ {
+  "w": "お皿",
+  "r": "おさら",
+  "en": "plate, dish",
+  "zh": "盤子、碟子"
+ },
+ {
+  "w": "伯父; 叔父さん",
+  "r": "おじさん",
+  "en": "uncle, middle-aged man",
+  "zh": "伯父、叔叔、大叔"
+ },
+ {
+  "w": "おじいさん",
+  "r": "おじいさん",
+  "en": "grandfather, male senior citizen",
+  "zh": "爺爺、老先生"
+ },
+ {
+  "w": "教える",
+  "r": "おしえる",
+  "en": "to teach, to inform, to instruct",
+  "zh": "教、告訴"
+ },
+ {
+  "w": "押す",
+  "r": "おす",
+  "en": "to push, to press, to stamp (e.g., a passport)",
+  "zh": "推、按、蓋（章）"
+ },
+ {
+  "w": "遅い",
+  "r": "おそい",
+  "en": "slow; (to be) late",
+  "zh": "慢的、晚的"
+ },
+ {
+  "w": "お茶",
+  "r": "おちゃ",
+  "en": "(green) tea",
+  "zh": "茶、綠茶"
+ },
+ {
+  "w": "お手洗い",
+  "r": "おてあらい",
+  "en": "toilet, restroom, bathroom (lit., a place to wash one's hands)",
+  "zh": "洗手間、廁所"
+ },
+ {
+  "w": "お父さん",
+  "r": "おとうさん",
+  "en": "father (formal)",
+  "zh": "父親、爸爸"
+ },
+ {
+  "w": "弟",
+  "r": "おとうと",
+  "en": "younger brother",
+  "zh": "弟弟"
+ },
+ {
+  "w": "男",
+  "r": "おとこ",
+  "en": "man, male",
+  "zh": "男人、男性"
+ },
+ {
+  "w": "男の子",
+  "r": "おとこのこ",
+  "en": "boy",
+  "zh": "男孩"
+ },
+ {
+  "w": "一昨日",
+  "r": "おととい",
+  "en": "the day before yesterday",
+  "zh": "前天"
+ },
+ {
+  "w": "おととし",
+  "r": "おととし",
+  "en": "year before last",
+  "zh": "前年"
+ },
+ {
+  "w": "大人",
+  "r": "おとな",
+  "en": "adult",
+  "zh": "大人、成人"
+ },
+ {
+  "w": "お腹",
+  "r": "おなか",
+  "en": "stomach",
+  "zh": "肚子"
+ },
+ {
+  "w": "同じ",
+  "r": "おなじ",
+  "en": "same, identical",
+  "zh": "相同、一樣"
+ },
+ {
+  "w": "お兄さん",
+  "r": "おにいさん",
+  "en": "(someone else's) older brother (formal)",
+  "zh": "哥哥（他人的兄長）"
+ },
+ {
+  "w": "お姉さん",
+  "r": "おねえさん",
+  "en": "older sister (formal)",
+  "zh": "姊姊（他人的姊姊）"
+ },
+ {
+  "w": "伯母さん; 叔母さん",
+  "r": "おばさん",
+  "en": "aunt",
+  "zh": "伯母、阿姨、姑姑"
+ },
+ {
+  "w": "おばあさん",
+  "r": "おばあさん",
+  "en": "grandmother, female senior-citizen",
+  "zh": "奶奶、老太太"
+ },
+ {
+  "w": "お風呂",
+  "r": "おふろ",
+  "en": "a bath",
+  "zh": "洗澡、浴室"
+ },
+ {
+  "w": "お弁当",
+  "r": "おべんとう",
+  "en": "a boxed lunch",
+  "zh": "便當"
+ },
+ {
+  "w": "覚える",
+  "r": "おぼえる",
+  "en": "to learn, to commit to memory, to remember, to memorize",
+  "zh": "記住、背下來、學會"
+ },
+ {
+  "w": "おまわりさん",
+  "r": "おまわりさん",
+  "en": "policeman (friendly term)",
+  "zh": "警察先生、巡警"
+ },
+ {
+  "w": "重い",
+  "r": "おもい",
+  "en": "heavy; serious",
+  "zh": "重的、沉重的"
+ },
+ {
+  "w": "面白い",
+  "r": "おもしろい",
+  "en": "interesting, amusing",
+  "zh": "有趣的、好玩的"
+ },
+ {
+  "w": "泳ぐ",
+  "r": "およぐ",
+  "en": "to swim",
+  "zh": "游泳"
+ },
+ {
+  "w": "降りる",
+  "r": "おりる",
+  "en": "to get off",
+  "zh": "下車、下來"
+ },
+ {
+  "w": "終る",
+  "r": "おわる",
+  "en": "to finish, to close",
+  "zh": "結束、完畢"
+ },
+ {
+  "w": "音楽",
+  "r": "おんがく",
+  "en": "Music",
+  "zh": "音樂"
+ },
+ {
+  "w": "女",
+  "r": "おんな",
+  "en": "woman, female",
+  "zh": "女人、女性"
+ },
+ {
+  "w": "女の子",
+  "r": "おんなのこ",
+  "en": "girl",
+  "zh": "女孩"
+ },
+ {
+  "w": "～回",
+  "r": "～かい",
+  "en": "counter for occurrences (~ times)",
+  "zh": "…次、…回"
+ },
+ {
+  "w": "～階",
+  "r": "～かい",
+  "en": "counter for stories (floors) of a building",
+  "zh": "…樓、…層"
+ },
+ {
+  "w": "外国",
+  "r": "がいこく",
+  "en": "foreign country; abroad",
+  "zh": "外國、國外"
+ },
+ {
+  "w": "外国人",
+  "r": "がいこくじん",
+  "en": "foreigner",
+  "zh": "外國人"
+ },
+ {
+  "w": "会社",
+  "r": "かいしゃ",
+  "en": "company, corporation",
+  "zh": "公司"
+ },
+ {
+  "w": "階段",
+  "r": "かいだん",
+  "en": "stairs",
+  "zh": "樓梯"
+ },
+ {
+  "w": "買い物",
+  "r": "かいもの",
+  "en": "shopping",
+  "zh": "購物、買東西"
+ },
+ {
+  "w": "買う",
+  "r": "かう",
+  "en": "to buy",
+  "zh": "買、購買"
+ },
+ {
+  "w": "返す",
+  "r": "かえす",
+  "en": "to return something",
+  "zh": "歸還、退還"
+ },
+ {
+  "w": "帰る",
+  "r": "かえる",
+  "en": "to go back, to go home, to return",
+  "zh": "回家、回去"
+ },
+ {
+  "w": "顔",
+  "r": "かお",
+  "en": "face (body part)",
+  "zh": "臉"
+ },
+ {
+  "w": "かかる",
+  "r": "かかる",
+  "en": "it takes (amount of time, money) (v.i.)",
+  "zh": "花費、需要（時間、金錢）"
+ },
+ {
+  "w": "鍵",
+  "r": "かぎ",
+  "en": "a lock; a key",
+  "zh": "鑰匙、鎖"
+ },
+ {
+  "w": "書く",
+  "r": "かく",
+  "en": "to write",
+  "zh": "寫"
+ },
+ {
+  "w": "学生",
+  "r": "がくせい",
+  "en": "student",
+  "zh": "學生"
+ },
+ {
+  "w": "～か月",
+  "r": "～かげつ",
+  "en": "(number of) months",
+  "zh": "…個月"
+ },
+ {
+  "w": "掛ける",
+  "r": "かける",
+  "en": "to put on (e.g., glasses); to hang (e.g., on a wall)",
+  "zh": "掛、戴上、花費"
+ },
+ {
+  "w": "かける",
+  "r": "かける",
+  "en": "to dial/call (e.g., phone); to sit down",
+  "zh": "打（電話）、坐下"
+ },
+ {
+  "w": "傘",
+  "r": "かさ",
+  "en": "umbrella, parasol",
+  "zh": "傘、雨傘"
+ },
+ {
+  "w": "貸す",
+  "r": "かす",
+  "en": "to lend",
+  "zh": "借出、出借"
+ },
+ {
+  "w": "風",
+  "r": "かぜ",
+  "en": "wind, breeze",
+  "zh": "風"
+ },
+ {
+  "w": "風邪",
+  "r": "かぜ",
+  "en": "cold, flu",
+  "zh": "感冒"
+ },
+ {
+  "w": "方",
+  "r": "かた",
+  "en": "-- honorific form for 人 (ひと) --; way of doing",
+  "zh": "位（人的敬稱）、做法"
+ },
+ {
+  "w": "家族",
+  "r": "かぞく",
+  "en": "family, members of a family",
+  "zh": "家人、家族"
+ },
+ {
+  "w": "片仮名",
+  "r": "かたかな",
+  "en": "katakana",
+  "zh": "片假名"
+ },
+ {
+  "w": "～月",
+  "r": "～がつ",
+  "en": "month of year",
+  "zh": "…月（月份）"
+ },
+ {
+  "w": "学校",
+  "r": "がっこう",
+  "en": "a school",
+  "zh": "學校"
+ },
+ {
+  "w": "カップ",
+  "r": "カップ",
+  "en": "cup",
+  "zh": "杯子"
+ },
+ {
+  "w": "家庭",
+  "r": "かてい",
+  "en": "home; family",
+  "zh": "家庭"
+ },
+ {
+  "w": "角",
+  "r": "かど",
+  "en": "corner (e.g., desk, pavement)",
+  "zh": "角、轉角"
+ },
+ {
+  "w": "かばん",
+  "r": "かばん",
+  "en": "bag, basket",
+  "zh": "包包、提包"
+ },
+ {
+  "w": "花瓶",
+  "r": "かびん",
+  "en": "(flower) vase",
+  "zh": "花瓶"
+ },
+ {
+  "w": "かぶる",
+  "r": "かぶる",
+  "en": "to wear, to put on (e.g., a hat on the head)",
+  "zh": "戴（帽子）、蓋上"
+ },
+ {
+  "w": "紙",
+  "r": "かみ",
+  "en": "paper",
+  "zh": "紙"
+ },
+ {
+  "w": "カメラ",
+  "r": "カメラ",
+  "en": "camera",
+  "zh": "相機、照相機"
+ },
+ {
+  "w": "火曜日",
+  "r": "かようび",
+  "en": "Tuesday",
+  "zh": "星期二"
+ },
+ {
+  "w": "辛い",
+  "r": "からい",
+  "en": "hot and spicy; salty",
+  "zh": "辣的、鹹的"
+ },
+ {
+  "w": "体",
+  "r": "からだ",
+  "en": "body; health",
+  "zh": "身體"
+ },
+ {
+  "w": "借りる",
+  "r": "かりる",
+  "en": "to borrow, to owe",
+  "zh": "借入、租借"
+ },
+ {
+  "w": "～がる",
+  "r": "～がる",
+  "en": "feel",
+  "zh": "覺得、顯得（表達他人感受）"
+ },
+ {
+  "w": "軽い",
+  "r": "かるい",
+  "en": "light, non-serious, minor",
+  "zh": "輕的、輕鬆的、輕微的"
+ },
+ {
+  "w": "カレー",
+  "r": "カレー",
+  "en": "curry (abbr. for curry and rice)",
+  "zh": "咖哩、咖哩飯"
+ },
+ {
+  "w": "カレンダー",
+  "r": "カレンダー",
+  "en": "calendar",
+  "zh": "月曆、日曆"
+ },
+ {
+  "w": "川; 河",
+  "r": "かわ",
+  "en": "river",
+  "zh": "河、河川"
+ },
+ {
+  "w": "～側",
+  "r": "～がわ",
+  "en": "~ side",
+  "zh": "～邊、～側"
+ },
+ {
+  "w": "可愛い",
+  "r": "かわいい",
+  "en": "cute, adorable",
+  "zh": "可愛的、討人喜歡的"
+ },
+ {
+  "w": "漢字",
+  "r": "かんじ",
+  "en": "kanji; Chinese character",
+  "zh": "漢字"
+ },
+ {
+  "w": "木",
+  "r": "き",
+  "en": "tree, wood, timber",
+  "zh": "樹、木頭"
+ },
+ {
+  "w": "黄色",
+  "r": "きいろ",
+  "en": "yellow",
+  "zh": "黃色"
+ },
+ {
+  "w": "黄色い",
+  "r": "きいろい",
+  "en": "yellow",
+  "zh": "黃色的"
+ },
+ {
+  "w": "消える",
+  "r": "きえる",
+  "en": "to vanish, to disappear",
+  "zh": "消失、熄滅"
+ },
+ {
+  "w": "聞く",
+  "r": "きく",
+  "en": "to hear, to listen, to ask",
+  "zh": "聽、詢問"
+ },
+ {
+  "w": "北",
+  "r": "きた",
+  "en": "north",
+  "zh": "北、北方"
+ },
+ {
+  "w": "ギター",
+  "r": "ギター",
+  "en": "guitar",
+  "zh": "吉他"
+ },
+ {
+  "w": "汚い",
+  "r": "きたない",
+  "en": "dirty, unclean, filthy",
+  "zh": "髒的、骯髒的"
+ },
+ {
+  "w": "喫茶店",
+  "r": "きっさてん",
+  "en": "café",
+  "zh": "咖啡廳、茶館"
+ },
+ {
+  "w": "切手",
+  "r": "きって",
+  "en": "postal (postage) stamps",
+  "zh": "郵票"
+ },
+ {
+  "w": "切符",
+  "r": "きっぷ",
+  "en": "a ticket",
+  "zh": "車票、票"
+ },
+ {
+  "w": "昨日",
+  "r": "きのう",
+  "en": "yesterday",
+  "zh": "昨天"
+ },
+ {
+  "w": "九",
+  "r": "きゅう",
+  "en": "nine",
+  "zh": "九"
+ },
+ {
+  "w": "牛肉",
+  "r": "ぎゅうにく",
+  "en": "beef",
+  "zh": "牛肉"
+ },
+ {
+  "w": "牛乳",
+  "r": "ぎゅうにゅう",
+  "en": "milk",
+  "zh": "牛奶"
+ },
+ {
+  "w": "今日",
+  "r": "きょう",
+  "en": "today, this day",
+  "zh": "今天"
+ },
+ {
+  "w": "教室",
+  "r": "きょうしつ",
+  "en": "classroom",
+  "zh": "教室"
+ },
+ {
+  "w": "兄弟",
+  "r": "きょうだい",
+  "en": "siblings (humble), brothers and sisters",
+  "zh": "兄弟姊妹、手足"
+ },
+ {
+  "w": "去年",
+  "r": "きょねん",
+  "en": "last year",
+  "zh": "去年"
+ },
+ {
+  "w": "嫌い",
+  "r": "きらい",
+  "en": "dislike",
+  "zh": "討厭、不喜歡"
+ },
+ {
+  "w": "切る",
+  "r": "きる",
+  "en": "to cut; to hang up (a phone)",
+  "zh": "切、剪、掛斷（電話）"
+ },
+ {
+  "w": "着る",
+  "r": "きる",
+  "en": "to put on (clothes above your waist); to wear",
+  "zh": "穿（上衣）"
+ },
+ {
+  "w": "綺麗",
+  "r": "きれい",
+  "en": "pretty, clean, tidy",
+  "zh": "漂亮、乾淨、整潔"
+ },
+ {
+  "w": "キロ; キログラム",
+  "r": "キロ; キログラム",
+  "en": "(abbr.) kilo (kilogram)",
+  "zh": "公斤"
+ },
+ {
+  "w": "キロ; キロメートル",
+  "r": "キロ; キロメートル",
+  "en": "(abbr.) kilo (kilometer)",
+  "zh": "公里"
+ },
+ {
+  "w": "銀行",
+  "r": "ぎんこう",
+  "en": "bank",
+  "zh": "銀行"
+ },
+ {
+  "w": "金曜日",
+  "r": "きんようび",
+  "en": "Friday",
+  "zh": "星期五"
+ },
+ {
+  "w": "九",
+  "r": "く",
+  "en": "nine",
+  "zh": "九"
+ },
+ {
+  "w": "薬",
+  "r": "くすり",
+  "en": "medicine",
+  "zh": "藥"
+ },
+ {
+  "w": "下さい",
+  "r": "ください",
+  "en": "(with te-form verb) please do for me",
+  "zh": "請給我、請（做）"
+ },
+ {
+  "w": "果物",
+  "r": "くだもの",
+  "en": "fruit",
+  "zh": "水果"
+ },
+ {
+  "w": "口",
+  "r": "くち",
+  "en": "job opening; mouth",
+  "zh": "嘴巴、出入口、職缺"
+ },
+ {
+  "w": "靴",
+  "r": "くつ",
+  "en": "shoes, footwear",
+  "zh": "鞋子"
+ },
+ {
+  "w": "靴下",
+  "r": "くつした",
+  "en": "socks",
+  "zh": "襪子"
+ },
+ {
+  "w": "国",
+  "r": "くに",
+  "en": "country; place of origin",
+  "zh": "國家、故鄉"
+ },
+ {
+  "w": "曇り",
+  "r": "くもり",
+  "en": "cloudiness, cloudy weather",
+  "zh": "陰天、多雲"
+ },
+ {
+  "w": "曇る",
+  "r": "くもる",
+  "en": "to become cloudy, to become dim",
+  "zh": "變陰、變模糊"
+ },
+ {
+  "w": "暗い",
+  "r": "くらい",
+  "en": "dark, gloomy",
+  "zh": "暗的、陰沉的"
+ },
+ {
+  "w": "～くらい; ぐらい",
+  "r": "～くらい; ぐらい",
+  "en": "approximate (quantity)",
+  "zh": "大約、～左右"
+ },
+ {
+  "w": "クラス",
+  "r": "クラス",
+  "en": "a class",
+  "zh": "班級、課程、等級"
+ },
+ {
+  "w": "グラム",
+  "r": "グラム",
+  "en": "gram",
+  "zh": "公克"
+ },
+ {
+  "w": "来る",
+  "r": "くる",
+  "en": "to come",
+  "zh": "來"
+ },
+ {
+  "w": "車",
+  "r": "くるま",
+  "en": "car, vehicle",
+  "zh": "車、汽車"
+ },
+ {
+  "w": "黒",
+  "r": "くろ",
+  "en": "black",
+  "zh": "黑色"
+ },
+ {
+  "w": "黒い",
+  "r": "くろい",
+  "en": "black; dark",
+  "zh": "黑的、暗的"
+ },
+ {
+  "w": "警官",
+  "r": "けいかん",
+  "en": "police officer",
+  "zh": "警察"
+ },
+ {
+  "w": "今朝",
+  "r": "けさ",
+  "en": "this morning",
+  "zh": "今天早上"
+ },
+ {
+  "w": "消す",
+  "r": "けす",
+  "en": "to erase, to delete, to turn off power",
+  "zh": "擦掉、關掉、消除"
+ },
+ {
+  "w": "結構",
+  "r": "けっこう",
+  "en": "splendid; enough, tolerably",
+  "zh": "很好、足夠、相當"
+ },
+ {
+  "w": "結婚",
+  "r": "けっこん (する)",
+  "en": "marriage (get married)",
+  "zh": "結婚"
+ },
+ {
+  "w": "月曜日",
+  "r": "げつようび",
+  "en": "Monday",
+  "zh": "星期一"
+ },
+ {
+  "w": "玄関",
+  "r": "げんかん",
+  "en": "entrance (to a house or a building)",
+  "zh": "玄關、大門口"
+ },
+ {
+  "w": "元気",
+  "r": "げんき",
+  "en": "health(y), energetic",
+  "zh": "健康、有精神"
+ },
+ {
+  "w": "～個",
+  "r": "～こ",
+  "en": "counter for small items (e.g., fruits, cups)",
+  "zh": "～個"
+ },
+ {
+  "w": "五",
+  "r": "ご",
+  "en": "five",
+  "zh": "五"
+ },
+ {
+  "w": "～語",
+  "r": "～ご",
+  "en": "word, language",
+  "zh": "～語、語言"
+ },
+ {
+  "w": "公園",
+  "r": "こうえん",
+  "en": "a park",
+  "zh": "公園"
+ },
+ {
+  "w": "交差点",
+  "r": "こうさてん",
+  "en": "intersection",
+  "zh": "十字路口"
+ },
+ {
+  "w": "紅茶",
+  "r": "こうちゃ",
+  "en": "black tea",
+  "zh": "紅茶"
+ },
+ {
+  "w": "交番",
+  "r": "こうばん",
+  "en": "police box",
+  "zh": "派出所"
+ },
+ {
+  "w": "声",
+  "r": "こえ",
+  "en": "voice",
+  "zh": "聲音、嗓音"
+ },
+ {
+  "w": "コート",
+  "r": "コート",
+  "en": "coat; court (e.g., tennis)",
+  "zh": "大衣、球場"
+ },
+ {
+  "w": "コーヒー",
+  "r": "コーヒー",
+  "en": "coffee",
+  "zh": "咖啡"
+ },
+ {
+  "w": "ここ",
+  "r": "ここ",
+  "en": "here, this place",
+  "zh": "這裡"
+ },
+ {
+  "w": "午後",
+  "r": "ごご",
+  "en": "afternoon, P.M.",
+  "zh": "下午"
+ },
+ {
+  "w": "九日",
+  "r": "ここのか",
+  "en": "nine days; ninth day of the month",
+  "zh": "九號、九天"
+ },
+ {
+  "w": "九つ",
+  "r": "ここのつ",
+  "en": "nine things",
+  "zh": "九個"
+ },
+ {
+  "w": "午前",
+  "r": "ごぜん",
+  "en": "morning, A.M.",
+  "zh": "上午"
+ },
+ {
+  "w": "答える",
+  "r": "こたえる",
+  "en": "to answer, to reply",
+  "zh": "回答、答覆"
+ },
+ {
+  "w": "こちら",
+  "r": "こちら",
+  "en": "this person (polite); this way (polite)",
+  "zh": "這邊、這位（禮貌）"
+ },
+ {
+  "w": "こっち",
+  "r": "こっち",
+  "en": "this person; this direction; this side",
+  "zh": "這邊、這裡"
+ },
+ {
+  "w": "コップ",
+  "r": "コップ",
+  "en": "a tumbler; a glass",
+  "zh": "杯子、玻璃杯"
+ },
+ {
+  "w": "今年",
+  "r": "ことし",
+  "en": "this year",
+  "zh": "今年"
+ },
+ {
+  "w": "言葉",
+  "r": "ことば",
+  "en": "language; word(s); expression(s)",
+  "zh": "語言、詞語、說法"
+ },
+ {
+  "w": "子供",
+  "r": "こども",
+  "en": "child(ren)",
+  "zh": "小孩、兒童"
+ },
+ {
+  "w": "この",
+  "r": "この",
+  "en": "this",
+  "zh": "這個～"
+ },
+ {
+  "w": "御飯",
+  "r": "ごはん",
+  "en": "rice (cooked); meal",
+  "zh": "白飯、飯菜"
+ },
+ {
+  "w": "コピーする",
+  "r": "コピーする",
+  "en": "to copy",
+  "zh": "影印、複製"
+ },
+ {
+  "w": "困る",
+  "r": "こまる",
+  "en": "to be bothered, to have difficulty",
+  "zh": "困擾、為難"
+ },
+ {
+  "w": "これ",
+  "r": "これ",
+  "en": "this one",
+  "zh": "這個"
+ },
+ {
+  "w": "～ころ; ～ごろ",
+  "r": "～ころ; ～ごろ",
+  "en": "about, toward, approximately (time)",
+  "zh": "～左右、大約～時候"
+ },
+ {
+  "w": "今月",
+  "r": "こんげつ",
+  "en": "this month",
+  "zh": "這個月"
+ },
+ {
+  "w": "今週",
+  "r": "こんしゅう",
+  "en": "this week",
+  "zh": "這星期"
+ },
+ {
+  "w": "こんな",
+  "r": "こんな",
+  "en": "such, like this",
+  "zh": "這樣的"
+ },
+ {
+  "w": "今晩",
+  "r": "こんばん",
+  "en": "tonight, this evening",
+  "zh": "今晚"
+ },
+ {
+  "w": "さあ",
+  "r": "さあ",
+  "en": "come now, well",
+  "zh": "來吧、這個嘛"
+ },
+ {
+  "w": "～歳",
+  "r": "～さい",
+  "en": "~ years old",
+  "zh": "～歲"
+ },
+ {
+  "w": "財布",
+  "r": "さいふ",
+  "en": "wallet",
+  "zh": "錢包"
+ },
+ {
+  "w": "魚",
+  "r": "さかな",
+  "en": "fish",
+  "zh": "魚"
+ },
+ {
+  "w": "先",
+  "r": "さき",
+  "en": "future; recent, previous",
+  "zh": "前方、以後、剛才"
+ },
+ {
+  "w": "咲く",
+  "r": "さく",
+  "en": "to bloom",
+  "zh": "開花、綻放"
+ },
+ {
+  "w": "作文",
+  "r": "さくぶん",
+  "en": "essay; composition",
+  "zh": "作文"
+ },
+ {
+  "w": "差す",
+  "r": "さす",
+  "en": "to raise (stretch out) hands, to raise (e.g., umbrella)",
+  "zh": "撐（傘）、伸出（手）"
+ },
+ {
+  "w": "～冊",
+  "r": "～さつ",
+  "en": "counter for books",
+  "zh": "～本（書的單位）"
+ },
+ {
+  "w": "雑誌",
+  "r": "ざっし",
+  "en": "magazine, journal",
+  "zh": "雜誌"
+ },
+ {
+  "w": "砂糖",
+  "r": "さとう",
+  "en": "sugar",
+  "zh": "砂糖"
+ },
+ {
+  "w": "寒い",
+  "r": "さむい",
+  "en": "cold (in reference to weather)",
+  "zh": "冷的、寒冷的"
+ },
+ {
+  "w": "さ来年",
+  "r": "さらいねん",
+  "en": "year after next",
+  "zh": "後年"
+ },
+ {
+  "w": "～さん",
+  "r": "～さん",
+  "en": "Mr. ~, Ms. ~",
+  "zh": "～先生、～小姐"
+ },
+ {
+  "w": "三",
+  "r": "さん",
+  "en": "three",
+  "zh": "三"
+ },
+ {
+  "w": "散歩",
+  "r": "さんぽ (する)",
+  "en": "walk, stroll",
+  "zh": "散步"
+ },
+ {
+  "w": "四",
+  "r": "し",
+  "en": "four",
+  "zh": "四"
+ },
+ {
+  "w": "～時",
+  "r": "～じ",
+  "en": "~ o'clock (time)",
+  "zh": "～點（鐘）"
+ },
+ {
+  "w": "塩",
+  "r": "しお",
+  "en": "salt",
+  "zh": "鹽、鹽巴"
+ },
+ {
+  "w": "しかし",
+  "r": "しかし",
+  "en": "however; but",
+  "zh": "但是、然而"
+ },
+ {
+  "w": "時間",
+  "r": "じかん",
+  "en": "time",
+  "zh": "時間"
+ },
+ {
+  "w": "～時間",
+  "r": "～じかん",
+  "en": "~ hours",
+  "zh": "～小時"
+ },
+ {
+  "w": "仕事",
+  "r": "しごと",
+  "en": "work, job, occupation, employment",
+  "zh": "工作、職業"
+ },
+ {
+  "w": "辞書",
+  "r": "じしょ",
+  "en": "dictionary",
+  "zh": "字典、辭典"
+ },
+ {
+  "w": "静か",
+  "r": "しずか",
+  "en": "quiet, calm",
+  "zh": "安靜、寧靜"
+ },
+ {
+  "w": "下",
+  "r": "した",
+  "en": "under, below, beneath",
+  "zh": "下面、下方"
+ },
+ {
+  "w": "七",
+  "r": "しち",
+  "en": "seven",
+  "zh": "七"
+ },
+ {
+  "w": "質問",
+  "r": "しつもん",
+  "en": "question, inquiry",
+  "zh": "問題、提問"
+ },
+ {
+  "w": "自転車",
+  "r": "じてんしゃ",
+  "en": "bicycle",
+  "zh": "腳踏車"
+ },
+ {
+  "w": "自動車",
+  "r": "じどうしゃ",
+  "en": "automobile",
+  "zh": "汽車"
+ },
+ {
+  "w": "死ぬ",
+  "r": "しぬ",
+  "en": "to die",
+  "zh": "死、死亡"
+ },
+ {
+  "w": "字引",
+  "r": "じびき",
+  "en": "dictionary",
+  "zh": "字典"
+ },
+ {
+  "w": "自分",
+  "r": "じぶん",
+  "en": "myself, oneself",
+  "zh": "自己、本身"
+ },
+ {
+  "w": "閉まる",
+  "r": "しまる",
+  "en": "to close, to be closed",
+  "zh": "關上、關閉"
+ },
+ {
+  "w": "閉める",
+  "r": "しめる",
+  "en": "to close, to shut",
+  "zh": "關上、關（門窗）"
+ },
+ {
+  "w": "締める",
+  "r": "しめる",
+  "en": "to tie, to fasten, to tighten",
+  "zh": "繫上、綁緊"
+ },
+ {
+  "w": "じゃ; じゃあ",
+  "r": "じゃ; じゃあ",
+  "en": "well, well then",
+  "zh": "那麼、那就"
+ },
+ {
+  "w": "写真",
+  "r": "しゃしん",
+  "en": "a picture; a photograph",
+  "zh": "照片"
+ },
+ {
+  "w": "シャツ",
+  "r": "シャツ",
+  "en": "shirt",
+  "zh": "襯衫"
+ },
+ {
+  "w": "シャワー",
+  "r": "シャワー",
+  "en": "shower",
+  "zh": "淋浴、蓮蓬頭"
+ },
+ {
+  "w": "十",
+  "r": "じゅう",
+  "en": "ten",
+  "zh": "十"
+ },
+ {
+  "w": "～中",
+  "r": "～じゅう",
+  "en": "during, while",
+  "zh": "整個～、～期間、～之中"
+ },
+ {
+  "w": "～週間",
+  "r": "～しゅうかん",
+  "en": "~ weeks",
+  "zh": "～週、～星期"
+ },
+ {
+  "w": "授業",
+  "r": "じゅぎょう",
+  "en": "a class (of school)",
+  "zh": "課、上課"
+ },
+ {
+  "w": "宿題",
+  "r": "しゅくだい",
+  "en": "homework",
+  "zh": "作業、功課"
+ },
+ {
+  "w": "上手",
+  "r": "じょうず",
+  "en": "be good at, skillful",
+  "zh": "擅長、拿手"
+ },
+ {
+  "w": "丈夫",
+  "r": "じょうぶ",
+  "en": "strong, solid, durable",
+  "zh": "結實、堅固、健壯"
+ },
+ {
+  "w": "醤油",
+  "r": "しょうゆ",
+  "en": "soy sauce",
+  "zh": "醬油"
+ },
+ {
+  "w": "食堂",
+  "r": "しょくどう",
+  "en": "cafeteria, dining hall",
+  "zh": "餐廳、食堂"
+ },
+ {
+  "w": "知る",
+  "r": "しる",
+  "en": "to know, to understand",
+  "zh": "知道、認識"
+ },
+ {
+  "w": "白",
+  "r": "しろ",
+  "en": "white",
+  "zh": "白色"
+ },
+ {
+  "w": "白い",
+  "r": "しろい",
+  "en": "white",
+  "zh": "白的、白色的"
+ },
+ {
+  "w": "～人",
+  "r": "～じん",
+  "en": "counter for people",
+  "zh": "～人（國籍、人數）"
+ },
+ {
+  "w": "新聞",
+  "r": "しんぶん",
+  "en": "newspaper",
+  "zh": "報紙"
+ },
+ {
+  "w": "水曜日",
+  "r": "すいようび",
+  "en": "Wednesday",
+  "zh": "星期三"
+ },
+ {
+  "w": "吸う",
+  "r": "すう",
+  "en": "to breathe in, to suck",
+  "zh": "吸、吸入、抽（菸）"
+ },
+ {
+  "w": "スカート",
+  "r": "スカート",
+  "en": "skirt",
+  "zh": "裙子"
+ },
+ {
+  "w": "好き",
+  "r": "すき",
+  "en": "liking, fondness, love",
+  "zh": "喜歡、喜愛"
+ },
+ {
+  "w": "～すぎ",
+  "r": "～すぎ",
+  "en": "past; to exceed, ~ too much",
+  "zh": "過～、超過、太過～"
+ },
+ {
+  "w": "少ない",
+  "r": "すくない",
+  "en": "a little; a few",
+  "zh": "少的、不多的"
+ },
+ {
+  "w": "すぐに",
+  "r": "すぐに",
+  "en": "immediately, soon",
+  "zh": "馬上、立刻"
+ },
+ {
+  "w": "少し",
+  "r": "すこし",
+  "en": "little, few",
+  "zh": "一點、稍微"
+ },
+ {
+  "w": "涼しい",
+  "r": "すずしい",
+  "en": "cool, refreshing (in reference to weather)",
+  "zh": "涼爽的"
+ },
+ {
+  "w": "～ずつ",
+  "r": "～ずつ",
+  "en": "at a time",
+  "zh": "每～、各～"
+ },
+ {
+  "w": "ストーブ",
+  "r": "ストーブ",
+  "en": "heater (lit: stove)",
+  "zh": "暖爐、火爐"
+ },
+ {
+  "w": "スプーン",
+  "r": "スプーン",
+  "en": "spoon",
+  "zh": "湯匙"
+ },
+ {
+  "w": "スポーツ",
+  "r": "スポーツ",
+  "en": "sport(s)",
+  "zh": "運動"
+ },
+ {
+  "w": "ズボン",
+  "r": "ズボン",
+  "en": "trousers",
+  "zh": "褲子、長褲"
+ },
+ {
+  "w": "住む",
+  "r": "すむ",
+  "en": "to reside, to live in",
+  "zh": "住、居住"
+ },
+ {
+  "w": "する",
+  "r": "する",
+  "en": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+  "zh": "做、進行、戴（小配件）"
+ },
+ {
+  "w": "座る",
+  "r": "すわる",
+  "en": "to sit",
+  "zh": "坐、坐下"
+ },
+ {
+  "w": "背",
+  "r": "せい",
+  "en": "(one's) height, stature",
+  "zh": "身高、背"
+ },
+ {
+  "w": "生徒",
+  "r": "せいと",
+  "en": "student; pupil",
+  "zh": "學生（中小學）"
+ },
+ {
+  "w": "セーター",
+  "r": "セーター",
+  "en": "sweater",
+  "zh": "毛衣"
+ },
+ {
+  "w": "石鹸",
+  "r": "せっけん",
+  "en": "soap",
+  "zh": "肥皂"
+ },
+ {
+  "w": "背広",
+  "r": "せびろ",
+  "en": "men's suit",
+  "zh": "西裝"
+ },
+ {
+  "w": "狭い",
+  "r": "せまい",
+  "en": "narrow; not spacious",
+  "zh": "窄的、狹小的"
+ },
+ {
+  "w": "ゼロ",
+  "r": "ゼロ",
+  "en": "zero",
+  "zh": "零"
+ },
+ {
+  "w": "千",
+  "r": "せん",
+  "en": "thousand",
+  "zh": "千、一千"
+ },
+ {
+  "w": "先月",
+  "r": "せんげつ",
+  "en": "last month",
+  "zh": "上個月"
+ },
+ {
+  "w": "先週",
+  "r": "せんしゅう",
+  "en": "last week",
+  "zh": "上星期"
+ },
+ {
+  "w": "先生",
+  "r": "せんせい",
+  "en": "teacher, professor; master; doctor",
+  "zh": "老師、醫生"
+ },
+ {
+  "w": "洗濯",
+  "r": "せんたく",
+  "en": "washing, laundry",
+  "zh": "洗衣服、洗滌"
+ },
+ {
+  "w": "全部",
+  "r": "ぜんぶ",
+  "en": "all, entire, whole",
+  "zh": "全部、所有"
+ },
+ {
+  "w": "そう; そうです",
+  "r": "そう; そうです",
+  "en": "yes; appears, to be the case",
+  "zh": "是的、沒錯"
+ },
+ {
+  "w": "掃除",
+  "r": "そうじ (する)",
+  "en": "cleaning, sweeping",
+  "zh": "打掃、清掃"
+ },
+ {
+  "w": "そうして; そして",
+  "r": "そうして; そして",
+  "en": "and, like that",
+  "zh": "然後、而且"
+ },
+ {
+  "w": "そこ",
+  "r": "そこ",
+  "en": "that place, there; bottom, sole",
+  "zh": "那裡、那邊；底部"
+ },
+ {
+  "w": "そちら",
+  "r": "そちら",
+  "en": "over there",
+  "zh": "那邊、那位"
+ },
+ {
+  "w": "そっち",
+  "r": "そっち",
+  "en": "over there",
+  "zh": "那邊"
+ },
+ {
+  "w": "外",
+  "r": "そと",
+  "en": "outside, exterior",
+  "zh": "外面、外部"
+ },
+ {
+  "w": "その",
+  "r": "その",
+  "en": "that",
+  "zh": "那個"
+ },
+ {
+  "w": "そば",
+  "r": "そば",
+  "en": "near, close, beside; Japanese traditional buckwheat noodle",
+  "zh": "旁邊、附近；蕎麥麵"
+ },
+ {
+  "w": "空",
+  "r": "そら",
+  "en": "sky",
+  "zh": "天空"
+ },
+ {
+  "w": "それ",
+  "r": "それ",
+  "en": "that one",
+  "zh": "那個"
+ },
+ {
+  "w": "それから",
+  "r": "それから",
+  "en": "and then, after that",
+  "zh": "然後、之後"
+ },
+ {
+  "w": "それでは",
+  "r": "それでは",
+  "en": "in that situation, well then...",
+  "zh": "那麼"
+ },
+ {
+  "w": "～台",
+  "r": "～だい",
+  "en": "counter for vehicles; machines",
+  "zh": "台（車輛、機器的量詞）"
+ },
+ {
+  "w": "大学",
+  "r": "だいがく",
+  "en": "college; university",
+  "zh": "大學"
+ },
+ {
+  "w": "大使館",
+  "r": "たいしかん",
+  "en": "embassy",
+  "zh": "大使館"
+ },
+ {
+  "w": "大丈夫",
+  "r": "だいじょうぶ",
+  "en": "It's ok (all right); No need to worry; Everything is under control",
+  "zh": "沒問題、不要緊"
+ },
+ {
+  "w": "大好き",
+  "r": "だいすき",
+  "en": "very like-able, like very much",
+  "zh": "最喜歡、非常喜歡"
+ },
+ {
+  "w": "大切",
+  "r": "たいせつ",
+  "en": "important",
+  "zh": "重要、珍惜"
+ },
+ {
+  "w": "台所",
+  "r": "だいどころ",
+  "en": "kitchen",
+  "zh": "廚房"
+ },
+ {
+  "w": "大変",
+  "r": "たいへん",
+  "en": "very; difficult, hard",
+  "zh": "非常；辛苦、不得了"
+ },
+ {
+  "w": "高い",
+  "r": "たかい",
+  "en": "tall, high; expensive",
+  "zh": "高的；貴的"
+ },
+ {
+  "w": "～だけ",
+  "r": "～だけ",
+  "en": "only ~, just ~, as ~",
+  "zh": "只、僅、～而已"
+ },
+ {
+  "w": "沢山",
+  "r": "たくさん",
+  "en": "many, much",
+  "zh": "很多、許多"
+ },
+ {
+  "w": "タクシー",
+  "r": "タクシー",
+  "en": "taxi",
+  "zh": "計程車"
+ },
+ {
+  "w": "出す",
+  "r": "だす",
+  "en": "to take (something) out; to hand in (something)",
+  "zh": "拿出、提出、寄出"
+ },
+ {
+  "w": "～たち",
+  "r": "～たち",
+  "en": "plural suffix",
+  "zh": "們（表複數）"
+ },
+ {
+  "w": "立つ",
+  "r": "たつ",
+  "en": "to stand up",
+  "zh": "站立、站起來"
+ },
+ {
+  "w": "たて",
+  "r": "たて",
+  "en": "length, height",
+  "zh": "縱向、直的、長度"
+ },
+ {
+  "w": "建物",
+  "r": "たてもの",
+  "en": "building",
+  "zh": "建築物"
+ },
+ {
+  "w": "楽しい",
+  "r": "たのしい",
+  "en": "enjoyable, fun",
+  "zh": "快樂、愉快、好玩"
+ },
+ {
+  "w": "頼む",
+  "r": "たのむ",
+  "en": "to request, to ask (a favor)",
+  "zh": "拜託、請求；點（餐）"
+ },
+ {
+  "w": "たばこ",
+  "r": "たばこ",
+  "en": "tobacco, cigarettes",
+  "zh": "香菸"
+ },
+ {
+  "w": "多分",
+  "r": "たぶん",
+  "en": "perhaps, probably, maybe",
+  "zh": "大概、也許"
+ },
+ {
+  "w": "食べ物",
+  "r": "たべもの",
+  "en": "food",
+  "zh": "食物"
+ },
+ {
+  "w": "食べる",
+  "r": "たべる",
+  "en": "to eat",
+  "zh": "吃"
+ },
+ {
+  "w": "卵",
+  "r": "たまご",
+  "en": "egg",
+  "zh": "蛋、雞蛋"
+ },
+ {
+  "w": "誰",
+  "r": "だれ",
+  "en": "who",
+  "zh": "誰"
+ },
+ {
+  "w": "誰か",
+  "r": "だれか",
+  "en": "someone",
+  "zh": "某人、有人"
+ },
+ {
+  "w": "誕生日",
+  "r": "たんじょうび",
+  "en": "birthday",
+  "zh": "生日"
+ },
+ {
+  "w": "段々",
+  "r": "だんだん",
+  "en": "gradually, by degrees",
+  "zh": "漸漸、逐漸"
+ },
+ {
+  "w": "小さい",
+  "r": "ちいさい",
+  "en": "small, little",
+  "zh": "小的"
+ },
+ {
+  "w": "小さな",
+  "r": "ちいさな",
+  "en": "small, little",
+  "zh": "小的"
+ },
+ {
+  "w": "近い",
+  "r": "ちかい",
+  "en": "near, close by, short",
+  "zh": "近的"
+ },
+ {
+  "w": "違う",
+  "r": "ちがう",
+  "en": "to be different; to differ; wrong",
+  "zh": "不同、不一樣；不對"
+ },
+ {
+  "w": "近く",
+  "r": "ちかく",
+  "en": "nearby; in the neighborhood",
+  "zh": "附近"
+ },
+ {
+  "w": "地下鉄",
+  "r": "ちかてつ",
+  "en": "underground train, subway",
+  "zh": "地下鐵、捷運"
+ },
+ {
+  "w": "地図",
+  "r": "ちず",
+  "en": "a map",
+  "zh": "地圖"
+ },
+ {
+  "w": "父",
+  "r": "ちち",
+  "en": "(my) father",
+  "zh": "父親、爸爸"
+ },
+ {
+  "w": "茶色",
+  "r": "ちゃいろ",
+  "en": "brown",
+  "zh": "咖啡色、褐色"
+ },
+ {
+  "w": "茶碗",
+  "r": "ちゃわん",
+  "en": "rice bowl",
+  "zh": "飯碗、茶碗"
+ },
+ {
+  "w": "～中",
+  "r": "～ちゅう",
+  "en": "during, while ~ing",
+  "zh": "正在～、～之中"
+ },
+ {
+  "w": "丁度",
+  "r": "ちょうど",
+  "en": "just, right, exactly",
+  "zh": "剛好、正好"
+ },
+ {
+  "w": "ちょっと",
+  "r": "ちょっと",
+  "en": "a little, somewhat; just a little, somewhat",
+  "zh": "一點點、稍微"
+ },
+ {
+  "w": "一日",
+  "r": "ついたち",
+  "en": "one day; first day of the month",
+  "zh": "一號（每月第一天）"
+ },
+ {
+  "w": "使う",
+  "r": "つかう",
+  "en": "to use",
+  "zh": "使用、用"
+ },
+ {
+  "w": "疲れる",
+  "r": "つかれる",
+  "en": "to get (become) tired; to become fatigued",
+  "zh": "疲倦、累"
+ },
+ {
+  "w": "次",
+  "r": "つぎ",
+  "en": "next",
+  "zh": "下一個、接下來"
+ },
+ {
+  "w": "着く",
+  "r": "つく",
+  "en": "to arrive at, to reach",
+  "zh": "到達、抵達"
+ },
+ {
+  "w": "机",
+  "r": "つくえ",
+  "en": "desk",
+  "zh": "書桌、桌子"
+ },
+ {
+  "w": "作る",
+  "r": "つくる",
+  "en": "to make, to create",
+  "zh": "製作、做"
+ },
+ {
+  "w": "つける",
+  "r": "つける",
+  "en": "to turn on (e.g., a light); to take",
+  "zh": "打開（電器）、點（火）"
+ },
+ {
+  "w": "勤める",
+  "r": "つとめる",
+  "en": "to work (for)",
+  "zh": "任職、工作"
+ },
+ {
+  "w": "つまらない",
+  "r": "つまらない",
+  "en": "boring, dull; insignificant",
+  "zh": "無聊、沒意思"
+ },
+ {
+  "w": "冷たい",
+  "r": "つめたい",
+  "en": "cold (things, people)",
+  "zh": "冰冷的、冷淡的"
+ },
+ {
+  "w": "強い",
+  "r": "つよい",
+  "en": "strong, powerful",
+  "zh": "強、強壯"
+ },
+ {
+  "w": "手",
+  "r": "て",
+  "en": "hand",
+  "zh": "手"
+ },
+ {
+  "w": "テープ",
+  "r": "テープ",
+  "en": "tape",
+  "zh": "膠帶、錄音帶"
+ },
+ {
+  "w": "テープレコーダー",
+  "r": "テープレコーダー",
+  "en": "tape recorder",
+  "zh": "錄音機"
+ },
+ {
+  "w": "テーブル",
+  "r": "テーブル",
+  "en": "table",
+  "zh": "桌子、餐桌"
+ },
+ {
+  "w": "出かける",
+  "r": "でかける",
+  "en": "to go out; to depart",
+  "zh": "出門、外出"
+ },
+ {
+  "w": "手紙",
+  "r": "てがみ",
+  "en": "letter",
+  "zh": "信、信件"
+ },
+ {
+  "w": "できる",
+  "r": "できる",
+  "en": "to be able to (to accomplish)",
+  "zh": "會、能夠；做好"
+ },
+ {
+  "w": "出口",
+  "r": "でぐち",
+  "en": "an exit",
+  "zh": "出口"
+ },
+ {
+  "w": "テスト",
+  "r": "テスト",
+  "en": "test",
+  "zh": "測驗、考試"
+ },
+ {
+  "w": "では",
+  "r": "では",
+  "en": "then, well, so",
+  "zh": "那麼"
+ },
+ {
+  "w": "デパート",
+  "r": "デパート",
+  "en": "(abbr.) department store",
+  "zh": "百貨公司"
+ },
+ {
+  "w": "でも",
+  "r": "でも",
+  "en": "but, however",
+  "zh": "但是、不過"
+ },
+ {
+  "w": "出る",
+  "r": "でる",
+  "en": "to appear, to leave",
+  "zh": "出去、出來；出現"
+ },
+ {
+  "w": "テレビ",
+  "r": "テレビ",
+  "en": "television, TV",
+  "zh": "電視"
+ },
+ {
+  "w": "天気",
+  "r": "てんき",
+  "en": "weather",
+  "zh": "天氣"
+ },
+ {
+  "w": "電気",
+  "r": "でんき",
+  "en": "electricity, (electric) light",
+  "zh": "電、電燈"
+ },
+ {
+  "w": "電車",
+  "r": "でんしゃ",
+  "en": "electric train",
+  "zh": "電車"
+ },
+ {
+  "w": "電話",
+  "r": "でんわ",
+  "en": "a telephone",
+  "zh": "電話"
+ },
+ {
+  "w": "戸",
+  "r": "と",
+  "en": "door (Japanese style)",
+  "zh": "門（日式拉門）"
+ },
+ {
+  "w": "～度",
+  "r": "～ど",
+  "en": "counter for occurrences; ~ degree; ~ point",
+  "zh": "次、回；度（單位）"
+ },
+ {
+  "w": "ドア",
+  "r": "ドア",
+  "en": "door (Western style)",
+  "zh": "門"
+ },
+ {
+  "w": "トイレ",
+  "r": "トイレ",
+  "en": "bathroom; toilet",
+  "zh": "廁所、洗手間"
+ },
+ {
+  "w": "どう",
+  "r": "どう",
+  "en": "how, in what way",
+  "zh": "如何、怎麼樣"
+ },
+ {
+  "w": "どうして",
+  "r": "どうして",
+  "en": "why, for what reason",
+  "zh": "為什麼"
+ },
+ {
+  "w": "どうぞ",
+  "r": "どうぞ",
+  "en": "please, kindly, by all means",
+  "zh": "請"
+ },
+ {
+  "w": "動物",
+  "r": "どうぶつ",
+  "en": "animal",
+  "zh": "動物"
+ },
+ {
+  "w": "どうも",
+  "r": "どうも",
+  "en": "Thank you; somehow; no matter how hard one may try",
+  "zh": "謝謝；總覺得、怎麼也"
+ },
+ {
+  "w": "十",
+  "r": "(〜を) とお",
+  "en": "ten (~)",
+  "zh": "十、十個"
+ },
+ {
+  "w": "遠い",
+  "r": "とおい",
+  "en": "far (away), distant",
+  "zh": "遠的"
+ },
+ {
+  "w": "十日",
+  "r": "とおか",
+  "en": "ten days; tenth day of the month",
+  "zh": "十天；十號"
+ },
+ {
+  "w": "～時",
+  "r": "～とき",
+  "en": "at the time of ~",
+  "zh": "～的時候"
+ },
+ {
+  "w": "時々",
+  "r": "ときどき",
+  "en": "sometimes",
+  "zh": "有時、偶爾"
+ },
+ {
+  "w": "時計",
+  "r": "とけい",
+  "en": "a watch; a clock",
+  "zh": "時鐘、手錶"
+ },
+ {
+  "w": "どこ",
+  "r": "どこ",
+  "en": "where, what place",
+  "zh": "哪裡"
+ },
+ {
+  "w": "所",
+  "r": "ところ",
+  "en": "place",
+  "zh": "地方、場所"
+ },
+ {
+  "w": "年",
+  "r": "とし",
+  "en": "year, age",
+  "zh": "年；年紀"
+ },
+ {
+  "w": "図書館",
+  "r": "としょかん",
+  "en": "library",
+  "zh": "圖書館"
+ },
+ {
+  "w": "どちら",
+  "r": "どちら",
+  "en": "which (one) (way); where (polite)",
+  "zh": "哪一個、哪邊；哪位"
+ },
+ {
+  "w": "どっち",
+  "r": "どっち",
+  "en": "which one, which way",
+  "zh": "哪一個、哪邊"
+ },
+ {
+  "w": "とても",
+  "r": "とても",
+  "en": "very (much), greatly, exceedingly",
+  "zh": "非常、很"
+ },
+ {
+  "w": "どなた",
+  "r": "どなた",
+  "en": "who",
+  "zh": "哪位（誰的敬語）"
+ },
+ {
+  "w": "隣",
+  "r": "となり",
+  "en": "next to, next door to",
+  "zh": "隔壁、旁邊"
+ },
+ {
+  "w": "どの",
+  "r": "どの",
+  "en": "which",
+  "zh": "哪個"
+ },
+ {
+  "w": "飛ぶ",
+  "r": "とぶ",
+  "en": "to fly, to hop",
+  "zh": "飛；跳"
+ },
+ {
+  "w": "止まる",
+  "r": "とまる",
+  "en": "to come to a halt",
+  "zh": "停止、停下"
+ },
+ {
+  "w": "友達",
+  "r": "ともだち",
+  "en": "friend",
+  "zh": "朋友"
+ },
+ {
+  "w": "土曜日",
+  "r": "どようび",
+  "en": "Saturday",
+  "zh": "星期六"
+ },
+ {
+  "w": "鳥",
+  "r": "とり",
+  "en": "chicken (lit., bird)",
+  "zh": "鳥；雞肉"
+ },
+ {
+  "w": "鶏肉",
+  "r": "とりにく",
+  "en": "chicken meat",
+  "zh": "雞肉"
+ },
+ {
+  "w": "取る",
+  "r": "とる",
+  "en": "to take (a class); to get (a grade)",
+  "zh": "拿、取；修（課）、取得"
+ },
+ {
+  "w": "撮る",
+  "r": "とる",
+  "en": "to take (a photo), to make (a film)",
+  "zh": "拍（照）、拍攝"
+ },
+ {
+  "w": "どれ",
+  "r": "どれ",
+  "en": "which one",
+  "zh": "哪一個"
+ },
+ {
+  "w": "どんな",
+  "r": "どんな",
+  "en": "what, what kind of",
+  "zh": "什麼樣的、怎樣的"
+ },
+ {
+  "w": "ない",
+  "r": "ない",
+  "en": "there isn't, doesn't have",
+  "zh": "沒有、不在"
+ },
+ {
+  "w": "ナイフ",
+  "r": "ナイフ",
+  "en": "knife",
+  "zh": "刀子、小刀"
+ },
+ {
+  "w": "中",
+  "r": "なか",
+  "en": "inside, middle, among",
+  "zh": "裡面、中間"
+ },
+ {
+  "w": "長い",
+  "r": "ながい",
+  "en": "long, lengthy",
+  "zh": "長的"
+ },
+ {
+  "w": "鳴く",
+  "r": "なく",
+  "en": "to make sound (animal)",
+  "zh": "（動物）叫、鳴"
+ },
+ {
+  "w": "無くす",
+  "r": "なくす",
+  "en": "to lose something",
+  "zh": "弄丟、遺失"
+ },
+ {
+  "w": "なぜ",
+  "r": "なぜ",
+  "en": "why (same as どうして)",
+  "zh": "為什麼"
+ },
+ {
+  "w": "夏",
+  "r": "なつ",
+  "en": "summer",
+  "zh": "夏天"
+ },
+ {
+  "w": "夏休み",
+  "r": "なつやすみ",
+  "en": "summer vacation",
+  "zh": "暑假"
+ },
+ {
+  "w": "～など",
+  "r": "～など",
+  "en": "et cetera",
+  "zh": "等等、之類"
+ },
+ {
+  "w": "七つ",
+  "r": "ななつ",
+  "en": "seven things",
+  "zh": "七個"
+ },
+ {
+  "w": "何",
+  "r": "なん; なに",
+  "en": "what",
+  "zh": "什麼"
+ },
+ {
+  "w": "七日",
+  "r": "なのか",
+  "en": "seven days; seventh day (of the month)",
+  "zh": "七天；七號"
+ },
+ {
+  "w": "名前",
+  "r": "なまえ",
+  "en": "name",
+  "zh": "名字、姓名"
+ },
+ {
+  "w": "習う",
+  "r": "ならう",
+  "en": "to learn",
+  "zh": "學習、學"
+ },
+ {
+  "w": "並ぶ",
+  "r": "ならぶ",
+  "en": "to line up, to stand in a line (v.i.)",
+  "zh": "排隊、排列"
+ },
+ {
+  "w": "並べる",
+  "r": "ならべる",
+  "en": "to put (things) side by side; to line up",
+  "zh": "排列、擺放"
+ },
+ {
+  "w": "なる",
+  "r": "なる",
+  "en": "to become",
+  "zh": "變成、成為"
+ },
+ {
+  "w": "何～",
+  "r": "なん～",
+  "en": "what sort of ~",
+  "zh": "幾～、什麼～"
+ },
+ {
+  "w": "二",
+  "r": "に",
+  "en": "two",
+  "zh": "二、兩"
+ },
+ {
+  "w": "にぎやか",
+  "r": "にぎやか",
+  "en": "bustling, busy",
+  "zh": "熱鬧"
+ },
+ {
+  "w": "肉",
+  "r": "にく",
+  "en": "meat",
+  "zh": "肉"
+ },
+ {
+  "w": "西",
+  "r": "にし",
+  "en": "west",
+  "zh": "西、西邊"
+ },
+ {
+  "w": "～日",
+  "r": "～にち",
+  "en": "~ day of the month, for ~ days",
+  "zh": "～號；～天"
+ },
+ {
+  "w": "日曜日",
+  "r": "にちようび",
+  "en": "Sunday",
+  "zh": "星期日"
+ },
+ {
+  "w": "荷物",
+  "r": "にもつ",
+  "en": "luggage; baggage",
+  "zh": "行李、貨物"
+ },
+ {
+  "w": "ニュース",
+  "r": "ニュース",
+  "en": "news",
+  "zh": "新聞、消息"
+ },
+ {
+  "w": "庭",
+  "r": "にわ",
+  "en": "garden",
+  "zh": "庭院、院子"
+ },
+ {
+  "w": "～人",
+  "r": "～にん",
+  "en": "counter for people",
+  "zh": "～人（人數量詞）"
+ },
+ {
+  "w": "脱ぐ",
+  "r": "ぬぐ",
+  "en": "to take off (clothes)",
+  "zh": "脫（衣物）"
+ },
+ {
+  "w": "温い",
+  "r": "ぬるい",
+  "en": "lukewarm",
+  "zh": "溫的、不夠熱"
+ },
+ {
+  "w": "ネクタイ",
+  "r": "ネクタイ",
+  "en": "tie, necktie",
+  "zh": "領帶"
+ },
+ {
+  "w": "猫",
+  "r": "ねこ",
+  "en": "cat",
+  "zh": "貓"
+ },
+ {
+  "w": "寝る",
+  "r": "ねる",
+  "en": "to sleep; to go to sleep; to go to bed",
+  "zh": "睡覺、就寢"
+ },
+ {
+  "w": "～年",
+  "r": "～ねん",
+  "en": "~ years",
+  "zh": "～年"
+ },
+ {
+  "w": "ノート",
+  "r": "ノート",
+  "en": "notebook",
+  "zh": "筆記本"
+ },
+ {
+  "w": "登る",
+  "r": "のぼる",
+  "en": "to climb",
+  "zh": "攀登、爬上"
+ },
+ {
+  "w": "飲み物",
+  "r": "のみもの",
+  "en": "drink, beverage",
+  "zh": "飲料"
+ },
+ {
+  "w": "飲む",
+  "r": "のむ",
+  "en": "to drink",
+  "zh": "喝"
+ },
+ {
+  "w": "乗る",
+  "r": "のる",
+  "en": "to get on, to ride in, to board",
+  "zh": "搭乘、乘坐"
+ },
+ {
+  "w": "歯",
+  "r": "は",
+  "en": "tooth",
+  "zh": "牙齒"
+ },
+ {
+  "w": "パーティー",
+  "r": "パーティー",
+  "en": "a party",
+  "zh": "派對、宴會"
+ },
+ {
+  "w": "はい",
+  "r": "はい",
+  "en": "yes",
+  "zh": "是、對；好"
+ },
+ {
+  "w": "～杯",
+  "r": "～はい",
+  "en": "counter for cupfuls",
+  "zh": "杯（量詞）"
+ },
+ {
+  "w": "灰皿",
+  "r": "はいざら",
+  "en": "ashtray",
+  "zh": "菸灰缸"
+ },
+ {
+  "w": "入る",
+  "r": "はいる",
+  "en": "to enter, to contain, to hold",
+  "zh": "進入；裝入、容納"
+ },
+ {
+  "w": "葉書",
+  "r": "はがき",
+  "en": "postcard",
+  "zh": "明信片"
+ },
+ {
+  "w": "はく",
+  "r": "はく",
+  "en": "to put on (items below your waist)",
+  "zh": "穿（鞋、褲、裙）"
+ },
+ {
+  "w": "箱",
+  "r": "はこ",
+  "en": "box",
+  "zh": "箱子、盒子"
+ },
+ {
+  "w": "橋",
+  "r": "はし",
+  "en": "bridge",
+  "zh": "橋"
+ },
+ {
+  "w": "箸",
+  "r": "はし",
+  "en": "chopsticks",
+  "zh": "筷子"
+ },
+ {
+  "w": "始まる",
+  "r": "はじまる",
+  "en": "(something) begins",
+  "zh": "開始"
+ },
+ {
+  "w": "初め; 始め",
+  "r": "はじめ",
+  "en": "beginning, start",
+  "zh": "開始、起初"
+ },
+ {
+  "w": "初めて",
+  "r": "はじめて",
+  "en": "for the first time",
+  "zh": "第一次、初次"
+ },
+ {
+  "w": "走る",
+  "r": "はしる",
+  "en": "to run",
+  "zh": "跑、奔跑"
+ },
+ {
+  "w": "バス",
+  "r": "バス",
+  "en": "bus; bath; bass",
+  "zh": "公車、巴士；浴室"
+ },
+ {
+  "w": "バター",
+  "r": "バター",
+  "en": "butter",
+  "zh": "奶油"
+ },
+ {
+  "w": "二十歳",
+  "r": "はたち",
+  "en": "20 years old",
+  "zh": "二十歲"
+ },
+ {
+  "w": "働く",
+  "r": "はたらく",
+  "en": "to work",
+  "zh": "工作、勞動"
+ },
+ {
+  "w": "八",
+  "r": "はち",
+  "en": "eight",
+  "zh": "八"
+ },
+ {
+  "w": "二十日",
+  "r": "はつか",
+  "en": "twenty days, twentieth (day of the month)",
+  "zh": "二十天；二十號"
+ },
+ {
+  "w": "花",
+  "r": "はな",
+  "en": "flower",
+  "zh": "花"
+ },
+ {
+  "w": "鼻",
+  "r": "はな",
+  "en": "nose",
+  "zh": "鼻子"
+ },
+ {
+  "w": "話",
+  "r": "はなし",
+  "en": "talk (chat), story",
+  "zh": "話、談話；故事"
+ },
+ {
+  "w": "話す",
+  "r": "はなす",
+  "en": "to speak",
+  "zh": "說、講"
+ },
+ {
+  "w": "母",
+  "r": "はは",
+  "en": "(my) mother",
+  "zh": "母親、媽媽"
+ },
+ {
+  "w": "早い",
+  "r": "はやい",
+  "en": "early",
+  "zh": "早的"
+ },
+ {
+  "w": "速い",
+  "r": "はやい",
+  "en": "fast, quick",
+  "zh": "快的、迅速的"
+ },
+ {
+  "w": "春",
+  "r": "はる",
+  "en": "spring",
+  "zh": "春天"
+ },
+ {
+  "w": "貼る",
+  "r": "はる",
+  "en": "to post; to paste; to attach",
+  "zh": "貼、黏貼"
+ },
+ {
+  "w": "晴れ",
+  "r": "はれ",
+  "en": "clear (sunny) weather",
+  "zh": "晴天"
+ },
+ {
+  "w": "晴れる",
+  "r": "はれる",
+  "en": "to be sunny",
+  "zh": "放晴、天氣變晴"
+ },
+ {
+  "w": "半",
+  "r": "はん",
+  "en": "half (e.g., にじはん | half-past two)",
+  "zh": "半、一半"
+ },
+ {
+  "w": "晩",
+  "r": "ばん",
+  "en": "evening",
+  "zh": "晚上、夜晚"
+ },
+ {
+  "w": "～番",
+  "r": "～ばん",
+  "en": "~st; ~th best",
+  "zh": "第～號、第～名"
+ },
+ {
+  "w": "パン",
+  "r": "パン",
+  "en": "bread",
+  "zh": "麵包"
+ },
+ {
+  "w": "ハンカチ",
+  "r": "ハンカチ",
+  "en": "handkerchief",
+  "zh": "手帕"
+ },
+ {
+  "w": "番号",
+  "r": "ばんごう",
+  "en": "number, series of digits",
+  "zh": "號碼、編號"
+ },
+ {
+  "w": "晩御飯",
+  "r": "ばんごはん",
+  "en": "dinner, evening meal",
+  "zh": "晚餐、晚飯"
+ },
+ {
+  "w": "半分",
+  "r": "はんぶん",
+  "en": "half",
+  "zh": "一半"
+ },
+ {
+  "w": "東",
+  "r": "ひがし",
+  "en": "east",
+  "zh": "東、東邊"
+ },
+ {
+  "w": "～匹",
+  "r": "～ひき",
+  "en": "counter for small animals",
+  "zh": "隻（小動物量詞）"
+ },
+ {
+  "w": "引く",
+  "r": "ひく",
+  "en": "to pull, to draw; subtract",
+  "zh": "拉、拖、減去"
+ },
+ {
+  "w": "弾く",
+  "r": "ひく",
+  "en": "to play (a string instrument or piano)",
+  "zh": "彈奏（樂器）"
+ },
+ {
+  "w": "低い",
+  "r": "ひくい",
+  "en": "short, low",
+  "zh": "低的、矮的"
+ },
+ {
+  "w": "飛行機",
+  "r": "ひこうき",
+  "en": "airplane",
+  "zh": "飛機"
+ },
+ {
+  "w": "左",
+  "r": "ひだり",
+  "en": "left hand side",
+  "zh": "左、左邊"
+ },
+ {
+  "w": "人",
+  "r": "ひと",
+  "en": "man, person",
+  "zh": "人"
+ },
+ {
+  "w": "一つ",
+  "r": "ひとつ",
+  "en": "one thing",
+  "zh": "一個"
+ },
+ {
+  "w": "一月",
+  "r": "ひとつき",
+  "en": "one month",
+  "zh": "一個月"
+ },
+ {
+  "w": "一人",
+  "r": "ひとり",
+  "en": "one person",
+  "zh": "一個人、獨自"
+ },
+ {
+  "w": "暇",
+  "r": "ひま",
+  "en": "free time, leisure",
+  "zh": "空閒、閒暇"
+ },
+ {
+  "w": "百",
+  "r": "ひゃく",
+  "en": "hundred",
+  "zh": "一百"
+ },
+ {
+  "w": "病院",
+  "r": "びょういん",
+  "en": "hospital",
+  "zh": "醫院"
+ },
+ {
+  "w": "病気",
+  "r": "びょうき",
+  "en": "illness; sickness",
+  "zh": "生病、疾病"
+ },
+ {
+  "w": "平仮名",
+  "r": "ひらがな",
+  "en": "hiragana",
+  "zh": "平假名"
+ },
+ {
+  "w": "昼",
+  "r": "ひる",
+  "en": "noon, daytime",
+  "zh": "中午、白天"
+ },
+ {
+  "w": "昼御飯",
+  "r": "ひるごはん",
+  "en": "lunch, midday meal",
+  "zh": "午餐、午飯"
+ },
+ {
+  "w": "広い",
+  "r": "ひろい",
+  "en": "spacious; wide; broad",
+  "zh": "寬廣的、寬敞的"
+ },
+ {
+  "w": "フィルム",
+  "r": "フィルム",
+  "en": "film (roll of)",
+  "zh": "底片、膠捲"
+ },
+ {
+  "w": "封筒",
+  "r": "ふうとう",
+  "en": "envelope",
+  "zh": "信封"
+ },
+ {
+  "w": "プール",
+  "r": "プール",
+  "en": "swimming pool",
+  "zh": "游泳池"
+ },
+ {
+  "w": "フォーク",
+  "r": "フォーク",
+  "en": "fork",
+  "zh": "叉子"
+ },
+ {
+  "w": "吹く",
+  "r": "ふく",
+  "en": "to blow (wind, etc.)",
+  "zh": "吹、颳（風）"
+ },
+ {
+  "w": "服",
+  "r": "ふく",
+  "en": "clothes",
+  "zh": "衣服"
+ },
+ {
+  "w": "二つ",
+  "r": "ふたつ",
+  "en": "two things",
+  "zh": "兩個"
+ },
+ {
+  "w": "豚肉",
+  "r": "ぶたにく",
+  "en": "pork",
+  "zh": "豬肉"
+ },
+ {
+  "w": "二人",
+  "r": "ふたり",
+  "en": "two people",
+  "zh": "兩個人"
+ },
+ {
+  "w": "二日",
+  "r": "ふつか",
+  "en": "two days; second day of the month",
+  "zh": "兩天、二號"
+ },
+ {
+  "w": "太い",
+  "r": "ふとい",
+  "en": "fat, thick",
+  "zh": "粗的、胖的"
+ },
+ {
+  "w": "冬",
+  "r": "ふゆ",
+  "en": "winter",
+  "zh": "冬天"
+ },
+ {
+  "w": "降る",
+  "r": "ふる",
+  "en": "to precipitate, to fall (e.g., rain, snow, etc.)",
+  "zh": "下（雨、雪）"
+ },
+ {
+  "w": "古い",
+  "r": "ふるい",
+  "en": "old (in reference to objects, not people), aged, ancient",
+  "zh": "舊的、古老的"
+ },
+ {
+  "w": "～分",
+  "r": "～ふん",
+  "en": "~ minutes",
+  "zh": "～分、分鐘"
+ },
+ {
+  "w": "文章",
+  "r": "ぶんしょう",
+  "en": "sentence, text",
+  "zh": "文章、句子"
+ },
+ {
+  "w": "ページ",
+  "r": "ページ",
+  "en": "a page",
+  "zh": "頁、頁數"
+ },
+ {
+  "w": "下手",
+  "r": "へた",
+  "en": "unskillful, poor",
+  "zh": "笨拙、不擅長"
+ },
+ {
+  "w": "ベッド",
+  "r": "ベッド",
+  "en": "bed",
+  "zh": "床"
+ },
+ {
+  "w": "ペット",
+  "r": "ペット",
+  "en": "pet",
+  "zh": "寵物"
+ },
+ {
+  "w": "部屋",
+  "r": "へや",
+  "en": "a room",
+  "zh": "房間"
+ },
+ {
+  "w": "辺",
+  "r": "へん",
+  "en": "area, vicinity",
+  "zh": "附近、一帶"
+ },
+ {
+  "w": "ペン",
+  "r": "ペン",
+  "en": "pen",
+  "zh": "筆"
+ },
+ {
+  "w": "勉強",
+  "r": "べんきょう (する)",
+  "en": "study",
+  "zh": "學習、用功"
+ },
+ {
+  "w": "便利",
+  "r": "べんり",
+  "en": "convenient, handy",
+  "zh": "方便、便利"
+ },
+ {
+  "w": "帽子",
+  "r": "ぼうし",
+  "en": "hat; cap",
+  "zh": "帽子"
+ },
+ {
+  "w": "ボールペン",
+  "r": "ボールペン",
+  "en": "ball-point pen",
+  "zh": "原子筆"
+ },
+ {
+  "w": "外",
+  "r": "ほか",
+  "en": "other, the rest",
+  "zh": "其他、另外"
+ },
+ {
+  "w": "ポケット",
+  "r": "ポケット",
+  "en": "pocket",
+  "zh": "口袋"
+ },
+ {
+  "w": "欲しい",
+  "r": "ほしい",
+  "en": "to want, in need of",
+  "zh": "想要"
+ },
+ {
+  "w": "ポスト",
+  "r": "ポスト",
+  "en": "mailbox; post, position",
+  "zh": "郵筒、信箱"
+ },
+ {
+  "w": "細い",
+  "r": "ほそい",
+  "en": "thin, slender, fine",
+  "zh": "細的、瘦的"
+ },
+ {
+  "w": "ボタン",
+  "r": "ボタン",
+  "en": "button",
+  "zh": "鈕扣、按鈕"
+ },
+ {
+  "w": "ホテル",
+  "r": "ホテル",
+  "en": "hotel",
+  "zh": "飯店、旅館"
+ },
+ {
+  "w": "本",
+  "r": "ほん",
+  "en": "book",
+  "zh": "書、書本"
+ },
+ {
+  "w": "～本",
+  "r": "～ほん",
+  "en": "counter for long cylindrical things",
+  "zh": "支、根（細長物量詞）"
+ },
+ {
+  "w": "本棚",
+  "r": "ほんだな",
+  "en": "bookshelf",
+  "zh": "書架、書櫃"
+ },
+ {
+  "w": "本当",
+  "r": "ほんとう",
+  "en": "real, true",
+  "zh": "真的、真實"
+ },
+ {
+  "w": "～枚",
+  "r": "～まい",
+  "en": "counter for flat things",
+  "zh": "張、片（扁平物量詞）"
+ },
+ {
+  "w": "毎朝",
+  "r": "まいあさ",
+  "en": "every morning",
+  "zh": "每天早上"
+ },
+ {
+  "w": "毎月",
+  "r": "まいげつ; まいつき",
+  "en": "every month, monthly",
+  "zh": "每個月"
+ },
+ {
+  "w": "毎週",
+  "r": "まいしゅう",
+  "en": "every week",
+  "zh": "每週"
+ },
+ {
+  "w": "毎日",
+  "r": "まいにち",
+  "en": "every day",
+  "zh": "每天"
+ },
+ {
+  "w": "毎年",
+  "r": "まいねん; まいとし",
+  "en": "every year, yearly, annually",
+  "zh": "每年"
+ },
+ {
+  "w": "毎晩",
+  "r": "まいばん",
+  "en": "every night",
+  "zh": "每天晚上"
+ },
+ {
+  "w": "前",
+  "r": "まえ",
+  "en": "before, in front",
+  "zh": "前面、以前"
+ },
+ {
+  "w": "～前",
+  "r": "～まえ",
+  "en": "in front of ~",
+  "zh": "～之前、～前面"
+ },
+ {
+  "w": "曲る",
+  "r": "まがる",
+  "en": "to turn, to bend",
+  "zh": "轉彎、彎曲"
+ },
+ {
+  "w": "まずい",
+  "r": "まずい",
+  "en": "terrible (in reference to food), unappetizing, unpleasant (taste)",
+  "zh": "難吃、不妙"
+ },
+ {
+  "w": "また",
+  "r": "また",
+  "en": "and; furthermore",
+  "zh": "又、還有"
+ },
+ {
+  "w": "まだ",
+  "r": "まだ",
+  "en": "yet, still, besides",
+  "zh": "還、尚未"
+ },
+ {
+  "w": "町",
+  "r": "まち",
+  "en": "town; city",
+  "zh": "城鎮、街道"
+ },
+ {
+  "w": "待つ",
+  "r": "まつ",
+  "en": "to wait",
+  "zh": "等、等待"
+ },
+ {
+  "w": "まっすぐ",
+  "r": "まっすぐ",
+  "en": "straight (ahead), direct",
+  "zh": "筆直、直接"
+ },
+ {
+  "w": "マッチ",
+  "r": "マッチ",
+  "en": "match",
+  "zh": "火柴"
+ },
+ {
+  "w": "窓",
+  "r": "まど",
+  "en": "window",
+  "zh": "窗戶"
+ },
+ {
+  "w": "丸い; 円い",
+  "r": "まるい",
+  "en": "round, circular",
+  "zh": "圓的、圓形的"
+ },
+ {
+  "w": "万",
+  "r": "まん",
+  "en": "ten thousand",
+  "zh": "萬"
+ },
+ {
+  "w": "万年筆",
+  "r": "まんねんひつ",
+  "en": "fountain pen",
+  "zh": "鋼筆"
+ },
+ {
+  "w": "磨く",
+  "r": "みがく",
+  "en": "to brush (teeth); to polish",
+  "zh": "刷（牙）、擦亮"
+ },
+ {
+  "w": "右",
+  "r": "みぎ",
+  "en": "right hand side",
+  "zh": "右、右邊"
+ },
+ {
+  "w": "短い",
+  "r": "みじかい",
+  "en": "short (length)",
+  "zh": "短的"
+ },
+ {
+  "w": "水",
+  "r": "みず",
+  "en": "water",
+  "zh": "水"
+ },
+ {
+  "w": "店",
+  "r": "みせ",
+  "en": "store, shop",
+  "zh": "店、商店"
+ },
+ {
+  "w": "見せる",
+  "r": "みせる",
+  "en": "to show, to display",
+  "zh": "給人看、展示"
+ },
+ {
+  "w": "道",
+  "r": "みち",
+  "en": "road, street; way, directions",
+  "zh": "路、道路"
+ },
+ {
+  "w": "三日",
+  "r": "みっか",
+  "en": "three days, third day of the month",
+  "zh": "三天、三號"
+ },
+ {
+  "w": "三つ",
+  "r": "みっつ",
+  "en": "three things",
+  "zh": "三個"
+ },
+ {
+  "w": "緑",
+  "r": "みどり",
+  "en": "green",
+  "zh": "綠色"
+ },
+ {
+  "w": "皆さん",
+  "r": "みなさん",
+  "en": "all of you, everyone",
+  "zh": "各位、大家"
+ },
+ {
+  "w": "南",
+  "r": "みなみ",
+  "en": "South",
+  "zh": "南、南邊"
+ },
+ {
+  "w": "耳",
+  "r": "みみ",
+  "en": "ear",
+  "zh": "耳朵"
+ },
+ {
+  "w": "見る",
+  "r": "みる",
+  "en": "to see, to look",
+  "zh": "看、觀看"
+ },
+ {
+  "w": "みんな",
+  "r": "みんな",
+  "en": "all, everyone, everybody",
+  "zh": "大家、全部"
+ },
+ {
+  "w": "六日",
+  "r": "むいか",
+  "en": "six days; sixth day of month",
+  "zh": "六天、六號"
+ },
+ {
+  "w": "向こう",
+  "r": "むこう",
+  "en": "beyond, over there",
+  "zh": "對面、那邊"
+ },
+ {
+  "w": "難しい",
+  "r": "むずかしい",
+  "en": "difficult",
+  "zh": "難的、困難的"
+ },
+ {
+  "w": "六つ",
+  "r": "むっつ",
+  "en": "six things",
+  "zh": "六個"
+ },
+ {
+  "w": "村",
+  "r": "むら",
+  "en": "village",
+  "zh": "村子、村莊"
+ },
+ {
+  "w": "目",
+  "r": "め",
+  "en": "eye(s)",
+  "zh": "眼睛"
+ },
+ {
+  "w": "メートル",
+  "r": "メートル",
+  "en": "meter",
+  "zh": "公尺"
+ },
+ {
+  "w": "眼鏡",
+  "r": "めがね",
+  "en": "eye glasses",
+  "zh": "眼鏡"
+ },
+ {
+  "w": "もう",
+  "r": "もう",
+  "en": "already; again; more",
+  "zh": "已經、再"
+ },
+ {
+  "w": "木曜日",
+  "r": "もくようび",
+  "en": "Thursday",
+  "zh": "星期四"
+ },
+ {
+  "w": "もしもし",
+  "r": "もしもし",
+  "en": "Hello? (used on the phone)",
+  "zh": "喂（接電話用語）"
+ },
+ {
+  "w": "持つ",
+  "r": "もつ",
+  "en": "to hold, to carry; to possess",
+  "zh": "拿、帶、擁有"
+ },
+ {
+  "w": "もっと",
+  "r": "もっと",
+  "en": "more",
+  "zh": "更、更加"
+ },
+ {
+  "w": "物",
+  "r": "もの",
+  "en": "thing (concrete object)",
+  "zh": "東西、物品"
+ },
+ {
+  "w": "門",
+  "r": "もん",
+  "en": "gate",
+  "zh": "門、大門"
+ },
+ {
+  "w": "問題",
+  "r": "もんだい",
+  "en": "a problem",
+  "zh": "問題、題目"
+ },
+ {
+  "w": "～屋",
+  "r": "～や",
+  "en": "~ shop",
+  "zh": "～店"
+ },
+ {
+  "w": "八百屋",
+  "r": "やおや",
+  "en": "greengrocer",
+  "zh": "蔬果店、菜攤"
+ },
+ {
+  "w": "野菜",
+  "r": "やさい",
+  "en": "vegetable",
+  "zh": "蔬菜"
+ },
+ {
+  "w": "易しい",
+  "r": "やさしい",
+  "en": "easy, plain, simple",
+  "zh": "容易的、簡單的"
+ },
+ {
+  "w": "安い",
+  "r": "やすい",
+  "en": "inexpensive; cheap (things)",
+  "zh": "便宜的"
+ },
+ {
+  "w": "休み",
+  "r": "やすみ",
+  "en": "holiday; day off; absence",
+  "zh": "休假、休息、請假"
+ },
+ {
+  "w": "休む",
+  "r": "やすむ",
+  "en": "to rest, to have a break, to get time off",
+  "zh": "休息、請假"
+ },
+ {
+  "w": "八つ",
+  "r": "やっつ",
+  "en": "eight things",
+  "zh": "八個"
+ },
+ {
+  "w": "山",
+  "r": "やま",
+  "en": "mountain",
+  "zh": "山"
+ },
+ {
+  "w": "やる",
+  "r": "やる",
+  "en": "to do; to give (to pets, parents, siblings, etc.)",
+  "zh": "做、給"
+ },
+ {
+  "w": "夕方",
+  "r": "ゆうがた",
+  "en": "late afternoon (typically just before dinner time), evening",
+  "zh": "傍晚"
+ },
+ {
+  "w": "夕飯",
+  "r": "ゆうはん",
+  "en": "dinner, supper, evening meal",
+  "zh": "晚餐、晚飯"
+ },
+ {
+  "w": "郵便局",
+  "r": "ゆうびんきょく",
+  "en": "post office",
+  "zh": "郵局"
+ },
+ {
+  "w": "昨夜",
+  "r": "ゆうべ",
+  "en": "last night",
+  "zh": "昨晚"
+ },
+ {
+  "w": "有名",
+  "r": "ゆうめい",
+  "en": "famous",
+  "zh": "有名、著名"
+ },
+ {
+  "w": "雪",
+  "r": "ゆき",
+  "en": "snow",
+  "zh": "雪"
+ },
+ {
+  "w": "ゆっくりと",
+  "r": "ゆっくりと",
+  "en": "slowly, at ease",
+  "zh": "慢慢地、悠閒地"
+ },
+ {
+  "w": "八日",
+  "r": "ようか",
+  "en": "eight days; eighth day of the month",
+  "zh": "八天、八號"
+ },
+ {
+  "w": "洋服",
+  "r": "ようふく",
+  "en": "Western-style clothes",
+  "zh": "西式服裝"
+ },
+ {
+  "w": "よく",
+  "r": "よく",
+  "en": "frequently, often (much); well, skillfully",
+  "zh": "常常、很好地"
+ },
+ {
+  "w": "横",
+  "r": "よこ",
+  "en": "beside; side; width",
+  "zh": "旁邊、側面"
+ },
+ {
+  "w": "四日",
+  "r": "よっか",
+  "en": "four days; fourth day of the month",
+  "zh": "四天、四號"
+ },
+ {
+  "w": "四つ",
+  "r": "よっつ",
+  "en": "four things",
+  "zh": "四個"
+ },
+ {
+  "w": "呼ぶ",
+  "r": "よぶ",
+  "en": "to call (one's name); to invite",
+  "zh": "叫、呼喚、邀請"
+ },
+ {
+  "w": "読む",
+  "r": "よむ",
+  "en": "to read",
+  "zh": "讀、閱讀"
+ },
+ {
+  "w": "夜",
+  "r": "よる",
+  "en": "evening, night",
+  "zh": "夜晚、晚上"
+ },
+ {
+  "w": "弱い",
+  "r": "よわい",
+  "en": "weak",
+  "zh": "弱的、虛弱的"
+ },
+ {
+  "w": "来月",
+  "r": "らいげつ",
+  "en": "next month",
+  "zh": "下個月"
+ },
+ {
+  "w": "来週",
+  "r": "らいしゅう",
+  "en": "next week",
+  "zh": "下週"
+ },
+ {
+  "w": "来年",
+  "r": "らいねん",
+  "en": "next year",
+  "zh": "明年"
+ },
+ {
+  "w": "ラジオ",
+  "r": "ラジオ",
+  "en": "radio",
+  "zh": "收音機"
+ },
+ {
+  "w": "ラジオカセ",
+  "r": "ラジオカセ",
+  "en": "radio cassette player",
+  "zh": "收錄音機"
+ },
+ {
+  "w": "りっぱ",
+  "r": "りっぱ",
+  "en": "splendid, fine",
+  "zh": "出色、氣派"
+ },
+ {
+  "w": "留学生",
+  "r": "りゅうがくせい",
+  "en": "international student",
+  "zh": "留學生"
+ },
+ {
+  "w": "両親",
+  "r": "りょうしん",
+  "en": "parents (lit., both parents)",
+  "zh": "父母、雙親"
+ },
+ {
+  "w": "料理",
+  "r": "りょうり",
+  "en": "cooking; cuisine",
+  "zh": "菜餚、烹飪"
+ },
+ {
+  "w": "旅行",
+  "r": "りょこう",
+  "en": "travel, trip",
+  "zh": "旅行"
+ },
+ {
+  "w": "零",
+  "r": "れい",
+  "en": "zero, nought",
+  "zh": "零"
+ },
+ {
+  "w": "冷蔵庫",
+  "r": "れいぞうこ",
+  "en": "refrigerator",
+  "zh": "冰箱"
+ },
+ {
+  "w": "レコード",
+  "r": "レコード",
+  "en": "record",
+  "zh": "唱片、紀錄"
+ },
+ {
+  "w": "レストラン",
+  "r": "レストラン",
+  "en": "restaurant",
+  "zh": "餐廳"
+ },
+ {
+  "w": "練習",
+  "r": "れんしゅう (する)",
+  "en": "(to) practice",
+  "zh": "練習"
+ },
+ {
+  "w": "廊下",
+  "r": "ろうか",
+  "en": "corridor",
+  "zh": "走廊"
+ },
+ {
+  "w": "六",
+  "r": "ろく",
+  "en": "six",
+  "zh": "六"
+ },
+ {
+  "w": "ワイシャツ",
+  "r": "ワイシャツ",
+  "en": "shirt (lit: white shirt), business shirt",
+  "zh": "襯衫"
+ },
+ {
+  "w": "若い",
+  "r": "わかい",
+  "en": "young",
+  "zh": "年輕的"
+ },
+ {
+  "w": "分かる",
+  "r": "わかる",
+  "en": "to understand",
+  "zh": "懂、明白、知道"
+ },
+ {
+  "w": "忘れる",
+  "r": "わすれる",
+  "en": "to forget",
+  "zh": "忘記"
+ },
+ {
+  "w": "私",
+  "r": "わたし",
+  "en": "I, myself",
+  "zh": "我"
+ },
+ {
+  "w": "私",
+  "r": "わたくし",
+  "en": "I (formal), myself, private affairs",
+  "zh": "我（謙稱）"
+ },
+ {
+  "w": "渡す",
+  "r": "わたす",
+  "en": "to hand (something) over (v.t.); to get across",
+  "zh": "交給、遞給"
+ },
+ {
+  "w": "渡る",
+  "r": "わたる",
+  "en": "to cross over, to go across",
+  "zh": "渡過、穿越"
+ },
+ {
+  "w": "悪い",
+  "r": "わるい",
+  "en": "bad, sinful; inferior",
+  "zh": "壞的、不好的"
+ }
+]
