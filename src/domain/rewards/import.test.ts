@@ -48,4 +48,9 @@ describe('匯入 v5 碼的獎賞合併（handoff §2.4）', () => {
     }
     expect(paid).toEqual([3, 3, 3, 3, 3, 3, 3, 3]);
   });
+
+  test('v5 只有「同日先錯後對」紀錄（stage 0）的單字，匯入後第一次推進到 stage 1 不給 +15（+10 不能換成 +15）', () => {
+    const s = mergeImport(base, [{ key: V, hasCorrect: true, stage: 0 }], '2026-11-09');
+    expect(applyAnswer(s, ev({ stageBefore: 0, stageAfter: 1 })).xp).toBe(3);
+  });
 });

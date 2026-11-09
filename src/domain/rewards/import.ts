@@ -7,7 +7,8 @@ export function mergeImport(state: RewardState, items: ImportedItem[], today: Lo
   for (const it of items) {
     if (!it.hasCorrect) continue;
     paid.add(it.key);
-    if (it.stage !== null) maxStage[it.key] = Math.max(maxStage[it.key] ?? 0, it.stage);
+    // 至少 1：stage 1 是「首次答對」那一步，已由 firstCorrectPaid 涵蓋，不能再當新 stage 領 +15
+    if (it.stage !== null) maxStage[it.key] = Math.max(maxStage[it.key] ?? 0, it.stage, 1);
   }
   return { ...state, firstCorrectPaid: [...paid], maxStage, protectionBaselineDate: today };
 }
