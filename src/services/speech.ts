@@ -4,6 +4,8 @@ import * as Speech from 'expo-speech'
 export interface SpeechEngine {
   speak(text: string, options: Speech.SpeechOptions): void
   stop(): Promise<void>
+  pause?(): Promise<void> // iOS 支援；替身可省略
+  resume?(): Promise<void>
   getAvailableVoicesAsync(): Promise<Array<{ identifier: string; language: string }>>
 }
 
@@ -22,6 +24,8 @@ export function createSpeech(engine: SpeechEngine = Speech) {
       engine.speak(text, { language: 'ja-JP', rate, onStart: on.start, onDone: on.done, onError: on.error })
     },
     stop: () => engine.stop(),
+    pause: async () => engine.pause?.(),
+    resume: async () => engine.resume?.(),
   }
 }
 export type SpeechService = ReturnType<typeof createSpeech>
