@@ -24,7 +24,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-iap",
+      [
+        "react-native-cloud-storage",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ]
     ],
     "scheme": "nihongodojo",
     "platforms": [
