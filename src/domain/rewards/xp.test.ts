@@ -1,4 +1,4 @@
-import { applyAnswer, initialRewardState } from './index';
+import { applyAnswer, initialRewardState, mergeImport } from './index';
 import type { LearningEvent, RewardState } from './types';
 
 const K = JSON.stringify(['N3', 'vocab', '連なる']);
@@ -69,6 +69,12 @@ describe('xp：rewards.md §2.2 範例表', () => {
     let s = applyAnswer(fresh(), g({})).state;
     s = applyAnswer(s, g({ date: '2026-11-02', correct: false })).state;
     expect(applyAnswer(s, g({ date: '2026-11-03' })).xp).toBe(3);
+  });
+  test('翻面、播放語音、手動標記掌握、匯入 → 0（只有作答事件會入帳；匯入不給 XP）', () => {
+    const s = applyAnswer(fresh(), ev({})).state;
+    const after = mergeImport(s, [{ key: K, hasCorrect: true, stage: 5 }], '2026-11-02');
+    expect(after.xpTotal).toBe(10);
+    expect(after.xpByDay).toEqual(s.xpByDay);
   });
 });
 
