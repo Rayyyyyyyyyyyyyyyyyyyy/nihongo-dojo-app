@@ -1,7 +1,7 @@
 // 真實服務的組裝（只由 src/app/_layout.tsx 匯入；測試用各服務的替身自行組裝）。
 import Constants from 'expo-constants'
 import { randomUUID } from 'expo-crypto'
-import { bankManifest } from '../data/bank'
+import { bankManifest, loadLevel } from '../data/bank'
 import { systemClock } from '../domain/learning/types'
 import type { AppServices } from '../state/AppProvider'
 import { PRODUCT_ID } from '../state/doc'
@@ -12,6 +12,7 @@ import { createHaptics } from './haptics'
 import { expoNotifier } from './notifications'
 import { createPurchases } from './purchases'
 import { storeKitGateway } from './purchasesStoreKit'
+import { silentSound } from './sound'
 import { createSpeech } from './speech'
 import { createAppStorage, expoFiles } from './storage'
 
@@ -34,5 +35,7 @@ export function createAppServices(): AppServices {
     notifier: expoNotifier,
     speech: createSpeech(),
     haptics: createHaptics(() => store.getState().doc?.settings.haptics ?? false),
+    sound: silentSound,
+    bank: { manifest: bankManifest, load: loadLevel },
   }
 }

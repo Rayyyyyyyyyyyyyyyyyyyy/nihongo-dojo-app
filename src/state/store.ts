@@ -2,7 +2,7 @@
 // 一般操作先套用記憶體再保存（失敗只亮 saveError 橫條）；匯入／還原／撤銷先存快照與文件，失敗就不套用。
 import type { LevelBank } from '../data/bank'
 import { localDate } from '../domain/learning/calendar'
-import type { ArticleCompletion, Clock, LearningInput } from '../domain/learning/types'
+import type { ArticleCompletion, Clock, LearningInput, StudyKind } from '../domain/learning/types'
 import { importWebV5Code } from '../domain/progress/importCode'
 import type { Level } from '../domain/progress/state'
 import { MAX_SNAPSHOTS, type AppStorage, type Snapshot } from '../services/storage'
@@ -108,6 +108,8 @@ export function createAppStore({ storage, clock, newId }: { storage: AppStorage;
     },
     ensurePlan: (branch: 'reading' | 'listening', bank: LevelBank) => commit(core.ensurePlan(doc(), branch, clock, bank)),
     startPlan: () => commit(core.startPlan(doc(), clock)),
+    repairPlan: (kind: StudyKind, bank: LevelBank) => commit(core.repairPlan(doc(), kind, clock, bank)),
+    markVocab: (level: Level, word: string, known: boolean) => commit(core.markVocab(doc(), level, word, known)),
     openChest() {
       const r = core.openChest(doc(), clock)
       if (r) commit(r.doc)

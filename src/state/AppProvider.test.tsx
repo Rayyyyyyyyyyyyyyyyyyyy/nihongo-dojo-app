@@ -4,7 +4,9 @@ import { createBackup, memoryCloud } from '../services/backup'
 import { createHaptics } from '../services/haptics'
 import { fakeNotifier } from '../services/notifications'
 import { createPurchases, fakeStoreGateway } from '../services/purchases'
+import { silentSound } from '../services/sound'
 import { createSpeech } from '../services/speech'
+import { fixtureBank, fixtureManifest } from '../test/fixtures'
 import { createAppStorage, memoryFiles } from '../services/storage'
 import { AppGate } from './AppGate'
 import { AppProvider, useAppState, type AppServices } from './AppProvider'
@@ -22,6 +24,8 @@ function services(files = memoryFiles(), gateway = fakeStoreGateway()): AppServi
     notifier: fakeNotifier(),
     speech: createSpeech({ speak: () => {}, stop: async () => {}, getAvailableVoicesAsync: async () => [] }),
     haptics: createHaptics(() => false),
+    sound: silentSound,
+    bank: { manifest: fixtureManifest, load: fixtureBank },
   }
 }
 function Xp() {

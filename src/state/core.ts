@@ -1,7 +1,8 @@
 // AppStateDoc 的交易：每個函式回傳完整 next doc，由 store 一次寫入（handoff §2.2「單一擁有者」）。
 import type { LevelBank } from '../data/bank'
 import { addDays, localDate } from '../domain/learning/calendar'
-import { generateGroup, inspectGroup, refsFor } from '../domain/learning/plans'
+import { DAILY_LIMITS, planBranch, planKinds, requiredKinds } from '../domain/learning/daily'
+import { generateGroup, inspectGroup, refsFor, repairGroup } from '../domain/learning/plans'
 import { completeArticle, pruneDays, recordResult } from '../domain/learning/reducer'
 import {
   dayKey,
@@ -11,7 +12,7 @@ import {
   type LearningInput,
   type StudyKind,
 } from '../domain/learning/types'
-import { cloneState, LEVELS, type ProgressState } from '../domain/progress/state'
+import { cloneState, LEVELS, type Level, type ProgressState } from '../domain/progress/state'
 import { ignoredCountOnOpen, reminderTimes } from '../domain/reminder'
 import {
   applyAnswer,
@@ -36,13 +37,11 @@ export interface AnswerOutcome {
   protectedNow: LocalDate[] // 這次由保護卡守住的日子
 }
 
-const planKinds = (branch: 'reading' | 'listening'): StudyKind[] => ['vocab', 'grammar', branch]
-
 // 今日任務完成：今天的 plan 每組都已建好，ready 的組全部有效完成（沿用 inspectGroup 的完成判定）。
 export function isGoalComplete(learning: ProgressState, date: LocalDate, bank: LevelBank): boolean {
   const plan = learning.plans[dayKey(date, learning.level)]
   if (!plan) return false
-  const groups = planKinds(plan.branch).map((k) => [k, plan.groups[k]] as const)
+  const groups = requiredKinds(plan).map((k) => [k, plan.groups[k]] as const)
   if (groups.some(([, g]) => !g)) return false
   const ready = groups.filter(([, g]) => g!.status === 'ready')
   return (
@@ -114,14 +113,16 @@ export function completeReading(doc: AppStateDoc, input: ArticleCompletion, cloc
   return { doc: r.doc, goalCompleted: r.goalCompleted }
 }
 
-// 建立或補齊今天的任務（移植網頁版 buildPlan，題庫同步載入）；已開始的深入練習不換分支。
+// 建立或補齊今天的任務（移植網頁版 buildPlan，題庫同步載入）；份量依每日分鐘數（handoff §2.5）。
+// 已開始的深入練習不換分支；已排好的任務當天不因改分鐘數而變動。
 export function ensurePlan(doc: AppStateDoc, branch: 'reading' | 'listening', clock: Clock, bank: LevelBank): AppStateDoc {
   const date = localDate(clock()),
     level = doc.learning.level,
     key = dayKey(date, level),
-    old = doc.learning.plans[key]
-  const want = old?.started ? old.branch : branch
-  if (old && old.branch === want && planKinds(want).every((k) => old.groups[k])) return doc
+    old = doc.learning.plans[key],
+    minutes = doc.settings.dailyMinutes
+  const want = old?.started ? old.branch : planBranch(minutes, branch)
+  if (old && old.branch === want && requiredKinds(old).every((k) => old.groups[k])) return doc
   const next = cloneState(doc.learning)
   pruneDays(next, date)
   const plan = (next.plans[key] ??= { date, level, branch: want, started: false, groups: {} })
@@ -129,8 +130,26 @@ export function ensurePlan(doc: AppStateDoc, branch: 'reading' | 'listening', cl
     delete plan.groups[plan.branch]
     plan.branch = want
   }
-  for (const kind of planKinds(want))
-    plan.groups[kind] ??= generateGroup(next, refsFor(kind, level, bank[kind] as never[]), kind, date)
+  for (const kind of planKinds(minutes, want))
+    plan.groups[kind] ??= generateGroup(next, refsFor(kind, level, bank[kind] as never[]), kind, date, DAILY_LIMITS[minutes][kind])
+  return { ...doc, learning: next }
+}
+
+// 今日任務的失效目標修復（移植網頁版 repairPlan）：只換掉題庫裡已不存在的目標，原有效目標與完成量保留。
+export function repairPlan(doc: AppStateDoc, kind: StudyKind, clock: Clock, bank: LevelBank): AppStateDoc {
+  const key = dayKey(localDate(clock()), doc.learning.level),
+    plan = doc.learning.plans[key]
+  if (!plan?.groups[kind]) return doc
+  const next = cloneState(doc.learning)
+  next.plans[key].groups[kind] = repairGroup(next, next.plans[key], kind, bank[kind] as never[])
+  return { ...doc, learning: next }
+}
+
+// S8 手動標記已掌握／取消（移植網頁版 markVocab）：不是有效作答，不給 XP、不算連勝。
+export function markVocab(doc: AppStateDoc, level: Level, word: string, known: boolean): AppStateDoc {
+  const next = cloneState(doc.learning)
+  delete next[known ? 'vLearning' : 'vKnown'][level][word]
+  Object.defineProperty(next[known ? 'vKnown' : 'vLearning'][level], word, { value: true, enumerable: true, configurable: true, writable: true })
   return { ...doc, learning: next }
 }
 

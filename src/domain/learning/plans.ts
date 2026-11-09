@@ -68,8 +68,9 @@ export function generateGroup(
   refs: StudyItemRef[],
   kind: StudyKind,
   today: string,
+  limit: number = taskLimit[kind],
 ): DailyGroup {
-  const targets = orderRefs(state, refs, today).slice(0, taskLimit[kind])
+  const targets = orderRefs(state, refs, today).slice(0, limit)
   return { status: targets.length ? 'ready' : 'empty', targets, note: '' }
 }
 export function inspectGroup<K extends StudyKind>(
@@ -124,7 +125,7 @@ export function repairGroup<K extends StudyKind>(
       state,
       refsFor(kind, plan.level, items).filter((r) => !kept.has(itemKey(r))),
       plan.date,
-    ).slice(0, Math.min(taskLimit[kind], old.targets.length) - keep.length),
+    ).slice(0, old.targets.length - keep.length), // C6：維持原大小（每日份量可大於 taskLimit）
     targets = [...keep, ...replacement]
   return {
     status: targets.length ? 'ready' : 'empty',
