@@ -1,4 +1,4 @@
-// S5 開寶箱（桐箱）：結果先寫入文件再播 0.8 秒動畫（減少動態時直接淡入）；同一天再進來只顯示今天拿到的內容。
+// S5 開寶箱（桐箱）：結果先寫入文件再播 0.8 秒動畫（減少動態時直接顯示內容）；同一天再進來只顯示今天拿到的內容。
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { AccessibilityInfo, Animated, View } from 'react-native'
@@ -17,7 +17,7 @@ function Box({ open, result }: { open: boolean; result: ChestResult | null }) {
   const content = useRef(new Animated.Value(0)).current
   useEffect(() => {
     if (!open) return
-    if (t.motion.reduceMotion) Animated.timing(content, { toValue: 1, duration: t.motion.alternative.maxDuration, useNativeDriver: true }).start()
+    if (t.motion.reduceMotion) content.setValue(1)
     else
       Animated.parallel([
         Animated.timing(lid, { toValue: 1, duration: CHEST_MS / 2, useNativeDriver: true }),
