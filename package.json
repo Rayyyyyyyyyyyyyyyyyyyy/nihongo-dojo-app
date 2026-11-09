@@ -35,6 +35,7 @@
     "web": "expo start --web",
     "test": "jest",
     "typecheck": "tsc --noEmit",
+    "check:data": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-data.mjs",
     "check": "tsc --noEmit && jest",
     "export:ios": "expo export --platform ios --output-dir dist"
   },

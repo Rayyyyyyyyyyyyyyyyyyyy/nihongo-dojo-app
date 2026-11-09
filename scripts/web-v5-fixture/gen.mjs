@@ -1,9 +1,9 @@
 // Regenerates src/domain/progress/__fixtures__/web-v5.json with NHK-N3-1's real encoder.
 // Usage: TZ=Asia/Taipei node scripts/web-v5-fixture/gen.mjs /path/to/NHK-N3-1 > src/domain/progress/__fixtures__/web-v5.json
-// Needs Node >= 22.18 (built-in TypeScript stripping); hook.mjs adds the '.ts' extension Vite omits.
+// Needs Node >= 22.18 (built-in TypeScript stripping); ts-resolve-hook.mjs adds the '.ts' extension Vite omits.
 import { register } from 'node:module'
 import { execSync } from 'node:child_process'
-register('./hook.mjs', import.meta.url)
+register('../ts-resolve-hook.mjs', import.meta.url)
 const root = process.argv[2]
 const D = `${root}/src/domain`
 const commit = execSync('git rev-parse --short HEAD', { cwd: root }).toString().trim()
