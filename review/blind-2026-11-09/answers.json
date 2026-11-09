@@ -1,0 +1,1654 @@
+[
+ {
+  "qid": "g-n3-031",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-032",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-033",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-034",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-035",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-036",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-037",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": "「あんなに練習していない」は不自然（「全然練習していない」「あれだけ練習をさぼった」などが自然）"
+ },
+ {
+  "qid": "g-n3-038",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-039",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-040",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-041",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-042",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-043",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-044",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-045",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-046",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-047",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-048",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-049",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-050",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-051",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-052",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-053",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-054",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-055",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-056",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-057",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-058",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-059",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-060",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-061",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-062",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-063",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-064",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-065",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-066",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-067",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-068",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-069",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-070",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-071",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-072",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-073",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-074",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-075",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-076",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-077",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-078",
+  "choice": "A",
+  "confidence": "medium",
+  "multipleValid": false,
+  "issue": "「を中心に行われる」は会場一点を示す文としてはやや不自然（「で行われる」が自然）"
+ },
+ {
+  "qid": "g-n3-079",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-080",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-081",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-082",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-083",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-084",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-085",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-086",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-087",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-088",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-089",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-090",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-091",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-092",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-093",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-094",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-095",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-096",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-097",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-098",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-099",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-100",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-101",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-102",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-103",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-104",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-105",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-106",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-107",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-108",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-109",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-110",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-111",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-112",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-113",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-114",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-115",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-116",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-117",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-118",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-119",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-120",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-121",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-122",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-123",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-124",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-125",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-126",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-127",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-128",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-129",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-130",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-131",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-132",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-133",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-134",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-135",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-136",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-137",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-138",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-139",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-140",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-141",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-142",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-143",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-144",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "g-n3-145",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-003/rq-0030",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-003/rq-0031",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-004/rq-0032",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-004/rq-0033",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-005/rq-0034",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-005/rq-0035",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-006/rq-0036",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-006/rq-0037",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-006/rq-0038",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-007/rq-0039",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-007/rq-0040",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-008/rq-0041",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-008/rq-0042",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-009/rq-0043",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-009/rq-0044",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-009/rq-0045",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-010/rq-0046",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-010/rq-0047",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-011/rq-0048",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-011/rq-0049",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-012/rq-0050",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-012/rq-0051",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-013/rq-0052",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-013/rq-0053",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-014/rq-0054",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-014/rq-0055",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-014/rq-0056",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-015/rq-0057",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-015/rq-0058",
+  "choice": "B",
+  "confidence": "medium",
+  "multipleValid": false,
+  "issue": "65歳以上を「大人と一緒に入場」の「大人」とみなせるかが原文から明確でない"
+ },
+ {
+  "qid": "r-n3-015/rq-0059",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-016/rq-0060",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-016/rq-0061",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-017/rq-0062",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-017/rq-0063",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-018/rq-0064",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-018/rq-0065",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-019/rq-0066",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-019/rq-0067",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-019/rq-0068",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-020/rq-0069",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-020/rq-0070",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-020/rq-0071",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-021/rq-0072",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-021/rq-0073",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-022/rq-0074",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-022/rq-0075",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-023/rq-0076",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-023/rq-0077",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-024/rq-0078",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-024/rq-0079",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-024/rq-0080",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-025/rq-0081",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-025/rq-0082",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-026/rq-0083",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-026/rq-0084",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-027/rq-0085",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-027/rq-0086",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-028/rq-0087",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-028/rq-0088",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-029/rq-0089",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-029/rq-0090",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-030/rq-0091",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-030/rq-0092",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "r-n3-030/rq-0093",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-004",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-005",
+  "choice": "A",
+  "confidence": "medium",
+  "multipleValid": false,
+  "issue": "「紙は八部」と「僕の分は要らない」の関係（8部に課長分を含むか）が聞き手に解釈を委ねており、B（8部）を選ぶ受験者も出やすい"
+ },
+ {
+  "qid": "l-n3-006",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-007",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-008",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-009",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-010",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-011",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-012",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-013",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-014",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-015",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-016",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-017",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-018",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-019",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-020",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-021",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-022",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-023",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-024",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-025",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-026",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-027",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-028",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-029",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-030",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-031",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-032",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-033",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-034",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-035",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-036",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-037",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-038",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-039",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-040",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-041",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-042",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-043",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-044",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-045",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-046",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-047",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-048",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-049",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-050",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-051",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-052",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-053",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-054",
+  "choice": "A",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-055",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-056",
+  "choice": "D",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-057",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-058",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-059",
+  "choice": "C",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ },
+ {
+  "qid": "l-n3-060",
+  "choice": "B",
+  "confidence": "high",
+  "multipleValid": false,
+  "issue": ""
+ }
+]
