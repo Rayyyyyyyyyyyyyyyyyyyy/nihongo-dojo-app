@@ -35,6 +35,7 @@
     "web": "expo start --web",
     "test": "jest",
     "typecheck": "tsc --noEmit",
+    "check:hex": "node scripts/check-no-hex.mjs",
     "check": "tsc --noEmit && jest",
     "export:ios": "expo export --platform ios --output-dir dist"
   },
