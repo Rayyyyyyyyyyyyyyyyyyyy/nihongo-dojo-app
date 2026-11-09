@@ -1,0 +1,336 @@
+{
+  "generator": "NHK-N3-1 aadd243 src/domain/progress/state.ts encodeCode",
+  "tz": "Asia/Taipei",
+  "code": "JTdCJTIydmVyc2lvbiUyMiUzQTUlMkMlMjJzdGF0ZSUyMiUzQSU3QiUyMnJlc3VsdHMlMjIlM0ElNUIlN0IlMjJhdHRlbXB0SWQlMjIlM0ElMjJ2MSUyMiUyQyUyMnJlZiUyMiUzQSU3QiUyMmxldmVsJTIyJTNBJTIybjMlMjIlMkMlMjJraW5kJTIyJTNBJTIydm9jYWIlMjIlMkMlMjJpZCUyMiUzQSUyMiVFNiU4QSU4QSVFNiU4RiVBMSUyMiU3RCUyQyUyMm1vZGUlMjIlM0ElMjJmbGFzaGNhcmQlMjIlMkMlMjJjb3JyZWN0JTIyJTNBdHJ1ZSUyQyUyMmF0JTIyJTNBJTIyMjAyNi0xMC0xNFQwNCUzQTAwJTNBMDAuMDAwWiUyMiUyQyUyMmRhdGUlMjIlM0ElMjIyMDI2LTEwLTE0JTIyJTdEJTJDJTdCJTIyYXR0ZW1wdElkJTIyJTNBJTIydjIlMjIlMkMlMjJyZWYlMjIlM0ElN0IlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIya2luZCUyMiUzQSUyMnZvY2FiJTIyJTJDJTIyaWQlMjIlM0ElMjIlRTYlOUIlOTYlRTYlOTglQTclMjIlN0QlMkMlMjJtb2RlJTIyJTNBJTIyZmxhc2hjYXJkJTIyJTJDJTIyY29ycmVjdCUyMiUzQWZhbHNlJTJDJTIyYXQlMjIlM0ElMjIyMDI2LTEwLTE1VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTUlMjIlN0QlMkMlN0IlMjJhdHRlbXB0SWQlMjIlM0ElMjJ2MyUyMiUyQyUyMnJlZiUyMiUzQSU3QiUyMmxldmVsJTIyJTNBJTIybjUlMjIlMkMlMjJraW5kJTIyJTNBJTIydm9jYWIlMjIlMkMlMjJpZCUyMiUzQSUyMiVFNiVCMCVCNCUyMiU3RCUyQyUyMm1vZGUlMjIlM0ElMjJwcm9udW5jaWF0aW9uJTIyJTJDJTIyY29ycmVjdCUyMiUzQXRydWUlMkMlMjJhdCUyMiUzQSUyMjIwMjYtMTAtMTVUMDQlM0EwMCUzQTAwLjAwMFolMjIlMkMlMjJkYXRlJTIyJTNBJTIyMjAyNi0xMC0xNSUyMiU3RCUyQyU3QiUyMmF0dGVtcHRJZCUyMiUzQSUyMmcxJTIyJTJDJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJncmFtbWFyJTIyJTJDJTIyaWQlMjIlM0ElMjJnLW4zLTAwNSUyMiU3RCUyQyUyMm1vZGUlMjIlM0ElMjJncmFtbWFyJTIyJTJDJTIyY29ycmVjdCUyMiUzQXRydWUlMkMlMjJhdCUyMiUzQSUyMjIwMjYtMTAtMTZUMDQlM0EwMCUzQTAwLjAwMFolMjIlMkMlMjJkYXRlJTIyJTNBJTIyMjAyNi0xMC0xNiUyMiU3RCUyQyU3QiUyMmF0dGVtcHRJZCUyMiUzQSUyMmcyJTIyJTJDJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJncmFtbWFyJTIyJTJDJTIyaWQlMjIlM0ElMjJnLW4zLTAyMSUyMiU3RCUyQyUyMm1vZGUlMjIlM0ElMjJncmFtbWFyJTIyJTJDJTIyY29ycmVjdCUyMiUzQWZhbHNlJTJDJTIyYXQlMjIlM0ElMjIyMDI2LTEwLTE2VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlN0QlMkMlN0IlMjJhdHRlbXB0SWQlMjIlM0ElMjJsMSUyMiUyQyUyMnJlZiUyMiUzQSU3QiUyMmxldmVsJTIyJTNBJTIybjMlMjIlMkMlMjJraW5kJTIyJTNBJTIybGlzdGVuaW5nJTIyJTJDJTIyaWQlMjIlM0ElMjJsMSUyMiU3RCUyQyUyMm1vZGUlMjIlM0ElMjJsaXN0ZW5pbmclMjIlMkMlMjJjb3JyZWN0JTIyJTNBdHJ1ZSUyQyUyMmF0JTIyJTNBJTIyMjAyNi0xMC0xNlQwNCUzQTAwJTNBMDAuMDAwWiUyMiUyQyUyMmRhdGUlMjIlM0ElMjIyMDI2LTEwLTE2JTIyJTdEJTJDJTdCJTIyYXR0ZW1wdElkJTIyJTNBJTIyZ29uZSUyMiUyQyUyMnJlZiUyMiUzQSU3QiUyMmxldmVsJTIyJTNBJTIybjIlMjIlMkMlMjJraW5kJTIyJTNBJTIyZ3JhbW1hciUyMiUyQyUyMmlkJTIyJTNBJTIyZy1uMi05OTklMjIlN0QlMkMlMjJtb2RlJTIyJTNBJTIyZ3JhbW1hciUyMiUyQyUyMmNvcnJlY3QlMjIlM0F0cnVlJTJDJTIyYXQlMjIlM0ElMjIyMDI2LTEwLTE2VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlN0QlMkMlN0IlMjJhdHRlbXB0SWQlMjIlM0ElMjIlNUIlNUMlMjJhcnQlNUMlMjIlMkMlNUMlMjJycS0wMDAxJTVDJTIyJTVEJTIyJTJDJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJyZWFkaW5nJTIyJTJDJTIyaWQlMjIlM0ElMjJycS0wMDAxJTIyJTJDJTIyYXJ0aWNsZUlkJTIyJTNBJTIycjElMjIlN0QlMkMlMjJtb2RlJTIyJTNBJTIycmVhZGluZyUyMiUyQyUyMmNvcnJlY3QlMjIlM0F0cnVlJTJDJTIyYXQlMjIlM0ElMjIyMDI2LTEwLTE2VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlN0QlMkMlN0IlMjJhdHRlbXB0SWQlMjIlM0ElMjIlNUIlNUMlMjJhcnQlNUMlMjIlMkMlNUMlMjJycS0wMDAyJTVDJTIyJTVEJTIyJTJDJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJyZWFkaW5nJTIyJTJDJTIyaWQlMjIlM0ElMjJycS0wMDAyJTIyJTJDJTIyYXJ0aWNsZUlkJTIyJTNBJTIycjElMjIlN0QlMkMlMjJtb2RlJTIyJTNBJTIycmVhZGluZyUyMiUyQyUyMmNvcnJlY3QlMjIlM0F0cnVlJTJDJTIyYXQlMjIlM0ElMjIyMDI2LTEwLTE2VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlN0QlNUQlMkMlMjJkYXlzJTIyJTNBJTdCJTIyJTVCJTVDJTIyMjAyNi0xMC0xNCU1QyUyMiUyQyU1QyUyMm4zJTVDJTIyJTVEJTIyJTNBJTdCJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTQlMjIlMkMlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIyaXRlbXMlMjIlM0ElNUIlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMnZvY2FiJTVDJTIyJTJDJTVDJTIyJUU2JThBJThBJUU2JThGJUExJTVDJTIyJTVEJTIyJTVEJTJDJTIyY29ycmVjdEl0ZW1zJTIyJTNBJTVCJTIyJTVCJTVDJTIybjMlNUMlMjIlMkMlNUMlMjJ2b2NhYiU1QyUyMiUyQyU1QyUyMiVFNiU4QSU4QSVFNiU4RiVBMSU1QyUyMiU1RCUyMiU1RCUyQyUyMmFydGljbGVzJTIyJTNBJTVCJTVEJTJDJTIyYXJ0aWNsZUF0dGVtcHRzJTIyJTNBJTVCJTVEJTdEJTJDJTIyJTVCJTVDJTIyMjAyNi0xMC0xNSU1QyUyMiUyQyU1QyUyMm4zJTVDJTIyJTVEJTIyJTNBJTdCJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTUlMjIlMkMlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIyaXRlbXMlMjIlM0ElNUIlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMnZvY2FiJTVDJTIyJTJDJTVDJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTVDJTIyJTVEJTIyJTVEJTJDJTIyY29ycmVjdEl0ZW1zJTIyJTNBJTVCJTVEJTJDJTIyYXJ0aWNsZXMlMjIlM0ElNUIlNUQlMkMlMjJhcnRpY2xlQXR0ZW1wdHMlMjIlM0ElNUIlNUQlN0QlMkMlMjIlNUIlNUMlMjIyMDI2LTEwLTE1JTVDJTIyJTJDJTVDJTIybjUlNUMlMjIlNUQlMjIlM0ElN0IlMjJkYXRlJTIyJTNBJTIyMjAyNi0xMC0xNSUyMiUyQyUyMmxldmVsJTIyJTNBJTIybjUlMjIlMkMlMjJpdGVtcyUyMiUzQSU1QiUyMiU1QiU1QyUyMm41JTVDJTIyJTJDJTVDJTIydm9jYWIlNUMlMjIlMkMlNUMlMjIlRTYlQjAlQjQlNUMlMjIlNUQlMjIlNUQlMkMlMjJjb3JyZWN0SXRlbXMlMjIlM0ElNUIlMjIlNUIlNUMlMjJuNSU1QyUyMiUyQyU1QyUyMnZvY2FiJTVDJTIyJTJDJTVDJTIyJUU2JUIwJUI0JTVDJTIyJTVEJTIyJTVEJTJDJTIyYXJ0aWNsZXMlMjIlM0ElNUIlNUQlMkMlMjJhcnRpY2xlQXR0ZW1wdHMlMjIlM0ElNUIlNUQlN0QlMkMlMjIlNUIlNUMlMjIyMDI2LTEwLTE2JTVDJTIyJTJDJTVDJTIybjMlNUMlMjIlNUQlMjIlM0ElN0IlMjJkYXRlJTIyJTNBJTIyMjAyNi0xMC0xNiUyMiUyQyUyMmxldmVsJTIyJTNBJTIybjMlMjIlMkMlMjJpdGVtcyUyMiUzQSU1QiUyMiU1QiU1QyUyMm4zJTVDJTIyJTJDJTVDJTIyZ3JhbW1hciU1QyUyMiUyQyU1QyUyMmctbjMtMDA1JTVDJTIyJTVEJTIyJTJDJTIyJTVCJTVDJTIybjMlNUMlMjIlMkMlNUMlMjJncmFtbWFyJTVDJTIyJTJDJTVDJTIyZy1uMy0wMjElNUMlMjIlNUQlMjIlMkMlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMmxpc3RlbmluZyU1QyUyMiUyQyU1QyUyMmwxJTVDJTIyJTVEJTIyJTJDJTIyJTVCJTVDJTIybjMlNUMlMjIlMkMlNUMlMjJyZWFkaW5nJTVDJTIyJTJDJTVDJTIycnEtMDAwMSU1QyUyMiU1RCUyMiUyQyUyMiU1QiU1QyUyMm4zJTVDJTIyJTJDJTVDJTIycmVhZGluZyU1QyUyMiUyQyU1QyUyMnJxLTAwMDIlNUMlMjIlNUQlMjIlNUQlMkMlMjJjb3JyZWN0SXRlbXMlMjIlM0ElNUIlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMmdyYW1tYXIlNUMlMjIlMkMlNUMlMjJnLW4zLTAwNSU1QyUyMiU1RCUyMiUyQyUyMiU1QiU1QyUyMm4zJTVDJTIyJTJDJTVDJTIybGlzdGVuaW5nJTVDJTIyJTJDJTVDJTIybDElNUMlMjIlNUQlMjIlMkMlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMnJlYWRpbmclNUMlMjIlMkMlNUMlMjJycS0wMDAxJTVDJTIyJTVEJTIyJTJDJTIyJTVCJTVDJTIybjMlNUMlMjIlMkMlNUMlMjJyZWFkaW5nJTVDJTIyJTJDJTVDJTIycnEtMDAwMiU1QyUyMiU1RCUyMiU1RCUyQyUyMmFydGljbGVzJTIyJTNBJTVCJTIycjElMjIlNUQlMkMlMjJhcnRpY2xlQXR0ZW1wdHMlMjIlM0ElNUIlMjJhcnQlMjIlNUQlN0QlMkMlMjIlNUIlNUMlMjIyMDI2LTEwLTE2JTVDJTIyJTJDJTVDJTIybjIlNUMlMjIlNUQlMjIlM0ElN0IlMjJkYXRlJTIyJTNBJTIyMjAyNi0xMC0xNiUyMiUyQyUyMmxldmVsJTIyJTNBJTIybjIlMjIlMkMlMjJpdGVtcyUyMiUzQSU1QiUyMiU1QiU1QyUyMm4yJTVDJTIyJTJDJTVDJTIyZ3JhbW1hciU1QyUyMiUyQyU1QyUyMmctbjItOTk5JTVDJTIyJTVEJTIyJTVEJTJDJTIyY29ycmVjdEl0ZW1zJTIyJTNBJTVCJTIyJTVCJTVDJTIybjIlNUMlMjIlMkMlNUMlMjJncmFtbWFyJTVDJTIyJTJDJTVDJTIyZy1uMi05OTklNUMlMjIlNUQlMjIlNUQlMkMlMjJhcnRpY2xlcyUyMiUzQSU1QiU1RCUyQyUyMmFydGljbGVBdHRlbXB0cyUyMiUzQSU1QiU1RCU3RCU3RCUyQyUyMnBsYW5zJTIyJTNBJTdCJTIyJTVCJTVDJTIyMjAyNi0xMC0xNiU1QyUyMiUyQyU1QyUyMm4zJTVDJTIyJTVEJTIyJTNBJTdCJTIyZGF0ZSUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlMkMlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIyYnJhbmNoJTIyJTNBJTIycmVhZGluZyUyMiUyQyUyMnN0YXJ0ZWQlMjIlM0F0cnVlJTJDJTIyZ3JvdXBzJTIyJTNBJTdCJTIydm9jYWIlMjIlM0ElN0IlMjJzdGF0dXMlMjIlM0ElMjJyZWFkeSUyMiUyQyUyMnRhcmdldHMlMjIlM0ElNUIlN0IlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIya2luZCUyMiUzQSUyMnZvY2FiJTIyJTJDJTIyaWQlMjIlM0ElMjIlRTYlOEElOEElRTYlOEYlQTElMjIlN0QlMkMlN0IlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIya2luZCUyMiUzQSUyMnZvY2FiJTIyJTJDJTIyaWQlMjIlM0ElMjIlRTYlOUIlOTYlRTYlOTglQTclMjIlN0QlNUQlMkMlMjJub3RlJTIyJTNBJTIyJTIyJTdEJTdEJTdEJTdEJTJDJTIybWlzdGFrZXMlMjIlM0ElN0IlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMnZvY2FiJTVDJTIyJTJDJTVDJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTVDJTIyJTVEJTIyJTNBJTdCJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJ2b2NhYiUyMiUyQyUyMmlkJTIyJTNBJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTIyJTdEJTJDJTIyd3JvbmdDb3VudCUyMiUzQTElMkMlMjJsYXN0V3JvbmdBdCUyMiUzQSUyMjIwMjYtMTAtMTVUMDQlM0EwMCUzQTAwLjAwMFolMjIlMkMlMjJsYXN0UmVzdWx0QXQlMjIlM0ElMjIyMDI2LTEwLTE1VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIycGVuZGluZyUyMiUzQXRydWUlMkMlMjJsYXN0V3JvbmdNb2RlJTIyJTNBJTIyZmxhc2hjYXJkJTIyJTdEJTJDJTIyJTVCJTVDJTIybjMlNUMlMjIlMkMlNUMlMjJncmFtbWFyJTVDJTIyJTJDJTVDJTIyZy1uMy0wMjElNUMlMjIlNUQlMjIlM0ElN0IlMjJyZWYlMjIlM0ElN0IlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIya2luZCUyMiUzQSUyMmdyYW1tYXIlMjIlMkMlMjJpZCUyMiUzQSUyMmctbjMtMDIxJTIyJTdEJTJDJTIyd3JvbmdDb3VudCUyMiUzQTElMkMlMjJsYXN0V3JvbmdBdCUyMiUzQSUyMjIwMjYtMTAtMTZUMDQlM0EwMCUzQTAwLjAwMFolMjIlMkMlMjJsYXN0UmVzdWx0QXQlMjIlM0ElMjIyMDI2LTEwLTE2VDA0JTNBMDAlM0EwMC4wMDBaJTIyJTJDJTIycGVuZGluZyUyMiUzQXRydWUlMkMlMjJsYXN0V3JvbmdNb2RlJTIyJTNBJTIyZ3JhbW1hciUyMiU3RCU3RCUyQyUyMnNjaGVkdWxlcyUyMiUzQSU3QiUyMiU1QiU1QyUyMm4zJTVDJTIyJTJDJTVDJTIydm9jYWIlNUMlMjIlMkMlNUMlMjIlRTYlOEElOEElRTYlOEYlQTElNUMlMjIlNUQlMjIlM0ElN0IlMjJyZWYlMjIlM0ElN0IlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIya2luZCUyMiUzQSUyMnZvY2FiJTIyJTJDJTIyaWQlMjIlM0ElMjIlRTYlOEElOEElRTYlOEYlQTElMjIlN0QlMkMlMjJzdGFnZSUyMiUzQTElMkMlMjJkdWVPbiUyMiUzQSUyMjIwMjYtMTAtMTUlMjIlMkMlMjJsYXN0U2NoZWR1bGVkT24lMjIlM0ElMjIyMDI2LTEwLTE0JTIyJTJDJTIybGFzdFJlc3VsdCUyMiUzQXRydWUlN0QlMkMlMjIlNUIlNUMlMjJuMyU1QyUyMiUyQyU1QyUyMnZvY2FiJTVDJTIyJTJDJTVDJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTVDJTIyJTVEJTIyJTNBJTdCJTIycmVmJTIyJTNBJTdCJTIybGV2ZWwlMjIlM0ElMjJuMyUyMiUyQyUyMmtpbmQlMjIlM0ElMjJ2b2NhYiUyMiUyQyUyMmlkJTIyJTNBJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTIyJTdEJTJDJTIyc3RhZ2UlMjIlM0EwJTJDJTIyZHVlT24lMjIlM0ElMjIyMDI2LTEwLTE1JTIyJTJDJTIybGFzdFNjaGVkdWxlZE9uJTIyJTNBJTIyMjAyNi0xMC0xNSUyMiUyQyUyMmxhc3RSZXN1bHQlMjIlM0FmYWxzZSU3RCUyQyUyMiU1QiU1QyUyMm41JTVDJTIyJTJDJTVDJTIydm9jYWIlNUMlMjIlMkMlNUMlMjIlRTYlQjAlQjQlNUMlMjIlNUQlMjIlM0ElN0IlMjJyZWYlMjIlM0ElN0IlMjJsZXZlbCUyMiUzQSUyMm41JTIyJTJDJTIya2luZCUyMiUzQSUyMnZvY2FiJTIyJTJDJTIyaWQlMjIlM0ElMjIlRTYlQjAlQjQlMjIlN0QlMkMlMjJzdGFnZSUyMiUzQTElMkMlMjJkdWVPbiUyMiUzQSUyMjIwMjYtMTAtMTYlMjIlMkMlMjJsYXN0U2NoZWR1bGVkT24lMjIlM0ElMjIyMDI2LTEwLTE1JTIyJTJDJTIybGFzdFJlc3VsdCUyMiUzQXRydWUlN0QlN0QlMkMlMjJsZXZlbCUyMiUzQSUyMm4zJTIyJTJDJTIyc3RyZWFrJTIyJTNBMyUyQyUyMmxhc3REYXRlJTIyJTNBJTIyMjAyNi0xMC0xNiUyMiUyQyUyMnZLbm93biUyMiUzQSU3QiUyMm41JTIyJTNBJTdCJTdEJTJDJTIybjQlMjIlM0ElN0IlN0QlMkMlMjJuMyUyMiUzQSU3QiUyMiVFNiU4QSU4QSVFNiU4RiVBMSUyMiUzQXRydWUlN0QlMkMlMjJuMiUyMiUzQSU3QiU3RCUyQyUyMm4xJTIyJTNBJTdCJTdEJTdEJTJDJTIydkxlYXJuaW5nJTIyJTNBJTdCJTIybjUlMjIlM0ElN0IlN0QlMkMlMjJuNCUyMiUzQSU3QiU3RCUyQyUyMm4zJTIyJTNBJTdCJTIyJUU2JTlCJTk2JUU2JTk4JUE3JTIyJTNBdHJ1ZSU3RCUyQyUyMm4yJTIyJTNBJTdCJTdEJTJDJTIybjElMjIlM0ElN0IlN0QlN0QlMkMlMjJnRG9uZSUyMiUzQSU3QiUyMm41JTIyJTNBJTVCJTVEJTJDJTIybjQlMjIlM0ElNUIlNUQlMkMlMjJuMyUyMiUzQSU1QiUyMmctbjMtMDA1JTIyJTVEJTJDJTIybjIlMjIlM0ElNUIlMjJnLW4yLTk5OSUyMiU1RCUyQyUyMm4xJTIyJTNBJTVCJTVEJTdEJTJDJTIybERvbmUlMjIlM0ElN0IlMjJuNSUyMiUzQSU1QiU1RCUyQyUyMm40JTIyJTNBJTVCJTVEJTJDJTIybjMlMjIlM0ElNUIlMjJsMSUyMiU1RCUyQyUyMm4yJTIyJTNBJTVCJTVEJTJDJTIybjElMjIlM0ElNUIlNUQlN0QlMkMlMjJsQ29ycmVjdCUyMiUzQSU3QiUyMm41JTIyJTNBJTVCJTVEJTJDJTIybjQlMjIlM0ElNUIlNUQlMkMlMjJuMyUyMiUzQSU1QiUyMmwxJTIyJTVEJTJDJTIybjIlMjIlM0ElNUIlNUQlMkMlMjJuMSUyMiUzQSU1QiU1RCU3RCUyQyUyMnJEb25lJTIyJTNBJTdCJTIybjUlMjIlM0ElNUIlNUQlMkMlMjJuNCUyMiUzQSU1QiU1RCUyQyUyMm4zJTIyJTNBJTVCJTIycjElMjIlNUQlMkMlMjJuMiUyMiUzQSU1QiU1RCUyQyUyMm4xJTIyJTNBJTVCJTVEJTdEJTdEJTdE",
+  "state": {
+    "results": [
+      {
+        "attemptId": "v1",
+        "ref": {
+          "level": "n3",
+          "kind": "vocab",
+          "id": "把握"
+        },
+        "mode": "flashcard",
+        "correct": true,
+        "at": "2026-10-14T04:00:00.000Z",
+        "date": "2026-10-14"
+      },
+      {
+        "attemptId": "v2",
+        "ref": {
+          "level": "n3",
+          "kind": "vocab",
+          "id": "曖昧"
+        },
+        "mode": "flashcard",
+        "correct": false,
+        "at": "2026-10-15T04:00:00.000Z",
+        "date": "2026-10-15"
+      },
+      {
+        "attemptId": "v3",
+        "ref": {
+          "level": "n5",
+          "kind": "vocab",
+          "id": "水"
+        },
+        "mode": "pronunciation",
+        "correct": true,
+        "at": "2026-10-15T04:00:00.000Z",
+        "date": "2026-10-15"
+      },
+      {
+        "attemptId": "g1",
+        "ref": {
+          "level": "n3",
+          "kind": "grammar",
+          "id": "g-n3-005"
+        },
+        "mode": "grammar",
+        "correct": true,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      },
+      {
+        "attemptId": "g2",
+        "ref": {
+          "level": "n3",
+          "kind": "grammar",
+          "id": "g-n3-021"
+        },
+        "mode": "grammar",
+        "correct": false,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      },
+      {
+        "attemptId": "l1",
+        "ref": {
+          "level": "n3",
+          "kind": "listening",
+          "id": "l1"
+        },
+        "mode": "listening",
+        "correct": true,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      },
+      {
+        "attemptId": "gone",
+        "ref": {
+          "level": "n2",
+          "kind": "grammar",
+          "id": "g-n2-999"
+        },
+        "mode": "grammar",
+        "correct": true,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      },
+      {
+        "attemptId": "[\"art\",\"rq-0001\"]",
+        "ref": {
+          "level": "n3",
+          "kind": "reading",
+          "id": "rq-0001",
+          "articleId": "r1"
+        },
+        "mode": "reading",
+        "correct": true,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      },
+      {
+        "attemptId": "[\"art\",\"rq-0002\"]",
+        "ref": {
+          "level": "n3",
+          "kind": "reading",
+          "id": "rq-0002",
+          "articleId": "r1"
+        },
+        "mode": "reading",
+        "correct": true,
+        "at": "2026-10-16T04:00:00.000Z",
+        "date": "2026-10-16"
+      }
+    ],
+    "days": {
+      "[\"2026-10-14\",\"n3\"]": {
+        "date": "2026-10-14",
+        "level": "n3",
+        "items": [
+          "[\"n3\",\"vocab\",\"把握\"]"
+        ],
+        "correctItems": [
+          "[\"n3\",\"vocab\",\"把握\"]"
+        ],
+        "articles": [],
+        "articleAttempts": []
+      },
+      "[\"2026-10-15\",\"n3\"]": {
+        "date": "2026-10-15",
+        "level": "n3",
+        "items": [
+          "[\"n3\",\"vocab\",\"曖昧\"]"
+        ],
+        "correctItems": [],
+        "articles": [],
+        "articleAttempts": []
+      },
+      "[\"2026-10-15\",\"n5\"]": {
+        "date": "2026-10-15",
+        "level": "n5",
+        "items": [
+          "[\"n5\",\"vocab\",\"水\"]"
+        ],
+        "correctItems": [
+          "[\"n5\",\"vocab\",\"水\"]"
+        ],
+        "articles": [],
+        "articleAttempts": []
+      },
+      "[\"2026-10-16\",\"n3\"]": {
+        "date": "2026-10-16",
+        "level": "n3",
+        "items": [
+          "[\"n3\",\"grammar\",\"g-n3-005\"]",
+          "[\"n3\",\"grammar\",\"g-n3-021\"]",
+          "[\"n3\",\"listening\",\"l1\"]",
+          "[\"n3\",\"reading\",\"rq-0001\"]",
+          "[\"n3\",\"reading\",\"rq-0002\"]"
+        ],
+        "correctItems": [
+          "[\"n3\",\"grammar\",\"g-n3-005\"]",
+          "[\"n3\",\"listening\",\"l1\"]",
+          "[\"n3\",\"reading\",\"rq-0001\"]",
+          "[\"n3\",\"reading\",\"rq-0002\"]"
+        ],
+        "articles": [
+          "r1"
+        ],
+        "articleAttempts": [
+          "art"
+        ]
+      },
+      "[\"2026-10-16\",\"n2\"]": {
+        "date": "2026-10-16",
+        "level": "n2",
+        "items": [
+          "[\"n2\",\"grammar\",\"g-n2-999\"]"
+        ],
+        "correctItems": [
+          "[\"n2\",\"grammar\",\"g-n2-999\"]"
+        ],
+        "articles": [],
+        "articleAttempts": []
+      }
+    },
+    "plans": {
+      "[\"2026-10-16\",\"n3\"]": {
+        "date": "2026-10-16",
+        "level": "n3",
+        "branch": "reading",
+        "started": true,
+        "groups": {
+          "vocab": {
+            "status": "ready",
+            "targets": [
+              {
+                "level": "n3",
+                "kind": "vocab",
+                "id": "把握"
+              },
+              {
+                "level": "n3",
+                "kind": "vocab",
+                "id": "曖昧"
+              }
+            ],
+            "note": ""
+          }
+        }
+      }
+    },
+    "mistakes": {
+      "[\"n3\",\"vocab\",\"曖昧\"]": {
+        "ref": {
+          "level": "n3",
+          "kind": "vocab",
+          "id": "曖昧"
+        },
+        "wrongCount": 1,
+        "lastWrongAt": "2026-10-15T04:00:00.000Z",
+        "lastResultAt": "2026-10-15T04:00:00.000Z",
+        "pending": true,
+        "lastWrongMode": "flashcard"
+      },
+      "[\"n3\",\"grammar\",\"g-n3-021\"]": {
+        "ref": {
+          "level": "n3",
+          "kind": "grammar",
+          "id": "g-n3-021"
+        },
+        "wrongCount": 1,
+        "lastWrongAt": "2026-10-16T04:00:00.000Z",
+        "lastResultAt": "2026-10-16T04:00:00.000Z",
+        "pending": true,
+        "lastWrongMode": "grammar"
+      }
+    },
+    "schedules": {
+      "[\"n3\",\"vocab\",\"把握\"]": {
+        "ref": {
+          "level": "n3",
+          "kind": "vocab",
+          "id": "把握"
+        },
+        "stage": 1,
+        "dueOn": "2026-10-15",
+        "lastScheduledOn": "2026-10-14",
+        "lastResult": true
+      },
+      "[\"n3\",\"vocab\",\"曖昧\"]": {
+        "ref": {
+          "level": "n3",
+          "kind": "vocab",
+          "id": "曖昧"
+        },
+        "stage": 0,
+        "dueOn": "2026-10-15",
+        "lastScheduledOn": "2026-10-15",
+        "lastResult": false
+      },
+      "[\"n5\",\"vocab\",\"水\"]": {
+        "ref": {
+          "level": "n5",
+          "kind": "vocab",
+          "id": "水"
+        },
+        "stage": 1,
+        "dueOn": "2026-10-16",
+        "lastScheduledOn": "2026-10-15",
+        "lastResult": true
+      }
+    },
+    "level": "n3",
+    "streak": 3,
+    "lastDate": "2026-10-16",
+    "vKnown": {
+      "n5": {},
+      "n4": {},
+      "n3": {
+        "把握": true
+      },
+      "n2": {},
+      "n1": {}
+    },
+    "vLearning": {
+      "n5": {},
+      "n4": {},
+      "n3": {
+        "曖昧": true
+      },
+      "n2": {},
+      "n1": {}
+    },
+    "gDone": {
+      "n5": [],
+      "n4": [],
+      "n3": [
+        "g-n3-005"
+      ],
+      "n2": [
+        "g-n2-999"
+      ],
+      "n1": []
+    },
+    "lDone": {
+      "n5": [],
+      "n4": [],
+      "n3": [
+        "l1"
+      ],
+      "n2": [],
+      "n1": []
+    },
+    "lCorrect": {
+      "n5": [],
+      "n4": [],
+      "n3": [
+        "l1"
+      ],
+      "n2": [],
+      "n1": []
+    },
+    "rDone": {
+      "n5": [],
+      "n4": [],
+      "n3": [
+        "r1"
+      ],
+      "n2": [],
+      "n1": []
+    }
+  }
+}

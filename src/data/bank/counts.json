@@ -1,0 +1,32 @@
+{
+  "n5": {
+    "vocab": 710,
+    "grammar": 80,
+    "reading": 2,
+    "listening": 4
+  },
+  "n4": {
+    "vocab": 664,
+    "grammar": 81,
+    "reading": 2,
+    "listening": 4
+  },
+  "n3": {
+    "vocab": 2102,
+    "grammar": 30,
+    "reading": 3,
+    "listening": 7
+  },
+  "n2": {
+    "vocab": 1741,
+    "grammar": 40,
+    "reading": 4,
+    "listening": 7
+  },
+  "n1": {
+    "vocab": 2685,
+    "grammar": 25,
+    "reading": 3,
+    "listening": 6
+  }
+}
