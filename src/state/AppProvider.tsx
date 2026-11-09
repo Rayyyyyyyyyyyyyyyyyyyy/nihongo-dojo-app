@@ -1,10 +1,14 @@
 // 把單一 store 與服務交給畫面：useAppState(selector) 訂閱文件，useServices() 取動作與原生服務。
 import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from 'react'
 import { AppState } from 'react-native'
+import type { LevelBank } from '../data/bank'
+import type { BankManifest } from '../domain/bank/manifest'
+import type { Level } from '../domain/progress/state'
 import type { createBackup } from '../services/backup'
 import type { createHaptics } from '../services/haptics'
 import { syncReminders, type Notifier } from '../services/notifications'
 import type { createPurchases } from '../services/purchases'
+import type { SoundService } from '../services/sound'
 import type { SpeechService } from '../services/speech'
 import type { Clock } from '../domain/learning/types'
 import type { AppStore, AppStoreState } from './store'
@@ -17,6 +21,9 @@ export interface AppServices {
   notifier: Notifier
   speech: SpeechService
   haptics: ReturnType<typeof createHaptics>
+  sound: SoundService
+  // 內建題庫：真實實作同步載入（失敗丟錯，畫面顯示「題庫載入失敗」＋重試）；測試用替身題庫。
+  bank: { manifest: BankManifest; load(level: Level): LevelBank | Promise<LevelBank> }
 }
 
 const Ctx = createContext<AppServices | null>(null)
