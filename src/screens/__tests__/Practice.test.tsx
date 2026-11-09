@@ -1,5 +1,6 @@
 // S7 課表、S8 單字課、S9 複習。
-import { fireEvent, screen } from 'expo-router/testing-library'
+import { router } from 'expo-router'
+import { act, fireEvent, screen } from 'expo-router/testing-library'
 import { submitAnswer } from '../../state/core'
 import { fixtureBank } from '../../test/fixtures'
 import { makeServices, NOW, readyDoc, renderApp } from '../../test/harness'
@@ -15,20 +16,21 @@ describe('S7 課表', () => {
     expect(await screen.findByRole('button', { name: '第 1 課，已做 0／10，掌握 0，免費試用' })).toBeOnTheScreen()
     expect(screen.getByRole('button', { name: '第 2 課，已做 0／2，掌握 0，完整版・鎖定' })).toBeOnTheScreen()
   })
-  test('鎖定：非第一天點鎖定課導向 S14；第一天導向 S14a；已購直接進課', async () => {
-    await renderApp(makeServices({ doc: n3('2026-11-01') }), '/practice', 'practice')
+  const openLesson2 = async (doc: ReturnType<typeof n3>, name: string | RegExp = /第 2 課/) => {
+    await renderApp(makeServices({ doc }), '/practice', 'practice')
     await fireEvent.press(await screen.findByRole('button', { name: '文法' }))
-    await fireEvent.press(await screen.findByRole('button', { name: /第 2 課/ }))
+    await fireEvent.press(await screen.findByRole('button', { name }))
+  }
+  test('鎖定：非第一天點鎖定課導向 S14', async () => {
+    await openLesson2(n3('2026-11-01'))
     expect(await screen.findByText('占位 paywall')).toBeOnTheScreen()
-
-    await renderApp(makeServices({ doc: n3('2026-11-09') }), '/practice', 'practice')
-    await fireEvent.press(await screen.findByRole('button', { name: '文法' }))
-    await fireEvent.press(await screen.findByRole('button', { name: /第 2 課/ }))
+  })
+  test('鎖定：第一天點鎖定課導向 S14a', async () => {
+    await openLesson2(n3('2026-11-09'))
     expect(await screen.findByText('占位 paywall-explain')).toBeOnTheScreen()
-
-    await renderApp(makeServices({ doc: n3('2026-11-01', true) }), '/practice', 'practice')
-    await fireEvent.press(await screen.findByRole('button', { name: '文法' }))
-    await fireEvent.press(await screen.findByRole('button', { name: '第 2 課，已做 0／2，掌握 0' }))
+  })
+  test('鎖定：已購直接進課', async () => {
+    await openLesson2(n3('2026-11-01', true), '第 2 課，已做 0／2，掌握 0')
     expect(await screen.findByText('1／2')).toBeOnTheScreen()
   })
   test('空結果：類別沒有內容時寫「準備中」', async () => {
@@ -50,7 +52,8 @@ describe('S7 課表', () => {
     await fireEvent.press(lesson)
     await fireEvent.press(lesson)
     expect(await screen.findAllByRole('button', { name: '中止' })).toHaveLength(1)
-    expect(screen.getByRole('button', { name: '文法' })).toBeSelected()
+    await act(() => router.back())
+    expect(await screen.findByRole('button', { name: '文法' })).toBeSelected()
   })
 })
 

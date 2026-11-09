@@ -46,7 +46,7 @@ export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (
   const services: AppServices = {
     clock,
     store,
-    purchases: createPurchases(fakeStoreGateway(), { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
+    purchases: createPurchases(fakeStoreGateway({ owned: o.doc?.entitlement.owned ? [PRODUCT_ID] : [] }), { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
     backup: createBackup(memoryCloud(), { appVersion: '1', contentVersion: 'c', now: clock }),
     notifier: fakeNotifier(),
     speech: createSpeech(speechEngine),

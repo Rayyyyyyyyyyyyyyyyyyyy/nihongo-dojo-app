@@ -47,7 +47,7 @@ describe('S10 聽力', () => {
   })
   test('錯誤：播放失敗顯示重試與文字稿，不算作答', async () => {
     const s = makeServices({ doc: readyDoc() })
-    s.speechEngine.speak.mockImplementation((_t: string, o: { onError?: (e: Error) => void }) => o.onError?.(Error('tts')))
+    s.speechEngine.speak.mockImplementation((_t, o) => (o as { onError?: (e: Error) => void }).onError?.(Error('tts')))
     await renderApp(s, listening)
     await fireEvent.press(await screen.findByRole('button', { name: '播放' }))
     expect(await screen.findByText('播放失敗')).toBeOnTheScreen()
