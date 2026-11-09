@@ -25,7 +25,7 @@ export function readyDoc(patch: (d: AppStateDoc) => AppStateDoc = (d) => d, at =
   return patch({ ...d, learning: { ...d.learning, level: 'n5' }, meta: { ...d.meta, onboarding: 'done' } })
 }
 
-export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (l: Level) => LevelBank | Promise<LevelBank>; now?: Date } = {}) {
+export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (l: Level) => LevelBank | Promise<LevelBank>; now?: Date; storeFail?: boolean } = {}) {
   const time = { now: new Date(o.now ?? NOW) }
   const clock = () => new Date(time.now)
   const files = memoryFiles(o.doc ? { 'app-state.json': JSON.stringify(o.doc) } : {})
@@ -46,7 +46,7 @@ export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (
   const services: AppServices = {
     clock,
     store,
-    purchases: createPurchases(fakeStoreGateway({ owned: o.doc?.entitlement.owned ? [PRODUCT_ID] : [] }), { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
+    purchases: createPurchases(fakeStoreGateway({ owned: o.doc?.entitlement.owned ? [PRODUCT_ID] : [], fail: o.storeFail }), { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
     backup: createBackup(memoryCloud(), { appVersion: '1', contentVersion: 'c', now: clock }),
     notifier: fakeNotifier(),
     speech: createSpeech(speechEngine),
