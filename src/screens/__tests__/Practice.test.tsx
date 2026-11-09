@@ -24,11 +24,11 @@ describe('S7 課表', () => {
   }
   test('鎖定：非第一天點鎖定課導向 S14', async () => {
     await openLesson2(n3('2026-11-01'))
-    expect(await screen.findByText('占位 paywall')).toBeOnTheScreen()
+    expect(await screen.findByRole('header', { name: 'N3–N1 完整版' })).toBeOnTheScreen()
   })
   test('鎖定：第一天點鎖定課導向 S14a', async () => {
     await openLesson2(n3('2026-11-09'))
-    expect(await screen.findByText('占位 paywall-explain')).toBeOnTheScreen()
+    expect(await screen.findByRole('header', { name: '這是 N3–N1 完整版的內容' })).toBeOnTheScreen()
   })
   test('鎖定：已購直接進課', async () => {
     await openLesson2(n3('2026-11-01', true), '第 2 課，已做 0／2，掌握 0')
@@ -45,7 +45,7 @@ describe('S7 課表', () => {
     const doc = n3('2026-11-01')
     const s = makeServices({ doc })
     await openLesson2(doc, /第 2 課/, s)
-    expect(await screen.findByText('占位 paywall')).toBeOnTheScreen()
+    expect(await screen.findByRole('header', { name: 'N3–N1 完整版' })).toBeOnTheScreen()
     await act(() => s.store.setEntitlement(true, NOW.toISOString()))
     await act(() => router.back())
     await fireEvent.press(await screen.findByRole('button', { name: '第 2 課，已做 0／2，掌握 0' }))

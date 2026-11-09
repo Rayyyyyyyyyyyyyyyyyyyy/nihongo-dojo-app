@@ -25,7 +25,7 @@ export function readyDoc(patch: (d: AppStateDoc) => AppStateDoc = (d) => d, at =
   return patch({ ...d, learning: { ...d.learning, level: 'n5' }, meta: { ...d.meta, onboarding: 'done' } })
 }
 
-export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (l: Level) => LevelBank | Promise<LevelBank>; now?: Date; storeFail?: boolean } = {}) {
+export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (l: Level) => LevelBank | Promise<LevelBank>; now?: Date; storeFail?: boolean; gateway?: Parameters<typeof fakeStoreGateway>[0] } = {}) {
   const time = { now: new Date(o.now ?? NOW) }
   const clock = () => new Date(time.now)
   const files = memoryFiles(o.doc ? { 'app-state.json': JSON.stringify(o.doc) } : {})
@@ -43,10 +43,11 @@ export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (
   }
   const hapticsEngine = { notificationAsync: jest.fn(async () => {}), impactAsync: jest.fn(async () => {}), selectionAsync: jest.fn(async () => {}) }
   const sound = { play: jest.fn() }
+  const gateway = fakeStoreGateway({ owned: o.doc?.entitlement.owned ? [PRODUCT_ID] : [], fail: o.storeFail, ...o.gateway })
   const services: AppServices = {
     clock,
     store,
-    purchases: createPurchases(fakeStoreGateway({ owned: o.doc?.entitlement.owned ? [PRODUCT_ID] : [], fail: o.storeFail }), { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
+    purchases: createPurchases(gateway, { productId: PRODUCT_ID, setEntitlement: (ow, at) => store.setEntitlement(ow, at), now: clock }),
     backup: createBackup(memoryCloud(), { appVersion: '1', contentVersion: 'c', now: clock }),
     notifier: fakeNotifier(),
     speech: createSpeech(speechEngine),
@@ -54,7 +55,7 @@ export function makeServices(o: { doc?: AppStateDoc; voices?: string[]; load?: (
     sound,
     bank: { manifest: fixtureManifest, load: o.load ?? fixtureBank },
   }
-  return { services, time, files, store, spoken, speechEngine, hapticsEngine, sound }
+  return { services, time, files, store, gateway, spoken, speechEngine, hapticsEngine, sound }
 }
 
 import Tabs from '../app/(tabs)/_layout'
@@ -67,6 +68,8 @@ import Session from '../screens/session/Session'
 import Chest from '../screens/rewards/Chest'
 import Ceremony from '../screens/rewards/Ceremony'
 import Onboarding from '../screens/onboarding/Onboarding'
+import Paywall from '../screens/paywall/Paywall'
+import PaywallExplain from '../screens/rewards/PaywallExplain'
 import { Text } from 'react-native'
 
 const stub = (name: string) => () => <Text>占位 {name}</Text>
@@ -97,7 +100,9 @@ export async function renderApp(s: ReturnType<typeof makeServices>, initialUrl =
     session: Session,
     chest: Chest,
     ceremony: Ceremony,
-    ...Object.fromEntries(['paywall', 'paywall-explain', 'restore', 'backup', 'import', 'reminders', 'about', 'report', 'share', 'settings'].map((n) => [n, stub(n)])),
+    paywall: Paywall,
+    'paywall-explain': PaywallExplain,
+    ...Object.fromEntries(['restore', 'backup', 'import', 'reminders', 'about', 'report', 'share', 'settings'].map((n) => [n, stub(n)])),
   }
   return renderRouter(routes as never, { initialUrl })
 }
