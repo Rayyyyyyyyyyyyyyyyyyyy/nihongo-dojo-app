@@ -21,7 +21,7 @@ export default function Review() {
     () => (bank.status === 'ready' ? reviewQueue(doc, bank.bank, today, banks.manifest) : null),
     [bank, doc, today, banks.manifest],
   )
-  const { due, mistakes } = reviewCounts(doc, today)
+  const { due, mistakes } = reviewCounts(doc, today, banks.manifest)
   const cleared = Object.values(doc.learning.mistakes)
     .filter((m) => !m.pending && m.ref.level === doc.learning.level)
     .map((m) => m.lastResultAt.slice(0, 10))

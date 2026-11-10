@@ -34,7 +34,7 @@ export default function Dojo() {
 
   const streak = currentStreak(doc, today)
   const guarded = doc.rewards.protectedDates.includes(yesterday(today))
-  const { due, mistakes } = reviewCounts(doc, today)
+  const { due, mistakes } = reviewCounts(doc, today, banks.manifest)
   const goalDone = doc.rewards.goalCompletedDates.includes(today)
   const opened = doc.rewards.chest.lastOpenedDate === today
   const todays = doc.rewards.chest.log.find((e) => e.date === today)?.result

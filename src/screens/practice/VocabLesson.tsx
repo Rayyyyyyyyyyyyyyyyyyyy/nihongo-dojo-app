@@ -2,10 +2,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useMemo, useState } from 'react'
 import { FlatList, TextInput, View } from 'react-native'
+import { lessonAccess } from '../../domain/access'
 import { itemKey } from '../../domain/learning/types'
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, EmptyState, ErrorState, SaveErrorBanner, Segmented, Skeleton } from '../../ui'
+import { AppText, Button, EmptyState, ErrorState, SaveErrorBanner, Screen, Segmented, Skeleton } from '../../ui'
 import { useDoc, useLevelBank, useNavLock, useToday } from '../hooks'
 
 export default function VocabLesson() {
@@ -26,6 +27,23 @@ export default function VocabLesson() {
   const shown = words.filter((v) => (filter === 'all' || due(v.w)) && (!query || v.w.includes(query) || v.r.includes(query) || v.zh.includes(query)))
   const start = (vmode: 'flashcard' | 'pronunciation') =>
     go(() => router.push({ pathname: '/session', params: { src: 'lesson', kind: 'vocab', lesson: String(lesson), vmode } }))
+
+  // 深連結也要套用購買限制：未開放的課不列單字、不能標記掌握，只提供完整版說明入口。
+  const access = lessonAccess({
+    free: banks.manifest.levels[level].free,
+    lessonNo: lesson,
+    owned: doc.entitlement.owned,
+    today,
+    firstOpenDate: doc.meta.firstOpenDate,
+  })
+  if (access !== 'open')
+    return (
+      <Screen>
+        <EmptyState title="這是 N3–N1 完整版的內容">
+          <Button label="查看完整版" onPress={() => go(() => router.push(access === 'explainOnly' ? '/paywall-explain' : '/paywall'))} />
+        </EmptyState>
+      </Screen>
+    )
 
   const header = (
     <View style={{ gap: t.space[3], paddingBottom: t.space[3] }}>

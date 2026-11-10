@@ -3,6 +3,7 @@ import { screen } from 'expo-router/testing-library'
 import { itemKey, type StudyItemRef } from '../../domain/learning/types'
 import { fixtureBank, fixtureManifest } from '../../test/fixtures'
 import { makeServices, readyDoc, renderApp } from '../../test/harness'
+import { reviewCounts } from '../dojo/selectors'
 import { reviewQueue } from '../session/queue'
 
 const n3 = (owned: boolean) =>
@@ -34,4 +35,28 @@ test('N2：未購時第 2 課的錯題不進複習佇列，列為完整版內容
   const owned = reviewQueue(withMistake(true), bank, '2026-11-10', fixtureManifest)
   expect(owned.items).toHaveLength(1)
   expect(owned.locked).toEqual([])
+})
+
+test('M1：未購時付費課的錯題不算進複習數與徽章；購買後計入', () => {
+  const ids = fixtureManifest.levels.n3.lessons.grammar
+  const ref = (i: number): StudyItemRef => ({ kind: 'grammar', level: 'n3', id: ids[i].itemIds[0] })
+  const doc = (owned: boolean) => {
+    const d = n3(owned)
+    const m = (r: StudyItemRef) => ({ ref: r, pending: true, wrongCount: 1, lastResultAt: '2026-11-09T09:00:00.000Z' })
+    return { ...d, learning: { ...d.learning, mistakes: { [itemKey(ref(0))]: m(ref(0)), [itemKey(ref(1))]: m(ref(1)) } as never } }
+  }
+  expect(reviewCounts(doc(false), '2026-11-10', fixtureManifest).mistakes).toBe(1)
+  expect(reviewCounts(doc(true), '2026-11-10', fixtureManifest).mistakes).toBe(2)
+})
+
+test('M2：未購以深連結開 N3 第 2 課單字清單，不列單字、只給完整版入口', async () => {
+  await renderApp(makeServices({ doc: n3(false) }), '/practice/vocab?lesson=2', 'practice')
+  expect(await screen.findByText('這是 N3–N1 完整版的內容')).toBeOnTheScreen()
+  expect(screen.getByRole('button', { name: '查看完整版' })).toBeOnTheScreen()
+  expect(screen.queryByRole('button', { name: '翻卡' })).toBeNull()
+})
+
+test('M2：第 1 課單字清單照常', async () => {
+  await renderApp(makeServices({ doc: n3(false) }), '/practice/vocab?lesson=1', 'practice')
+  expect(await screen.findByRole('button', { name: '翻卡' })).toBeOnTheScreen()
 })
