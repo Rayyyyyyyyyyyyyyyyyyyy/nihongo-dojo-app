@@ -1,7 +1,7 @@
 // C6：每日份量（handoff §2.5）、失效目標修復（移植網頁版 repairPlan）、手動標記掌握。
 import type { LevelBank } from '../data/bank'
 import { dayKey, itemKey, type StudyItemRef } from '../domain/learning/types'
-import { ensurePlan, isGoalComplete, markVocab, repairPlan, submitAnswer } from './core'
+import { ensurePlan, isGoalComplete, repairPlan, submitAnswer } from './core'
 import { createDoc, type AppStateDoc } from './doc'
 import { fixtureManifest } from '../test/fixtures'
 
@@ -68,20 +68,5 @@ describe('repairPlan：失效目標修復（網頁版 repairPlan）', () => {
     const gone = plan(doc).groups.vocab!.targets[0].id
     const r = repairPlan(doc, 'vocab', on(), { ...bank, vocab: bank.vocab.filter((v) => v.w !== gone) }, fixtureManifest)
     expect(plan(r).groups.vocab!.targets).toHaveLength(20)
-  })
-})
-
-describe('markVocab：手動標記已掌握（S8）', () => {
-  test('標記與取消都不給 XP、不算連勝；取消回到學習中', () => {
-    const d = docWith(10)
-    const known = markVocab(d, 'n5', '語1', true)
-    expect(known.learning.vKnown.n5).toHaveProperty('語1', true)
-    expect(known.rewards).toBe(d.rewards)
-    expect(known.learning.streak).toBe(0)
-    expect(known.learning.lastDate).toBe('')
-    const undone = markVocab(known, 'n5', '語1', false)
-    expect(undone.learning.vKnown.n5).not.toHaveProperty('語1')
-    expect(undone.learning.vLearning.n5).toHaveProperty('語1', true)
-    expect(itemKey({ level: 'n5', kind: 'vocab', id: '語1' }) in undone.learning.results).toBe(false)
   })
 })

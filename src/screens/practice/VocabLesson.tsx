@@ -13,7 +13,7 @@ export default function VocabLesson() {
   const t = useTheme()
   const doc = useDoc()
   const today = useToday()
-  const { store, bank: banks } = useServices()
+  const { bank: banks } = useServices()
   const router = useRouter()
   const go = useNavLock()
   const lesson = Number(useLocalSearchParams<{ lesson?: string }>().lesson ?? 1)
@@ -112,13 +112,12 @@ export default function VocabLesson() {
                 {due(v.w) ? '・到期' : ''}
               </AppText>
             </View>
-            <Button
-              variant="text"
-              label={known ? '已掌握' : '標記已掌握'}
-              accessibilityLabel={known ? `${v.w} 已掌握，點一下取消` : `把 ${v.w} 標記為已掌握`}
-              accessibilityState={{ selected: known }}
-              onPress={() => store.markVocab(level, v.w, !known)}
-            />
+            {/* 掌握只能靠作答（使用者 2026-11-10 決定），不提供手動標記，避免一鍵點亮收集冊。 */}
+            {known && (
+              <AppText variant="footnote" color="ink2" accessibilityLabel={`${v.w}，已掌握`}>
+                已掌握
+              </AppText>
+            )}
           </View>
         )
       }}

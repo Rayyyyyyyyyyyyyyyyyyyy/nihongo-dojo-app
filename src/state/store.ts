@@ -113,7 +113,6 @@ export function createAppStore({ storage, clock, newId }: { storage: AppStorage;
     startPlan: () => commit(core.startPlan(doc(), clock)),
     repairPlan: (kind: StudyKind, bank: LevelBank, manifest: BankManifest) =>
       commit(core.repairPlan(doc(), kind, clock, bank, manifest)),
-    markVocab: (level: Level, word: string, known: boolean) => commit(core.markVocab(doc(), level, word, known)),
     openChest() {
       const r = core.openChest(doc(), clock)
       if (r) commit(r.doc)

@@ -76,14 +76,14 @@ describe('S7 課表', () => {
 })
 
 describe('S8 單字課', () => {
-  test('成功：清單與翻卡／讀音測驗入口；手動標記已掌握不給 XP，再點取消', async () => {
-    const s = makeServices({ doc: readyDoc() })
+  test('成功：清單與翻卡／讀音測驗入口；掌握只能靠作答，清單沒有手動標記，已掌握只顯示狀態', async () => {
+    const d = readyDoc()
+    d.learning.vKnown.n5['水'] = true
+    const s = makeServices({ doc: d })
     await renderApp(s, '/practice/vocab?lesson=1', 'practice')
-    await fireEvent.press(await screen.findByRole('button', { name: '把 水 標記為已掌握' }))
-    expect(s.store.getState().doc!.learning.vKnown.n5).toHaveProperty('水')
-    expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
-    await fireEvent.press(screen.getByRole('button', { name: '水 已掌握，點一下取消' }))
-    expect(s.store.getState().doc!.learning.vKnown.n5).not.toHaveProperty('水')
+    expect(await screen.findByLabelText('水，已掌握')).toBeOnTheScreen()
+    expect(screen.queryByRole('button', { name: /標記為已掌握|點一下取消/ })).toBeNull()
+    expect(screen.queryByText('標記已掌握')).toBeNull()
     expect(screen.getByRole('button', { name: '讀音測驗' })).toBeOnTheScreen()
   })
   test('空結果：到期 0 時「沒有到期的單字」＋改看全部；搜尋無結果＋清除搜尋', async () => {

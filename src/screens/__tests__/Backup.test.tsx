@@ -66,7 +66,7 @@ describe('S16 資料與備份', () => {
     const s = settingsServices({ doc: readyDoc() })
     await s.services.backup.backup(readyDoc())
     await open(s)
-    await act(async () => s.store.markVocab('n5', '水', true))
+    await act(async () => s.store.setLevel('n4'))
     await act(async () => press('從 iCloud 還原'))
     expect(screen.getByText(/還原會用 iCloud 備份覆寫/)).toBeOnTheScreen()
     expect(s.store.getState().snapshots).toHaveLength(0)
@@ -77,7 +77,7 @@ describe('S16 資料與備份', () => {
     await act(async () => press(/^恢復到 .*還原前/))
     await act(async () => press('恢復到這裡'))
     expect(await screen.findByText(/已恢復/)).toBeOnTheScreen()
-    expect(s.store.getState().doc!.learning.vKnown.n5['水']).toBe(true)
+    expect(s.store.getState().doc!.learning.level).toBe('n4')
     expect(s.store.getState().snapshots).toHaveLength(2)
   })
 
@@ -97,7 +97,7 @@ describe('S16 資料與備份', () => {
     await screen.findByText('iCloud 備份')
     s.files.failWrites = true
     await act(async () => {
-      s.store.markVocab('n5', '水', true)
+      s.store.setLevel('n4')
       await s.store.flush()
     })
     expect(screen.getByText('進度暫時沒有保存')).toBeOnTheScreen()

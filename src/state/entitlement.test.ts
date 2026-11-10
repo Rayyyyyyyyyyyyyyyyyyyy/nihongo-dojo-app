@@ -4,7 +4,7 @@ import type { BankKind } from '../domain/bank/types'
 import { dayKey, type StudyKind } from '../domain/learning/types'
 import type { Level } from '../domain/progress/state'
 import { extraQueue, todayQueue } from '../screens/session/queue'
-import { ensurePlan, markVocab, repairPlan } from './core'
+import { ensurePlan, repairPlan } from './core'
 import { createDoc, type AppStateDoc } from './doc'
 
 const TODAY = '2026-11-12'
@@ -19,7 +19,8 @@ const userAt = (level: Level, owned: boolean): AppStateDoc => {
     entitlement: { ...d.entitlement, owned },
   }
   // 第 1 課單字全部掌握：舊行為會從第 2 課起補今日單字。
-  for (const w of free(level, 'vocab')) doc = markVocab(doc, level, w, true)
+  const known = Object.fromEntries([...free(level, 'vocab')].map((w) => [w, true as const]))
+  doc = { ...doc, learning: { ...doc.learning, vKnown: { ...doc.learning.vKnown, [level]: known } } }
   return doc
 }
 const targets = (doc: AppStateDoc, kind: StudyKind) =>

@@ -158,14 +158,6 @@ export function repairPlan(doc: AppStateDoc, kind: StudyKind, clock: Clock, bank
   return { ...doc, learning: next }
 }
 
-// S8 手動標記已掌握／取消（移植網頁版 markVocab）：不是有效作答，不給 XP、不算連勝。
-export function markVocab(doc: AppStateDoc, level: Level, word: string, known: boolean): AppStateDoc {
-  const next = cloneState(doc.learning)
-  delete next[known ? 'vLearning' : 'vKnown'][level][word]
-  Object.defineProperty(next[known ? 'vKnown' : 'vLearning'][level], word, { value: true, enumerable: true, configurable: true, writable: true })
-  return { ...doc, learning: next }
-}
-
 // 開始深入練習後鎖定今天的分支（網頁版 startPlan）。
 export function startPlan(doc: AppStateDoc, clock: Clock): AppStateDoc {
   const key = dayKey(localDate(clock()), doc.learning.level),
