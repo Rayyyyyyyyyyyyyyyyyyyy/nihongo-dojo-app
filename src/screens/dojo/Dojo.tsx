@@ -5,7 +5,7 @@ import { View } from 'react-native'
 import { useServices } from '../../state/AppProvider'
 import { currentStreak, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Card, EmptyState, ErrorState, ListRow, ProgressBar, Screen, Seal, Segmented, Skeleton } from '../../ui'
+import { AppText, Belt, Button, Card, EmptyState, ErrorState, ListRow, ProgressBar, Screen, Seal, Segmented, Skeleton } from '../../ui'
 import { useDoc, useLevelBank, useNavLock, useToday } from '../hooks'
 import { chestText, LEVEL_OPTIONS, rankProgress } from '../names'
 import { reviewCounts, todayProgress, yesterday } from './selectors'
@@ -139,6 +139,7 @@ export default function Dojo() {
 
       <Card onPress={() => router.navigate('/me')} accessibilityLabel={`段位 ${rank.info.name}，累積 ${doc.rewards.xpTotal} XP`} accessibilityHint="到我的分頁看段位">
         <AppText variant="headline">段位　{rank.info.name}</AppText>
+        <Belt rank={rank.rank} />
         {rank.next !== undefined ? (
           <>
             <ProgressBar label="段位進度" value={doc.rewards.xpTotal - rank.floor} max={rank.next - rank.floor} text={`再 ${rank.toNext} XP 升${rank.nextName}`} />
