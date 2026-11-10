@@ -1,5 +1,6 @@
 // S16 資料與備份狀態表：空結果、iCloud 錯誤、還原與恢復點、快照上限告知、保存失敗、損毀恢復、等待與重複操作、前往 S17。
 import { act, fireEvent, renderHook, screen, waitFor } from 'expo-router/testing-library'
+import { AccessibilityInfo } from 'react-native'
 import { defaultState, encodeCode } from '../../domain/progress/state'
 import { readyDoc } from '../../test/harness'
 import { renderSettings, settingsServices } from '../../test/settingsHarness'
@@ -23,8 +24,10 @@ describe('S16 資料與備份', () => {
     const s = await open()
     expect(await screen.findByText('iCloud 上還沒有備份')).toBeOnTheScreen()
     expect(screen.getByText('還沒有恢復點')).toBeOnTheScreen()
+    const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility')
     await act(async () => press('立即備份'))
     expect(await screen.findByText('已備份（11/09 12:00）')).toBeOnTheScreen()
+    expect(announce).toHaveBeenCalledWith('已備份（11/09 12:00）')
     expect(s.cloud.text).toContain('dojo-backup/1')
     expect(s.cloud.text).not.toContain('entitlement')
     expect(await screen.findByText('最近的備份：11/09 12:00')).toBeOnTheScreen()

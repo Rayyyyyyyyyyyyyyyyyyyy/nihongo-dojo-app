@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { DISMISS_AFTER_MS } from '../../domain/purchase'
 import type { RestoreResult } from '../../services/purchases'
 import { useServices } from '../../state/AppProvider'
-import { AppText, Button, ErrorState, SKELETON_DELAY_MS } from '../../ui'
+import { AppText, Button, ErrorState, SKELETON_DELAY_MS, useAnnounce } from '../../ui'
 import { useDoc } from '../hooks'
+
+const NONE_TEXT = '這個 Apple 帳號沒有完整版購買紀錄。如果你用其他 Apple 帳號購買過，請先在系統設定切換帳號。'
 
 export function Restore() {
   const { purchases } = useServices()
@@ -22,6 +24,19 @@ export function Restore() {
       clearTimeout(b)
     }
   }, [r])
+  useAnnounce(
+    r === 'busy'
+      ? waited >= DISMISS_AFTER_MS
+        ? '還在處理，可以先離開'
+        : waited >= SKELETON_DELAY_MS && '正在向 App Store 確認'
+      : r === 'error'
+        ? '無法連線 App Store'
+        : r === 'none'
+          ? NONE_TEXT
+          : r === 'restored'
+            ? '已還原完整版'
+            : r === 'already' && '已確認，你擁有完整版',
+  )
   const run = async () => {
     if (running.current) return
     if (owned) return setR('already')
@@ -41,9 +56,7 @@ export function Restore() {
       {r === 'busy' && waited >= SKELETON_DELAY_MS && <AppText accessibilityLiveRegion="polite">正在向 App Store 確認</AppText>}
       {r === 'busy' && waited >= DISMISS_AFTER_MS && <AppText accessibilityLiveRegion="polite">還在處理，可以先離開</AppText>}
       {r === 'none' && (
-        <AppText accessibilityLiveRegion="polite">
-          這個 Apple 帳號沒有完整版購買紀錄。如果你用其他 Apple 帳號購買過，請先在系統設定切換帳號。
-        </AppText>
+        <AppText accessibilityLiveRegion="polite">{NONE_TEXT}</AppText>
       )}
       {r === 'restored' && <AppText accessibilityLiveRegion="polite">已還原完整版</AppText>}
       {r === 'already' && <AppText accessibilityLiveRegion="polite">已確認，你擁有完整版</AppText>}

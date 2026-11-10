@@ -2,6 +2,8 @@
 import { purchaseFlow, type PurchaseEvent, type PurchaseFlow } from '../domain/purchase'
 
 export type RestoreResult = 'restored' | 'none' | 'error'
+// S13：購買狀態查詢（refresh）的進度；failed 時畫面沿用 entitlement 快取。
+export type EntitlementCheck = 'idle' | 'checking' | 'ok' | 'failed'
 
 // StoreKit 的接縫：真實實作在 purchasesStoreKit.ts（expo-iap），測試用 fakeStoreGateway。
 export interface StoreGateway {
@@ -18,8 +20,14 @@ export function createPurchases(
   gateway: StoreGateway,
   opts: { productId: string; setEntitlement: (owned: boolean, verifiedAt: string) => void; now: () => Date },
 ) {
-  let flow: PurchaseFlow = { s: 'idle' }
+  let flow: PurchaseFlow = { s: 'idle' },
+    check: EntitlementCheck = 'idle',
+    checks = 0
   const listeners = new Set<() => void>()
+  const setCheck = (c: EntitlementCheck) => {
+    check = c
+    listeners.forEach((l) => l())
+  }
   const send = (e: PurchaseEvent) => {
     const next = purchaseFlow(flow, e)
     if (next === flow) return
@@ -30,6 +38,7 @@ export function createPurchases(
 
   return {
     getFlow: () => flow,
+    getCheck: () => check,
     subscribe(l: () => void) {
       listeners.add(l)
       return () => void listeners.delete(l)
@@ -52,11 +61,17 @@ export function createPurchases(
         offErr()
       }
     },
-    // 啟動與回到前景時讀目前 entitlements；讀不到就保留快取。
+    // 啟動與回到前景時讀目前 entitlements；讀不到就保留快取。重疊的查詢只由最後一次決定狀態。
     async refresh() {
+      const n = ++checks
+      setCheck('checking')
       try {
-        opts.setEntitlement((await gateway.ownedProductIds()).includes(opts.productId), opts.now().toISOString())
-      } catch {}
+        const owned = (await gateway.ownedProductIds()).includes(opts.productId)
+        opts.setEntitlement(owned, opts.now().toISOString())
+        if (n === checks) setCheck('ok')
+      } catch {
+        if (n === checks) setCheck('failed')
+      }
     },
     async loadProduct() {
       send({ type: 'load' })

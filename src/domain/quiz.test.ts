@@ -33,6 +33,10 @@ describe('suggestLevel：O5 建議等級（程度測驗，每級 3 題）', () =
     expect(suggestLevel(r(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))).toBe('n5')
     expect(suggestLevel(r(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))).toBe('n1')
   })
+  test('中途略過：作答過的等級都達標時建議第一個沒測到的等級，而不是 N1', () => {
+    expect(suggestLevel(r(1, 1, 1))).toBe('n4')
+    expect(suggestLevel(r(1, 1, 0, 1))).toBe('n4')
+  })
   test('沒有作答（全部略過）回傳 null', () => {
     expect(suggestLevel([])).toBeNull()
   })

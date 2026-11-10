@@ -1,5 +1,5 @@
 // S13 我的：段位與連勝摘要、導覽入口、隱私政策連結。
-import { fireEvent, screen } from 'expo-router/testing-library'
+import { act, fireEvent, screen } from 'expo-router/testing-library'
 import { Linking } from 'react-native'
 import { PRIVACY_URL } from '../paywall/Paywall'
 import type { AppStateDoc } from '../../state/doc'
@@ -38,5 +38,24 @@ describe('S13 我的', () => {
     await fireEvent.press(row)
     await fireEvent.press(row)
     expect(screen).toHavePathname('/backup')
+  })
+
+  test('等待：購買狀態查詢中顯示「確認中」並先用本機快取；查詢完成後消失', async () => {
+    const s = makeServices({ doc: readyDoc((d) => ({ ...d, meta: { ...d.meta, firstOpenDate: '2026-11-01' } })) })
+    let resolve: (ids: string[]) => void = () => {}
+    s.gateway.ownedProductIds = () => new Promise<string[]>((r) => (resolve = r))
+    await renderApp(s, '/me', 'me')
+    expect(await screen.findByText('完整版購買狀態確認中')).toBeOnTheScreen()
+    expect(screen.getByRole('button', { name: 'N3–N1 完整版，未購' })).toBeOnTheScreen()
+    await act(async () => resolve([]))
+    expect(screen.queryByText('完整版購買狀態確認中')).not.toBeOnTheScreen()
+    expect(screen.queryByText('目前無法連線 App Store，顯示上次結果')).not.toBeOnTheScreen()
+  })
+  test('錯誤：查詢失敗時顯示快取結果並附「目前無法連線 App Store，顯示上次結果」', async () => {
+    const doc = readyDoc((d) => ({ ...d, entitlement: { ...d.entitlement, owned: true }, meta: { ...d.meta, firstOpenDate: '2026-11-01' } }))
+    const s = makeServices({ doc, storeFail: true })
+    await renderApp(s, '/me', 'me')
+    expect(await screen.findByText('目前無法連線 App Store，顯示上次結果')).toBeOnTheScreen()
+    expect(screen.getByRole('button', { name: 'N3–N1 完整版，已擁有' })).toBeOnTheScreen()
   })
 })

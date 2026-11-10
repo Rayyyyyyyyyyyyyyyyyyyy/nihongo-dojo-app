@@ -1,5 +1,6 @@
 // S17 從網頁版匯入狀態表：空白、各種錯誤（保留輸入）、預覽（含不可用項目）、確認覆寫、結果與撤銷、保存失敗、首次模式。
 import { act, fireEvent, screen, waitFor } from 'expo-router/testing-library'
+import { AccessibilityInfo } from 'react-native'
 import web from '../../domain/progress/__fixtures__/web-v5.json'
 import { defaultState, encodeCode } from '../../domain/progress/state'
 import { readyDoc } from '../../test/harness'
@@ -71,8 +72,10 @@ describe('S17 從網頁版匯入', () => {
     await press('覆寫並匯入')
     expect(screen.getByText('確定要用這個進度碼覆寫目前的學習進度嗎？')).toBeOnTheScreen()
     expect(s.store.getState().snapshots).toHaveLength(0)
+    const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility')
     await act(async () => press('確定覆寫'))
     expect(await screen.findByText(/^匯入完成。已依掌握紀錄點亮收集冊 [\d,]+ 塊札。XP 從今天的修行開始累計。$/)).toBeOnTheScreen()
+    expect(announce).toHaveBeenCalledWith(expect.stringMatching(/^匯入完成。/))
     const imported = s.store.getState().doc!
     expect(imported.learning.results.length).toBeGreaterThan(0)
     expect(imported.rewards.xpTotal).toBe(120)

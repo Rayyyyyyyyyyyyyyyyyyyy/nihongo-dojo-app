@@ -7,7 +7,7 @@ import { syncReminders, type Permission, type SyncResult } from '../../services/
 import { useServices } from '../../state/AppProvider'
 import type { Settings } from '../../state/doc'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Card, ErrorState, Screen, Segmented } from '../../ui'
+import { AppText, Button, Card, ErrorState, Screen, Segmented, useAnnounce } from '../../ui'
 import { useDoc } from '../hooks'
 import { SwitchRow } from './SwitchRow'
 
@@ -69,6 +69,8 @@ export default function Reminders() {
   }
 
   const denied = perm === 'denied'
+  const status = !r.enabled || denied ? '目前沒有提醒' : `每天 ${r.time} 提醒（連勝 3 天以上且當天未練時）`
+  useAnnounce(sync === 'failed' && r.enabled ? '提醒沒有排好，請再試一次' : status)
   return (
     <>
       <Stack.Screen options={{ headerShown: true, title: '每日目標與提醒' }} />
@@ -104,7 +106,7 @@ export default function Reminders() {
             <Button variant="text" label="+30" accessibilityLabel="延後 30 分鐘" onPress={() => setReminder({ time: shift(r.time, 30) })} />
           </View>
           <AppText accessibilityLiveRegion="polite" color="ink2">
-            {!r.enabled || denied ? '目前沒有提醒' : `每天 ${r.time} 提醒（連勝 3 天以上且當天未練時）`}
+            {status}
           </AppText>
         </Card>
         {sync === 'failed' && r.enabled && <ErrorState title="提醒沒有排好，請再試一次" onRetry={() => void resync()} />}

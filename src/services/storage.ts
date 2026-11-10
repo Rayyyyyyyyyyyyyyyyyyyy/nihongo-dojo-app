@@ -29,6 +29,7 @@ export interface AppStorage {
 }
 
 const DOC = 'app-state.json',
+  TMP = `${DOC}.tmp`, // writeAtomic 的暫存檔；主檔不見時它是最後一次完整寫入
   SNAPSHOTS = 'snapshots.json'
 
 const validSnapshot = (s: unknown): s is Snapshot =>
@@ -39,6 +40,7 @@ const validSnapshot = (s: unknown): s is Snapshot =>
   validPortable((s as Snapshot).doc)
 
 export function createAppStorage(files: FilePort): AppStorage {
+  let corruptFile = DOC // preserveCorrupt 要另存的那個檔
   return {
     async load() {
       // 快照檔壞掉不影響主文件；當作沒有快照（下一次快照會覆寫它）。
@@ -49,8 +51,14 @@ export function createAppStorage(files: FilePort): AppStorage {
         if (Array.isArray(list)) snapshots = list.filter(validSnapshot).slice(-MAX_SNAPSHOTS)
       } catch {}
       let raw: string | null
+      corruptFile = DOC
       try {
         raw = await files.read(DOC)
+        // iOS 的 move(overwrite) 先刪後搬：中途當機只剩 .tmp。從它復原；它讀不到或無效就當損毀，不當新使用者覆寫。
+        if (raw === null) {
+          corruptFile = TMP
+          raw = await files.read(TMP)
+        }
       } catch {
         return { status: 'corrupt', snapshots }
       }
@@ -63,12 +71,12 @@ export function createAppStorage(files: FilePort): AppStorage {
     },
     saveDoc: (doc) => files.writeAtomic(DOC, JSON.stringify(doc)),
     saveSnapshots: (list) => files.writeAtomic(SNAPSHOTS, JSON.stringify(list)),
-    preserveCorrupt: (stamp) => files.copy(DOC, `app-state.corrupt-${stamp}.json`),
+    preserveCorrupt: (stamp) => files.copy(corruptFile, `app-state.corrupt-${stamp}.json`),
   }
 }
 
-// shortcut: iOS 上 move(overwrite) 由原生端先刪後搬，不是 rename(2) 的單一系統呼叫；
-// 中途當機最壞留下完整的 .tmp 檔與缺少的主檔，讀取時會走「empty」而非讀到半寫的 JSON。實機測量後再決定是否改原生 replaceItemAt。
+// iOS 上 move(overwrite) 由原生端先刪後搬，不是 rename(2) 的單一系統呼叫；
+// 中途當機最壞留下完整的 .tmp 檔與缺少的主檔，load() 會從 .tmp 復原（見上）。
 export function expoFiles(dir: Directory = new Directory(Paths.document, 'dojo')): FilePort {
   const ensure = () => {
     if (!dir.exists) dir.create({ intermediates: true })
