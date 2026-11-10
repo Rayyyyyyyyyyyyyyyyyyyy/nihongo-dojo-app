@@ -47,8 +47,10 @@ export type Theme = ReturnType<typeof buildTheme>;
 
 const ThemeContext = createContext<Theme>(buildTheme('light', false));
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const scheme: ColorScheme = useColorScheme() === 'dark' ? 'dark' : 'light';
+// appearance：S22 的外觀設定；'system'（預設）跟隨系統深淺色。
+export function ThemeProvider({ children, appearance = 'system' }: { children: ReactNode; appearance?: 'system' | ColorScheme }) {
+  const system: ColorScheme = useColorScheme() === 'dark' ? 'dark' : 'light';
+  const scheme = appearance === 'system' ? system : appearance;
   const reduceMotion = useReducedMotion();
   const theme = useMemo(() => buildTheme(scheme, reduceMotion), [scheme, reduceMotion]);
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
