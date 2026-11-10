@@ -4,6 +4,8 @@ import { join } from 'node:path'
 
 // sha256 of `git show aadd243:public/data/<file>` in NHK-N3-1 (aadd2434f234b9400bd53f0dfb67856c3691fa83).
 // Byte-identical files mean every ID, word and question is the web version's.
+// Files with U2-retired items live in src/data/web (not bundled); check:data derives the shipped copies.
+const web = new Set(['grammar-n3.json', 'listening.json', 'reading.json'])
 const nhk = {
   'counts.json': 'b7dd5b59ab5c41dd170b091857a02b752dbf70fa701be4c1d45a1ec05ee72d66',
   'grammar-n1.json': '5f8fb3883acc810cacd0768ca038e4a7641b960ca6ee48dad6a0a4dd116b4997',
@@ -21,6 +23,6 @@ const nhk = {
 }
 
 it.each(Object.entries(nhk))('%s is byte-identical to NHK-N3-1 aadd243', (file, hash) => {
-  const bytes = readFileSync(join(__dirname, '../../data/bank', file))
+  const bytes = readFileSync(join(__dirname, '../../data', web.has(file) ? 'web' : 'bank', file))
   expect(createHash('sha256').update(bytes).digest('hex')).toBe(hash)
 })

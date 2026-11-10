@@ -75,8 +75,8 @@ it('retires exactly the unsourced U2 items: g-n3-001–020, reading r1, listenin
   ])
 })
 
-const read = (name: string) =>
-  JSON.parse(readFileSync(join(__dirname, '../../data/bank', `${name}.json`), 'utf8'))
+const read = (name: string, dir = 'bank') =>
+  JSON.parse(readFileSync(join(__dirname, '../../data', dir, `${name}.json`), 'utf8'))
 const reviewed = read('reviewed')
 const real = (): ValidBanks => ({
   vocab: mapLevels((lv) => read(`vocab-${lv}`)),
@@ -89,15 +89,17 @@ it('committed manifest.json matches the banks (run npm run check:data -- --write
   expect(committed).toEqual(buildManifest(real(), RETIRED_IDS, CONTENT_VERSION))
 })
 
-it('every retired key names an item that exists in the copied banks', () => {
-  const banks = real()
-  const ids = {
-    grammar: banks.grammar.n3.map((x) => x.id),
-    reading: banks.reading.filter((x) => x.level === 'n3').map((x) => x.id),
-    listening: banks.listening.filter((x) => x.level === 'n3').map((x) => x.id),
-  }
+it('every retired key names an item in the web copies and none is shipped (F4)', () => {
+  const ids = (dir: string) => ({
+    grammar: read('grammar-n3', dir).map((x: { id: string }) => x.id),
+    reading: read('reading', dir).filter((x: { level: string }) => x.level === 'n3').map((x: { id: string }) => x.id),
+    listening: read('listening', dir).filter((x: { level: string }) => x.level === 'n3').map((x: { id: string }) => x.id),
+  })
+  const web = ids('web'),
+    shipped = ids('bank')
   for (const { key } of RETIRED_IDS) {
-    const [, kind, id] = JSON.parse(key) as ['n3', keyof typeof ids, string]
-    expect(ids[kind]).toContain(id)
+    const [, kind, id] = JSON.parse(key) as ['n3', keyof typeof web, string]
+    expect(web[kind]).toContain(id)
+    expect(shipped[kind]).not.toContain(id)
   }
 })

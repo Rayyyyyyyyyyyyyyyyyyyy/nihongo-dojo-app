@@ -26,6 +26,16 @@ describe('S14 付費畫面', () => {
     expect(spy).toHaveBeenCalled()
     expect(screen.getByRole('link', { name: '使用條款' })).toBeOnTheScreen()
   })
+  test('N2／N1 有任一類題數較少時附「持續補充中」，N3 不附（§5.2-3）', async () => {
+    const s = makeServices({ doc: doc() })
+    const levels = s.services.bank.manifest.levels
+    const counts = (l: 'n3' | 'n2' | 'n1', grammar: number, vocab: number) => ({ ...levels[l], counts: { ...levels[l].counts, grammar, vocab } })
+    s.services.bank.manifest = { ...s.services.bank.manifest, levels: { ...levels, n3: counts('n3', 10, 2102), n2: counts('n2', 40, 1741), n1: counts('n1', 25, 2685) } }
+    await renderApp(s, '/paywall')
+    expect(await screen.findByText(/^N3：文法 10 題.*單字 2102 題$/)).toBeOnTheScreen()
+    expect(screen.getByText(/^N2：.*（持續補充中）$/)).toBeOnTheScreen()
+    expect(screen.getByText(/^N1：.*（持續補充中）$/)).toBeOnTheScreen()
+  })
   test('等待：商品載入中顯示價格骨架，購買鈕停用', async () => {
     const s = makeServices({ doc: doc() })
     s.gateway.fetchPrice = () => new Promise(() => {})
@@ -119,6 +129,10 @@ describe('S14a 第一天說明', () => {
     expect(await screen.findByRole('header', { name: '這是 N3–N1 完整版的內容' })).toBeOnTheScreen()
     expect(screen.queryByText(/NT\$|購買 /)).not.toBeOnTheScreen()
     expect(screen.getByRole('button', { name: '回到第 1 課' })).toBeOnTheScreen()
+  })
+  test('說明使用目前等級（N2 使用者看到 N2 第 1 課）', async () => {
+    await open({ doc: readyDoc((d) => ({ ...d, learning: { ...d.learning, level: 'n2' } })) }, '/paywall-explain')
+    expect(await screen.findByText(/今天先專心修行 N2 第 1 課/)).toBeOnTheScreen()
   })
   test('還原購買：無法連線時錯誤＋重試，重試成功解鎖', async () => {
     const s = await open({ gateway: { fail: true } }, '/paywall-explain')
