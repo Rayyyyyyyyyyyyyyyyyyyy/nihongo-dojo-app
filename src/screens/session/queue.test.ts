@@ -1,3 +1,4 @@
+import { lessonBatch } from '../../domain/learning/plans'
 import { dayKey, itemKey } from '../../domain/learning/types'
 import { ensurePlan, submitAnswer } from '../../state/core'
 import { createDoc, type AppStateDoc } from '../../state/doc'
@@ -70,11 +71,31 @@ describe('reviewQueue：到期與錯題；題庫找不到的列為不可用', ()
 })
 
 describe('lessonQueue 與讀解續做', () => {
+  test('單字課一次 10 張：未學過的依課內順序優先，其次到期，最後其他', () => {
+    const ids = bank.vocab.map((v) => v.w) // 24 字
+    const ref = (id: string) => ({ level: 'n5' as const, kind: 'vocab' as const, id })
+    let doc = base()
+    doc = answer(doc, ref(ids[0]), true) // 學過：明天到期
+    doc = answer(doc, ref(ids[1]), true)
+    const s = doc.learning
+    const picked = lessonBatch(s, 'n5', ids, '2026-11-10') // 隔天：ids[0]、ids[1] 到期
+    expect(picked).toEqual(ids.slice(2, 12))
+    const after = lessonBatch(s, 'n5', ids.slice(0, 5), '2026-11-10')
+    expect(after).toEqual([ids[2], ids[3], ids[4], ids[0], ids[1]])
+    expect(lessonBatch(s, 'n5', ids.slice(0, 4), '2026-11-09')).toEqual([ids[2], ids[3], ids[0], ids[1]])
+  })
+  test('lessonQueue 對單字課只出 10 張，其他種類不截斷', () => {
+    expect(lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'flashcard', '2026-11-09', base().learning)).toHaveLength(10)
+    expect(lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'pronunciation', '2026-11-09', base().learning)).toHaveLength(10)
+    expect(lessonQueue(bank, fixtureManifest, 'n5', 'grammar', 1, 'flashcard', '2026-11-09', base().learning)).toHaveLength(
+      fixtureManifest.levels.n5.lessons.grammar[0].itemIds.length,
+    )
+  })
   test('單字課可選翻卡或讀音測驗；讀音測驗的選項是讀音', () => {
-    const q = lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'pronunciation', '2026-11-09')
+    const q = lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'pronunciation', '2026-11-09', base().learning)
     expect(q[0].type).toBe('choice')
     if (q[0].type === 'choice') expect(q[0].options).toContain(q[0].answer)
-    expect(lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'flashcard', '2026-11-09')[0].type).toBe('flashcard')
+    expect(lessonQueue(bank, fixtureManifest, 'n5', 'vocab', 1, 'flashcard', '2026-11-09', base().learning)[0].type).toBe('flashcard')
   })
   test('讀解：同一篇未完成的 attempt 從第一個未答子題續做', () => {
     let doc = base()

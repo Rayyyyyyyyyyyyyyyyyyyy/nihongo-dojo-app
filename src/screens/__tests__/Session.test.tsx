@@ -106,8 +106,8 @@ test('恢復：中止要確認；已提交的作答保留，回來從第一題�
   const s = makeServices({ doc: readyDoc() })
   await renderApp(s)
   await fireEvent.press(await screen.findByRole('button', { name: '開始' }))
-  await fireEvent.press(await screen.findByRole('button', { name: '翻面' }))
-  await fireEvent.press(screen.getByRole('button', { name: '記得' }))
+  await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+  await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
   await fireEvent.press(screen.getByRole('button', { name: '中止' }))
   expect(Alert.alert).toHaveBeenCalled()
   expect(await screen.findByRole('button', { name: '續做（已完成 1／18）' })).toBeOnTheScreen()
@@ -133,13 +133,27 @@ test('S4 結果：XP 分項、答對率、錯題數與「現在複習」；全�
   await fireEvent.press(go)
 })
 
-test('單字翻卡：翻面不給 XP，自評「記得」才提交', async () => {
+test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用對錯字樣也不顯示 XP，且每組 10 張', async () => {
   const s = makeServices({ doc: readyDoc() })
   await renderApp(s, '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
-  await fireEvent.press(await screen.findByRole('button', { name: '翻面' }))
+  expect(await screen.findByText('先在心裡想讀音和意思，再看答案')).toBeOnTheScreen()
+  expect(screen.getByText('1／10')).toBeOnTheScreen()
+  await fireEvent.press(screen.getByRole('button', { name: '看答案' }))
   expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
-  await fireEvent.press(screen.getByRole('button', { name: '記得' }))
-  expect(await screen.findByText('+10 XP')).toBeOnTheScreen()
+  expect(screen.getByText('今天的複習會再出現')).toBeOnTheScreen()
+  expect(screen.getByText('隔幾天再複習')).toBeOnTheScreen()
+  await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
+  expect(await screen.findByText('記下了')).toBeOnTheScreen()
+  expect(screen.queryByText(/XP|答對|答錯/)).toBeNull()
+  expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
+  expect(Object.keys(s.store.getState().doc!.learning.vKnown.n5)).toEqual([])
+})
+
+test('單字翻卡：還不熟顯示「沒關係，很快會再見到」', async () => {
+  await renderApp(makeServices({ doc: readyDoc() }), '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
+  await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+  await fireEvent.press(screen.getByRole('button', { name: /^還不熟/ }))
+  expect(await screen.findByText('沒關係，很快會再見到')).toBeOnTheScreen()
 })
 
 test('讀音測驗：題目是單字、選項是讀音', async () => {

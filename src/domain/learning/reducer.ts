@@ -76,7 +76,7 @@ export function recordResult(
     key = itemKey(input.ref)
   next.results.push(result)
   next.results = next.results.slice(-2000)
-  if (kind === 'vocab' && input.mode === 'flashcard') {
+  if (kind === 'vocab' && input.mode === 'pronunciation') {
     delete next[input.correct ? 'vLearning' : 'vKnown'][level][id]
     Object.defineProperty(next[input.correct ? 'vKnown' : 'vLearning'][level], id, {
       value: true,
@@ -94,8 +94,10 @@ export function recordResult(
     next.lCorrect[level] = next.lCorrect[level].filter((x) => x !== id)
     if (input.correct) put(next.lCorrect[level], id)
   }
+  // 翻卡自評只影響排程，不算錯題。
   const old = next.mistakes[key]
-  if (!input.correct)
+  const graded = input.mode !== 'flashcard'
+  if (graded && !input.correct)
     next.mistakes[key] = {
       ref: input.ref,
       wrongCount: (old?.wrongCount ?? 0) + 1,
@@ -104,7 +106,7 @@ export function recordResult(
       pending: true,
       lastWrongMode: input.mode,
     }
-  else if (old) {
+  else if (graded && old) {
     old.pending = false
     old.lastResultAt = result.at
   }

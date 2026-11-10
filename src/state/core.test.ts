@@ -23,7 +23,7 @@ let seq = 0
 const answer = (ref: StudyItemRef, correct = true): LearningInput => ({
   attemptId: `a${++seq}`,
   ref,
-  mode: ref.kind === 'vocab' ? 'flashcard' : (ref.kind as LearningInput['mode']),
+  mode: ref.kind === 'vocab' ? 'pronunciation' : (ref.kind as LearningInput['mode']),
   correct,
 })
 const W = { level: 'n3', kind: 'vocab', id: '連なる' } as const
@@ -42,6 +42,21 @@ describe('submitAnswer：學習規則與獎賞在同一交易', () => {
     const b = submit(a.doc, '2026-11-01', W, false)
     expect(b.outcome?.xp).toBe(0)
     expect(b.doc.learning.results).toHaveLength(2)
+  })
+
+  test('翻卡自評 0 XP、不進錯題、不掌握；讀音測驗才給 XP 並掌握', () => {
+    const flash = (correct: boolean) => ({ ...answer(W, correct), mode: 'flashcard' as const })
+    const a = submitAnswer(fresh(), flash(true), on('2026-11-01'))
+    expect(a.outcome?.xp).toBe(0)
+    expect(a.doc.rewards.xpTotal).toBe(0)
+    expect(a.doc.learning.schedules[itemKey(W)].stage).toBe(1)
+    expect(Object.hasOwn(a.doc.learning.vKnown.n3, W.id)).toBe(false)
+    const b = submitAnswer(a.doc, flash(false), on('2026-11-01'))
+    expect(b.outcome?.xp).toBe(0)
+    expect(b.doc.learning.mistakes).toEqual({})
+    const c = submitAnswer(b.doc, { ...answer(W), mode: 'pronunciation' }, on('2026-11-02'))
+    expect(c.outcome?.xp).toBe(10)
+    expect(Object.hasOwn(c.doc.learning.vKnown.n3, W.id)).toBe(true)
   })
 
   test('無效或重複的提交不改文件、不給 XP', () => {

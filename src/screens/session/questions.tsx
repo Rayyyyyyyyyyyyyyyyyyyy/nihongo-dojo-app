@@ -135,6 +135,9 @@ export function Flashcard({ item, submit, onNext, last }: Props<'flashcard'>) {
   return (
     <View style={{ gap: t.space[4] }}>
       <Card style={{ alignItems: 'center', paddingVertical: t.space[8] }}>
+        <AppText variant="footnote" color="ink2">
+          先在心裡想讀音和意思，再看答案
+        </AppText>
         <AppText ref={focus} variant="wordHero" ja accessibilityRole="header">
           {v.w}
         </AppText>
@@ -148,18 +151,26 @@ export function Flashcard({ item, submit, onNext, last }: Props<'flashcard'>) {
         )}
       </Card>
       {!flipped ? (
-        <Button label="翻面" variant="secondary" onPress={() => setFlipped(true)} />
+        <Button label="看答案" variant="secondary" onPress={() => setFlipped(true)} />
       ) : !result ? (
         <View style={{ flexDirection: 'row', gap: t.space[3] }}>
-          <View style={{ flex: 1 }}>
-            <Button label="還不熟" variant="secondary" onPress={() => grade(false)} />
+          <View style={{ flex: 1, gap: t.space[1] }}>
+            <Button label="還不熟" accessibilityLabel="還不熟，今天的複習會再出現" variant="secondary" onPress={() => grade(false)} />
+            <AppText variant="footnote" color="ink2" style={{ textAlign: 'center' }}>
+              今天的複習會再出現
+            </AppText>
           </View>
-          <View style={{ flex: 1 }}>
-            <Button label="記得" onPress={() => grade(true)} />
+          <View style={{ flex: 1, gap: t.space[1] }}>
+            <Button label="記得" accessibilityLabel="記得，隔幾天再複習" onPress={() => grade(true)} />
+            <AppText variant="footnote" color="ink2" style={{ textAlign: 'center' }}>
+              隔幾天再複習
+            </AppText>
           </View>
         </View>
       ) : (
-        <Feedback correct={result.correct} answered={result.a} reportKey={item.key} />
+        <Card tone="surface2" accessibilityLiveRegion="polite">
+          <AppText variant="headline">{result.correct ? '記下了' : '沒關係，很快會再見到'}</AppText>
+        </Card>
       )}
       <NextButton shown={!!result} last={last} onNext={onNext} />
     </View>

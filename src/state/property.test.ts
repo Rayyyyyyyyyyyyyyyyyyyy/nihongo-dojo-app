@@ -66,7 +66,7 @@ function bestByHorizon(kind: Kind, answers: string[], withImport: boolean): numb
           let doc = s.doc,
             xp = 0
           for (const c of a) {
-            const input: LearningInput = { attemptId: `t${++seq}`, ref, mode: kind === 'vocab' ? 'flashcard' : 'grammar', correct: c === 'C' }
+            const input: LearningInput = { attemptId: `t${++seq}`, ref, mode: kind === 'vocab' ? 'pronunciation' : 'grammar', correct: c === 'C' }
             const r = submitAnswer(doc, input, clock)
             doc = r.doc
             xp += r.outcome!.xp

@@ -12,7 +12,7 @@ const setup = (initial: Record<string, string> = {}) => {
 }
 const W = { level: 'n3', kind: 'vocab', id: '連なる' } as const
 let seq = 0
-const answer = () => ({ attemptId: `s${++seq}`, ref: W, mode: 'flashcard' as const, correct: true })
+const answer = () => ({ attemptId: `s${++seq}`, ref: W, mode: 'pronunciation' as const, correct: true })
 const saved = (files: { files: Record<string, string> }) => JSON.parse(files.files['app-state.json'])
 
 describe('載入', () => {

@@ -146,3 +146,16 @@ export function vocabQueue(
     .slice(0, 10)
     .map((r) => items.find((v) => v.w === r.id)!)
 }
+
+// 單字課一次出 10 張：未學過（無排程、未掌握）依課內順序優先，其次到期，其餘依課內順序。
+export function lessonBatch(state: ProgressState, level: Level, ids: string[], today: string, size = 10): string[] {
+  const rank = (id: string) => {
+    const sc = state.schedules[itemKey({ level, kind: 'vocab', id })]
+    return !sc && !Object.hasOwn(state.vKnown[level], id) ? 0 : sc && sc.dueOn <= today ? 1 : 2
+  }
+  return ids
+    .map((id, i) => [id, i] as const)
+    .sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1])
+    .slice(0, size)
+    .map(([id]) => id)
+}

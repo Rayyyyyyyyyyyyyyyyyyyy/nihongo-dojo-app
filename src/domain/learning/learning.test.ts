@@ -14,7 +14,7 @@ const clock =
 const input = (id = '水', correct = false, attemptId = 'a'): LearningInput => ({
   attemptId,
   ref: { level: 'n3', kind: 'vocab', id },
-  mode: 'flashcard',
+  mode: 'pronunciation',
   correct,
 })
 const legacy = () => {
@@ -129,8 +129,9 @@ describe('learning projection', () => {
     s = recordResult(s, { ...input('水', true, 'b'), mode: 'pronunciation' }, clock())
     const key = itemKey(input().ref)
     expect(s.mistakes[key].pending).toBe(false)
-    expect(s.vKnown.n3.水).toBeUndefined()
+    expect(s.vKnown.n3.水).toBe(true)
     s = recordResult(s, { ...input('水', false, 'c'), mode: 'pronunciation' }, clock())
+    expect(s.vKnown.n3.水).toBeUndefined()
     expect(s.mistakes[key].wrongCount).toBe(2)
     expect(s.mistakes[key].lastWrongMode).toBe('pronunciation')
     s = recordResult(s, input('水', true, 'd'), clock())
@@ -296,5 +297,32 @@ describe('fixed tasks and persistence', () => {
     expect(inspectGroup(s, plan, 'vocab', items).done).toBe(1)
     expect(inspectGroup(s, plan, 'vocab', items).correct).toBe(1)
     expect(decodeCode(encodeCode(s))).toEqual(s)
+  })
+})
+
+describe('掌握只來自讀音測驗；翻卡自評只影響排程', () => {
+  const pron = (id: string, correct: boolean, attemptId: string): LearningInput => ({ ...input(id, correct, attemptId), mode: 'pronunciation' })
+  const at = clock()
+  const flash = (id: string, correct: boolean, attemptId: string): LearningInput => ({ ...input(id, correct, attemptId), mode: 'flashcard' })
+  it('讀音測驗答對進 vKnown、答錯進 vLearning 並移出 vKnown', () => {
+    let s = recordResult(defaultState(), pron('水', true, 'p1'), at)
+    expect(Object.hasOwn(s.vKnown.n3, '水')).toBe(true)
+    s = recordResult(s, pron('水', false, 'p2'), at)
+    expect(Object.hasOwn(s.vKnown.n3, '水')).toBe(false)
+    expect(Object.hasOwn(s.vLearning.n3, '水')).toBe(true)
+    s = recordResult(s, pron('水', true, 'p3'), at)
+    expect(Object.hasOwn(s.vLearning.n3, '水')).toBe(false)
+    expect(Object.hasOwn(s.vKnown.n3, '水')).toBe(true)
+  })
+  it('翻卡自評不寫 vKnown／vLearning、不進錯題，但照常排程；既有 vKnown 不被改寫', () => {
+    const known = recordResult(defaultState(), pron('水', true, 'p1'), at)
+    const s = recordResult(known, flash('水', false, 'f1'), at)
+    expect(Object.hasOwn(s.vKnown.n3, '水')).toBe(true)
+    expect(Object.hasOwn(s.vLearning.n3, '水')).toBe(false)
+    expect(Object.keys(s.mistakes)).toEqual([])
+    expect(Object.values(s.schedules)[0].stage).toBe(0)
+    const r = recordResult(defaultState(), flash('山', true, 'f2'), at)
+    expect(Object.hasOwn(r.vKnown.n3, '山')).toBe(false)
+    expect(Object.values(r.schedules)[0].stage).toBe(1)
   })
 })

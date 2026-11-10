@@ -50,7 +50,7 @@ function build(src: string, p: Params, bank: LevelBank, deps: ReturnType<typeof 
   const { entitlement, meta } = doc()
   const access = lessonAccess({ free: m.levels[level].free, lessonNo, owned: entitlement.owned, today, firstOpenDate: meta.firstOpenDate })
   if (access !== 'open') return { items: [], repaired: false }
-  return { items: lessonQueue(bank, m, level, p.kind ?? 'grammar', lessonNo, p.vmode ?? 'flashcard', today), repaired: false }
+  return { items: lessonQueue(bank, m, level, p.kind ?? 'grammar', lessonNo, p.vmode ?? 'flashcard', today, doc().learning), repaired: false }
 }
 
 function Run({ bank }: { bank: LevelBank }) {
@@ -82,6 +82,11 @@ function Run({ bank }: { bank: LevelBank }) {
     if (outcome.goalCompleted) log.goalCompleted = true
     if (outcome.ceremony)
       log.ceremony = { rank: outcome.ceremony.rank, passed: [...(log.ceremony?.passed ?? []), ...outcome.ceremony.passed] }
+    if (mode === 'flashcard') {
+      // 翻卡自評不是對錯：不震動、不出音效、不算連擊。
+      AccessibilityInfo.announceForAccessibility(correct ? '記下了' : '沒關係，很快會再見到')
+      return { xp: 0, combo: 0 }
+    }
     combo.current = correct ? combo.current + 1 : 0
     void haptics.play(correct ? 'correct' : 'wrong')
     if (combo.current >= 3) void haptics.play('combo')
