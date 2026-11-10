@@ -52,7 +52,6 @@ export default function Paywall() {
     router.back()
   }
   const price = flow.s === 'ready' || flow.s === 'purchasing' || flow.s === 'pending' ? flow.price : null
-  const n3Total = Object.values(bank.manifest.levels.n3.counts).reduce((a, b) => a + b, 0)
 
   return (
     <>
@@ -70,8 +69,9 @@ export default function Paywall() {
         <Card>
           {PAID_LEVELS.map((l) => {
             const c = bank.manifest.levels[l].counts
-            const total = KINDS.reduce((a, k) => a + c[k], 0)
-            const text = `${levelName(l)}：${KINDS.map((k) => `${KIND_NAMES[k]} ${c[k]} 題`).join('、')}${total < n3Total ? '（持續補充中）' : ''}`
+            // §5.2-3：N2／N1 有任一類題數少於其他付費等級，就照實顯示並附「持續補充中」。
+            const fewer = l !== 'n3' && KINDS.some((k) => PAID_LEVELS.some((o) => bank.manifest.levels[o].counts[k] > c[k]))
+            const text = `${levelName(l)}：${KINDS.map((k) => `${KIND_NAMES[k]} ${c[k]} 題`).join('、')}${fewer ? '（持續補充中）' : ''}`
             return <AppText key={l}>{text}</AppText>
           })}
         </Card>

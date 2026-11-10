@@ -3,7 +3,9 @@ import { act, fireEvent, screen, waitFor } from 'expo-router/testing-library'
 import { AccessibilityInfo } from 'react-native'
 import web from '../../domain/progress/__fixtures__/web-v5.json'
 import { defaultState, encodeCode } from '../../domain/progress/state'
+import { bankManifest, loadLevel } from '../../data/bank'
 import { readyDoc } from '../../test/harness'
+import { unavailableCount } from '../settings/Import'
 import { vocabFor } from '../../test/fixtures'
 import { renderSettings, settingsServices } from '../../test/settingsHarness'
 
@@ -126,4 +128,13 @@ describe('S17 從網頁版匯入', () => {
     await waitFor(() => expect(s.store.getState().doc!.meta.onboarding).toBe('minutes'))
     expect(await screen.findByText('每天修行幾分鐘？')).toBeOnTheScreen()
   })
+})
+
+test('U2：出貨題庫已不含退役題的內容，匯入碼裡的退役 ID 仍算「不可用」（只靠 manifest 的 ID）', () => {
+  const st = defaultState()
+  st.gDone.n3 = ['g-n3-001', 'g-n3-020', 'g-n3-021']
+  st.rDone.n3 = ['r1']
+  st.lDone.n3 = ['l7']
+  expect(loadLevel('n3').grammar.some((g) => g.id === 'g-n3-001')).toBe(false)
+  expect(unavailableCount(st, bankManifest)).toBe(4)
 })

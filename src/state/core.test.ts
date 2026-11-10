@@ -1,4 +1,4 @@
-import { loadLevel } from '../data/bank'
+import { bankManifest, loadLevel } from '../data/bank'
 import { dayKey, itemKey, type LearningInput, type StudyItemRef } from '../domain/learning/types'
 import web from '../domain/progress/__fixtures__/web-v5.json'
 import { importWebV5Code } from '../domain/progress/importCode'
@@ -79,7 +79,7 @@ describe('今日任務完成 → recordGoalCompleted → 寶箱', () => {
   const bank = loadLevel('n5')
   test('今天任務的每組目標都有效完成時只回報一次完成；完成後可開寶箱，第一次固定初稽古印', () => {
     let doc: AppStateDoc = { ...fresh(), learning: { ...fresh().learning, level: 'n5' } }
-    doc = ensurePlan(doc, 'listening', on('2026-11-01'), bank)
+    doc = ensurePlan(doc, 'listening', on('2026-11-01'), bank, bankManifest)
     const plan = doc.learning.plans[dayKey('2026-11-01', 'n5')]
     const targets = [...plan.groups.vocab!.targets, ...plan.groups.grammar!.targets, ...plan.groups.listening!.targets]
     expect(targets.length).toBe(10 + 5 + 3)
@@ -99,9 +99,9 @@ describe('今日任務完成 → recordGoalCompleted → 寶箱', () => {
   })
 
   test('ensurePlan 已開始的分支不會被換掉；任務已齊時不產生新文件', () => {
-    const doc = ensurePlan({ ...fresh(), learning: { ...fresh().learning, level: 'n5' as const } }, 'reading', on('2026-11-01'), bank)
-    expect(ensurePlan(doc, 'reading', on('2026-11-01'), bank)).toBe(doc)
-    expect(ensurePlan(doc, 'listening', on('2026-11-01'), bank).learning.plans[dayKey('2026-11-01', 'n5')].branch).toBe('listening')
+    const doc = ensurePlan({ ...fresh(), learning: { ...fresh().learning, level: 'n5' as const } }, 'reading', on('2026-11-01'), bank, bankManifest)
+    expect(ensurePlan(doc, 'reading', on('2026-11-01'), bank, bankManifest)).toBe(doc)
+    expect(ensurePlan(doc, 'listening', on('2026-11-01'), bank, bankManifest).learning.plans[dayKey('2026-11-01', 'n5')].branch).toBe('listening')
   })
 })
 

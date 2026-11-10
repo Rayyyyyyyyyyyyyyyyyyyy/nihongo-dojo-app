@@ -2,12 +2,12 @@
 import { fireEvent, screen } from 'expo-router/testing-library'
 import { dayKey } from '../../domain/learning/types'
 import { ensurePlan, submitAnswer } from '../../state/core'
-import { fixtureBank } from '../../test/fixtures'
+import { fixtureBank, fixtureManifest } from '../../test/fixtures'
 import { makeServices, NOW, readyDoc, renderApp } from '../../test/harness'
 
 const bank = fixtureBank('n5')
 const clock = () => NOW
-const planned = () => ensurePlan(readyDoc(), 'listening', clock, bank)
+const planned = () => ensurePlan(readyDoc(), 'listening', clock, bank, fixtureManifest)
 const targets = (d: ReturnType<typeof planned>) => {
   const p = d.learning.plans[dayKey('2026-11-09', 'n5')]
   return [...p.groups.vocab!.targets, ...p.groups.grammar!.targets, ...p.groups.listening!.targets]

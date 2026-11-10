@@ -62,8 +62,10 @@ it('preserves alternate readings while counting one learning item', () => {
   expect(checkData(cliInput('vocab', items)).n3.vocab).toBe(1)
 })
 
+// counts.json is the web version's; the files with U2-retired items are compared from src/data/web.
+const web = ['grammar-n3', 'reading', 'listening']
 const read = (name: string) =>
-  JSON.parse(readFileSync(join(__dirname, '../../data/bank', `${name}.json`), 'utf8'))
+  JSON.parse(readFileSync(join(__dirname, '../../data', web.includes(name) ? 'web' : 'bank', `${name}.json`), 'utf8'))
 const banks = () => ({
   vocab: mapLevels((lv) => read(`vocab-${lv}`)),
   grammar: mapLevels((lv) => read(`grammar-${lv}`)),

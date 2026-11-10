@@ -3,7 +3,7 @@ import { fireEvent, screen } from 'expo-router/testing-library'
 import { Alert } from 'react-native'
 import { dayKey } from '../../domain/learning/types'
 import { ensurePlan, submitAnswer } from '../../state/core'
-import { fixtureBank } from '../../test/fixtures'
+import { fixtureBank, fixtureManifest } from '../../test/fixtures'
 import { makeServices, NOW, readyDoc, renderApp } from '../../test/harness'
 
 const bank = fixtureBank('n5')
@@ -72,7 +72,7 @@ test('連擊 ≥3 顯示「連擊 3」', async () => {
 })
 
 test('空結果：今日任務的目標全部失效時先修復，顯示「這組題目已更新」＋開始', async () => {
-  const d = ensurePlan(readyDoc(), 'listening', clock, bank)
+  const d = ensurePlan(readyDoc(), 'listening', clock, bank, fixtureManifest)
   const p = d.learning.plans[dayKey('2026-11-09', 'n5')]
   p.groups.grammar!.targets = p.groups.grammar!.targets.map((t, i) => ({ ...t, id: `gone-${i}` }))
   const s = makeServices({ doc: d })

@@ -27,8 +27,10 @@ npx expo run:ios     # 在 Mac 上建 development build（內購、iCloud 需要
 
 ```sh
 npm run check:review -- --write   # 把已核准草稿寫入 src/data/bank/reviewed.json
-npm run check:data -- --write     # 更新 counts.json／manifest.json（只計已審）
+npm run check:data -- --write     # 更新 counts.json／manifest.json（只計已審），並重產出貨的 grammar-n3／reading／listening
 ```
+
+`src/data/web/` 是與網頁版逐位元相同、仍含 U2 退役題的原檔，App 不 import、不打包；`src/data/bank/` 的同名檔由 `check:data` 從它去掉 `retiredIds` 產生（不手改），退役題只以 ID 留在 `manifest.json`，匯入時照樣算「不可用」。
 
 核准後題目再被修改，`check:review`（包含在 `npm run check`）就失敗，須重新審閱。開發時設 `EXPO_PUBLIC_DOJO_INCLUDE_DRAFTS=1` 再 `npx expo start`，可另外載入未審草稿（仍標 `origin: "ai-draft"`）；正式 bundle 不含草稿。
 

@@ -15,7 +15,7 @@ export default function Dojo() {
   const t = useTheme()
   const doc = useDoc()
   const today = useToday()
-  const { store } = useServices()
+  const { store, bank: banks } = useServices()
   const router = useRouter()
   useEffect(() => {
     const c = store.celebratePending()
@@ -29,8 +29,8 @@ export default function Dojo() {
 
   const loaded = bank.status === 'ready' ? bank.bank : null
   useEffect(() => {
-    if (loaded) store.ensurePlan(branch, loaded)
-  }, [loaded, branch, level, today, store])
+    if (loaded) store.ensurePlan(branch, loaded, banks.manifest)
+  }, [loaded, branch, level, today, store, banks])
 
   const streak = currentStreak(doc, today)
   const guarded = doc.rewards.protectedDates.includes(yesterday(today))
@@ -106,7 +106,7 @@ export default function Dojo() {
                 <Button
                   variant="text"
                   label={branch === 'listening' ? '深入練習改做讀解 1 篇' : '深入練習改做聽力 3 題'}
-                  onPress={() => bank.status === 'ready' && store.ensurePlan(branch === 'listening' ? 'reading' : 'listening', bank.bank)}
+                  onPress={() => bank.status === 'ready' && store.ensurePlan(branch === 'listening' ? 'reading' : 'listening', bank.bank, banks.manifest)}
                 />
               )}
             </>

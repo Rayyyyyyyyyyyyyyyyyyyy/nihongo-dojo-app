@@ -3,6 +3,7 @@ import type { LevelBank } from '../data/bank'
 import { dayKey, itemKey, type StudyItemRef } from '../domain/learning/types'
 import { ensurePlan, isGoalComplete, markVocab, repairPlan, submitAnswer } from './core'
 import { createDoc, type AppStateDoc } from './doc'
+import { fixtureManifest } from '../test/fixtures'
 
 const on = (h = 12) => () => new Date(2026, 10, 9, h)
 const vocab = Array.from({ length: 30 }, (_, i) => ({ w: `語${i}`, r: `ご${i}`, zh: `詞${i}`, en: `w${i}` }))
@@ -23,14 +24,14 @@ const sizes = (doc: AppStateDoc) =>
 
 describe('每日份量依分鐘數（handoff §2.5）', () => {
   test('5 分鐘：單字 5、文法 3、聽力 1（不論選哪個分支）', () => {
-    expect(sizes(ensurePlan(docWith(5), 'reading', on(), bank))).toEqual({ vocab: 5, grammar: 3, listening: 1 })
+    expect(sizes(ensurePlan(docWith(5), 'reading', on(), bank, fixtureManifest))).toEqual({ vocab: 5, grammar: 3, listening: 1 })
   })
   test('10 分鐘：單字 10、文法 5、讀解 1 篇或聽力 3', () => {
-    expect(sizes(ensurePlan(docWith(10), 'reading', on(), bank))).toEqual({ vocab: 10, grammar: 5, reading: 1 })
-    expect(sizes(ensurePlan(docWith(10), 'listening', on(), bank))).toEqual({ vocab: 10, grammar: 5, listening: 3 })
+    expect(sizes(ensurePlan(docWith(10), 'reading', on(), bank, fixtureManifest))).toEqual({ vocab: 10, grammar: 5, reading: 1 })
+    expect(sizes(ensurePlan(docWith(10), 'listening', on(), bank, fixtureManifest))).toEqual({ vocab: 10, grammar: 5, listening: 3 })
   })
   test('20 分鐘：單字 20、文法 10、讀解 1 篇＋聽力 3；兩組都完成才算今日目標完成', () => {
-    let doc = ensurePlan(docWith(20), 'listening', on(), bank)
+    let doc = ensurePlan(docWith(20), 'listening', on(), bank, fixtureManifest)
     expect(sizes(doc)).toEqual({ vocab: 20, grammar: 10, reading: 1, listening: 3 })
     const p = plan(doc)
     let n = 0
@@ -39,18 +40,18 @@ describe('每日份量依分鐘數（handoff §2.5）', () => {
     expect(isGoalComplete(doc.learning, '2026-11-09', bank)).toBe(false)
   })
   test('當天改分鐘數不改已排好的今日任務', () => {
-    const doc = ensurePlan(docWith(10), 'listening', on(), bank)
+    const doc = ensurePlan(docWith(10), 'listening', on(), bank, fixtureManifest)
     const changed = { ...doc, settings: { ...doc.settings, dailyMinutes: 20 as const } }
-    expect(ensurePlan(changed, 'listening', on(), bank)).toBe(changed)
+    expect(ensurePlan(changed, 'listening', on(), bank, fixtureManifest)).toBe(changed)
   })
 })
 
 describe('repairPlan：失效目標修復（網頁版 repairPlan）', () => {
   test('只換掉失效目標，保留原有效目標；回報修復數', () => {
-    const doc = ensurePlan(docWith(10), 'listening', on(), bank)
+    const doc = ensurePlan(docWith(10), 'listening', on(), bank, fixtureManifest)
     const old = plan(doc).groups.grammar!.targets
     const smaller = { ...bank, grammar: bank.grammar.filter((g) => g.id !== old[0].id) }
-    const r = repairPlan(doc, 'grammar', on(), smaller)
+    const r = repairPlan(doc, 'grammar', on(), smaller, fixtureManifest)
     const targets = plan(r).groups.grammar!.targets.map((t: StudyItemRef) => t.id)
     expect(targets).toHaveLength(5)
     expect(targets).not.toContain(old[0].id)
@@ -58,14 +59,14 @@ describe('repairPlan：失效目標修復（網頁版 repairPlan）', () => {
     expect(plan(r).groups.grammar!.note).toMatch(/已修復 1 個失效目標/)
   })
   test('題庫全部消失時修復後為 0 題（empty）；沒有今天的組時不改文件', () => {
-    const doc = ensurePlan(docWith(10), 'listening', on(), bank)
-    expect(plan(repairPlan(doc, 'listening', on(), { ...bank, listening: [] })).groups.listening).toMatchObject({ status: 'empty', targets: [] })
-    expect(repairPlan(doc, 'reading', on(), bank)).toBe(doc)
+    const doc = ensurePlan(docWith(10), 'listening', on(), bank, fixtureManifest)
+    expect(plan(repairPlan(doc, 'listening', on(), { ...bank, listening: [] }, fixtureManifest)).groups.listening).toMatchObject({ status: 'empty', targets: [] })
+    expect(repairPlan(doc, 'reading', on(), bank, fixtureManifest)).toBe(doc)
   })
   test('20 分鐘的大組修復後維持原大小', () => {
-    const doc = ensurePlan(docWith(20), 'listening', on(), bank)
+    const doc = ensurePlan(docWith(20), 'listening', on(), bank, fixtureManifest)
     const gone = plan(doc).groups.vocab!.targets[0].id
-    const r = repairPlan(doc, 'vocab', on(), { ...bank, vocab: bank.vocab.filter((v) => v.w !== gone) })
+    const r = repairPlan(doc, 'vocab', on(), { ...bank, vocab: bank.vocab.filter((v) => v.w !== gone) }, fixtureManifest)
     expect(plan(r).groups.vocab!.targets).toHaveLength(20)
   })
 })
