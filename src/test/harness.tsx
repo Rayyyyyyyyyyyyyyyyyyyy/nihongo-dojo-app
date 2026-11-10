@@ -70,12 +70,15 @@ import Ceremony from '../screens/rewards/Ceremony'
 import Onboarding from '../screens/onboarding/Onboarding'
 import Paywall from '../screens/paywall/Paywall'
 import PaywallExplain from '../screens/rewards/PaywallExplain'
+import RestoreRoute from '../app/restore'
+import CollectionRoute from '../app/(tabs)/collection'
+import MeRoute from '../app/(tabs)/me'
 import { Text } from 'react-native'
 
 const stub = (name: string) => () => <Text>占位 {name}</Text>
 
 // 原生分頁在 jest 中會同時掛載所有分頁；tab 指定哪個分頁用真實畫面，另一個以占位代替，避免查詢重複。
-export async function renderApp(s: ReturnType<typeof makeServices>, initialUrl = '/', tab: 'dojo' | 'practice' = 'dojo') {
+export async function renderApp(s: ReturnType<typeof makeServices>, initialUrl = '/', tab: 'dojo' | 'practice' | 'collection' | 'me' = 'dojo') {
   const Root = () => (
     <ThemeProvider>
       <AppProvider services={s.services}>
@@ -94,8 +97,8 @@ export async function renderApp(s: ReturnType<typeof makeServices>, initialUrl =
     '(tabs)/practice/_layout': TabStack,
     '(tabs)/practice/index': tab === 'practice' ? PracticeRoute : stub('修行'),
     '(tabs)/practice/vocab': VocabRoute,
-    '(tabs)/collection': stub('收集冊'),
-    '(tabs)/me': stub('我的'),
+    '(tabs)/collection': tab === 'collection' ? CollectionRoute : stub('收集冊'),
+    '(tabs)/me': tab === 'me' ? MeRoute : stub('我的'),
     onboarding: Onboarding,
     session: Session,
     chest: Chest,
@@ -103,6 +106,7 @@ export async function renderApp(s: ReturnType<typeof makeServices>, initialUrl =
     paywall: Paywall,
     'paywall-explain': PaywallExplain,
     ...Object.fromEntries(['restore', 'backup', 'import', 'reminders', 'about', 'report', 'share', 'settings'].map((n) => [n, stub(n)])),
+    restore: RestoreRoute,
   }
   return renderRouter(routes as never, { initialUrl })
 }
