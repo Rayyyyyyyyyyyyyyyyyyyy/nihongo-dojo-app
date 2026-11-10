@@ -7,8 +7,9 @@ import type {
 } from '../learning/types'
 import { localDate, addDays } from '../learning/calendar'
 import { validateV4, validateV5 } from './validation'
-import { upgradeV4 } from './upgrade'
-export const LEVELS = ['n5', 'n4', 'n3', 'n2', 'n1'] as const
+import { itemKey } from '../learning/types'
+import { LEVELS } from './levels'
+export { LEVELS }
 export type Level = (typeof LEVELS)[number]
 export type LevelMap<T> = Record<Level, T>
 export interface LegacyState {
@@ -106,3 +107,22 @@ export function touchStreak(s: ProgressState, today = localDate()): void {
   s.lastDate = today
 }
 export const cloneState = (s: ProgressState): ProgressState => JSON.parse(JSON.stringify(s))
+
+export function upgradeV4(legacy: LegacyState, today: string): ProgressState {
+  const state = { ...defaultState(), ...JSON.parse(JSON.stringify(legacy)) } as ProgressState
+  for (const level of LEVELS)
+    for (const id of new Set([
+      ...Object.keys(state.vKnown[level]),
+      ...Object.keys(state.vLearning[level]),
+    ])) {
+      const ref = { level, kind: 'vocab' as const, id }
+      state.schedules[itemKey(ref)] = {
+        ref,
+        stage: 0,
+        dueOn: today,
+        lastScheduledOn: '',
+        lastResult: null,
+      }
+    }
+  return state
+}

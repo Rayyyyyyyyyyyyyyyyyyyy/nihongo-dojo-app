@@ -2,7 +2,7 @@
 // (backups, disk writes, v4 storage upgrade) belong to the not-yet-ported store layer and are omitted.
 import { defaultState, encodeCode, decodeCode, LEVELS } from '../progress/state'
 import { validateV4, validateV5 } from '../progress/validation'
-import { upgradeV4 } from '../progress/upgrade'
+import { upgradeV4 } from '../progress/state'
 import { recordResult, completeArticle } from './reducer'
 import { itemKey, dayKey, type LearningInput } from './types'
 import { localDate, addDays } from './calendar'

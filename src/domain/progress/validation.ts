@@ -1,4 +1,5 @@
-import { LEVELS, type LegacyState, type ProgressState } from './state'
+import { LEVELS } from './levels'
+import type { LegacyState, ProgressState } from './state'
 import { validDate } from '../learning/calendar'
 import { dayKey, itemKey, taskLimit, type StudyItemRef, type StudyMode } from '../learning/types'
 export const object = (v: unknown): v is Record<string, unknown> =>

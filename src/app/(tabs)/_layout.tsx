@@ -16,7 +16,8 @@ export default function TabsLayout() {
       <NativeTabs.Trigger name="(dojo)">
         <NativeTabs.Trigger.Icon sf={{ default: 'figure.martial.arts', selected: 'figure.martial.arts' }} />
         <NativeTabs.Trigger.Label>道場</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Badge hidden={due === 0}>{due > 99 ? '99+' : String(due)}</NativeTabs.Trigger.Badge>
+        {/* expo-router 有 children 時忽略 hidden，0 也會顯示，所以改成不渲染 */}
+        {due > 0 && <NativeTabs.Trigger.Badge>{due > 99 ? '99+' : String(due)}</NativeTabs.Trigger.Badge>}
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="practice">
         <NativeTabs.Trigger.Icon sf={{ default: 'book', selected: 'book.fill' }} />

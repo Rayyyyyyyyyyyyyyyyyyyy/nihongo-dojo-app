@@ -20,7 +20,8 @@ function RootStack() {
   const fade = { presentation: 'fullScreenModal', animation: 'fade' } as const
   return (
     <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: t.colors.bg } }}>
-      <Stack.Screen name="(tabs)" />
+      {/* title 只當作次層畫面的返回鍵文字，避免顯示路由名「(tabs)」 */}
+      <Stack.Screen name="(tabs)" options={{ title: "返回" }} />
       <Stack.Screen name="onboarding" options={{ animation: 'fade', gestureEnabled: false }} />
       <Stack.Screen name="session" options={{ ...modal, gestureEnabled: false }} />
       <Stack.Screen name="chest" options={{ ...fade, gestureEnabled: false }} />
