@@ -2,6 +2,7 @@ import { celebrateRanks } from '../domain/rewards'
 // 單一 store：擁有 AppStateDoc，所有變更經 core.ts 的交易產生完整 next doc 再一次寫入。
 // 一般操作先套用記憶體再保存（失敗只亮 saveError 橫條）；匯入／還原／撤銷先存快照與文件，失敗就不套用。
 import type { LevelBank } from '../data/bank'
+import type { BankManifest } from '../domain/bank/manifest'
 import { localDate } from '../domain/learning/calendar'
 import type { ArticleCompletion, Clock, LearningInput, StudyKind } from '../domain/learning/types'
 import { importWebV5Code } from '../domain/progress/importCode'
@@ -107,9 +108,11 @@ export function createAppStore({ storage, clock, newId }: { storage: AppStorage;
       commit(r.doc)
       return r.goalCompleted
     },
-    ensurePlan: (branch: 'reading' | 'listening', bank: LevelBank) => commit(core.ensurePlan(doc(), branch, clock, bank)),
+    ensurePlan: (branch: 'reading' | 'listening', bank: LevelBank, manifest: BankManifest) =>
+      commit(core.ensurePlan(doc(), branch, clock, bank, manifest)),
     startPlan: () => commit(core.startPlan(doc(), clock)),
-    repairPlan: (kind: StudyKind, bank: LevelBank) => commit(core.repairPlan(doc(), kind, clock, bank)),
+    repairPlan: (kind: StudyKind, bank: LevelBank, manifest: BankManifest) =>
+      commit(core.repairPlan(doc(), kind, clock, bank, manifest)),
     markVocab: (level: Level, word: string, known: boolean) => commit(core.markVocab(doc(), level, word, known)),
     openChest() {
       const r = core.openChest(doc(), clock)

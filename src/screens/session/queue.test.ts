@@ -8,7 +8,7 @@ const on = () => new Date(2026, 10, 9, 12)
 const bank = fixtureBank('n5')
 const base = (): AppStateDoc => {
   const d = createDoc('i', on)
-  return ensurePlan({ ...d, learning: { ...d.learning, level: 'n5' } }, 'listening', on, bank)
+  return ensurePlan({ ...d, learning: { ...d.learning, level: 'n5' } }, 'listening', on, bank, fixtureManifest)
 }
 let n = 0
 const answer = (doc: AppStateDoc, ref: Parameters<typeof itemKey>[0], correct = true, attemptId = `a${++n}`) =>
@@ -17,15 +17,15 @@ const answer = (doc: AppStateDoc, ref: Parameters<typeof itemKey>[0], correct = 
 describe('todayQueue：今日任務題目固定，續做從未作答的開始', () => {
   test('順序 單字 → 文法 → 聽力；已作答的不再出現', () => {
     let doc = base()
-    const q = todayQueue(doc, bank, '2026-11-09')
+    const q = todayQueue(doc, bank, '2026-11-09', fixtureManifest)
     expect(q.items.map((i) => i.type)).toEqual([...Array(10).fill('flashcard'), ...Array(5).fill('choice'), ...Array(3).fill('listening')])
     doc = answer(doc, q.items[0].refs[0])
-    expect(todayQueue(doc, bank, '2026-11-09').items).toHaveLength(17)
+    expect(todayQueue(doc, bank, '2026-11-09', fixtureManifest).items).toHaveLength(17)
     expect(q.missing).toEqual([])
   })
   test('選項打亂但穩定；文法選項含答案與干擾項', () => {
-    const a = todayQueue(base(), bank, '2026-11-09').items[10]
-    const b = todayQueue(base(), bank, '2026-11-09').items[10]
+    const a = todayQueue(base(), bank, '2026-11-09', fixtureManifest).items[10]
+    const b = todayQueue(base(), bank, '2026-11-09', fixtureManifest).items[10]
     if (a.type !== 'choice' || b.type !== 'choice') throw Error('expected choice')
     expect(a.options).toEqual(b.options)
     expect([...a.options].sort()).toEqual([a.answer, ...bank.grammar.find((g) => g.q === a.prompt)!.distractors].sort())
@@ -33,12 +33,12 @@ describe('todayQueue：今日任務題目固定，續做從未作答的開始', 
   test('題庫更新後的失效目標回報 missing 的組', () => {
     const doc = base()
     const gone = doc.learning.plans[dayKey('2026-11-09', 'n5')].groups.grammar!.targets[0].id
-    const q = todayQueue(doc, { ...bank, grammar: bank.grammar.filter((g) => g.id !== gone) }, '2026-11-09')
+    const q = todayQueue(doc, { ...bank, grammar: bank.grammar.filter((g) => g.id !== gone) }, '2026-11-09', fixtureManifest)
     expect(q.missing).toEqual(['grammar'])
   })
   test('缺選項的題目標為資料有問題', () => {
     const broken = { ...bank, grammar: bank.grammar.map((g) => ({ ...g, distractors: [] })) }
-    const item = todayQueue(base(), broken, '2026-11-09').items[10]
+    const item = todayQueue(base(), broken, '2026-11-09', fixtureManifest).items[10]
     expect(item.type === 'choice' && item.broken).toBe(true)
   })
 })
@@ -46,9 +46,9 @@ describe('todayQueue：今日任務題目固定，續做從未作答的開始', 
 describe('extraQueue：加練優先到期 → 錯題 → 未學，排除今天做過的', () => {
   test('同份量；今天做過的不再出現；錯題在前', () => {
     let doc = base()
-    const first = todayQueue(doc, bank, '2026-11-09').items
+    const first = todayQueue(doc, bank, '2026-11-09', fixtureManifest).items
     doc = answer(doc, first[0].refs[0], false)
-    const q = extraQueue(doc, bank, '2026-11-09')
+    const q = extraQueue(doc, bank, '2026-11-09', fixtureManifest)
     const vocab = q.items.filter((i) => i.type === 'flashcard')
     expect(vocab).toHaveLength(10)
     expect(vocab.map((i) => i.refs[0].id)).not.toContain(first[0].refs[0].id)

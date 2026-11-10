@@ -7,6 +7,7 @@ import { inspectGroup, orderRefs, refsFor } from '../../domain/learning/plans'
 import { dayKey, itemKey, type StudyItemRef, type StudyKind } from '../../domain/learning/types'
 import type { Level, ProgressState } from '../../domain/progress/state'
 import { choiceOptions, stableShuffle } from '../../domain/quiz'
+import { studyBank } from '../../state/core'
 import type { AppStateDoc } from '../../state/doc'
 
 export type VocabMode = 'flashcard' | 'pronunciation'
@@ -63,9 +64,10 @@ function toQuiz(kind: StudyKind, item: Item, level: Level, bank: LevelBank, vmod
   }
 }
 
-// 今日任務：今天的 plan 中尚未完成的目標；有失效目標的組列在 missing（先修復再開始）。
-export function todayQueue(doc: AppStateDoc, bank: LevelBank, today: string) {
-  const level = doc.learning.level,
+// 今日任務：今天的 plan 中尚未完成的目標；有失效（含購買狀態變動後不可用）目標的組列在 missing（先修復再開始）。
+export function todayQueue(doc: AppStateDoc, full: LevelBank, today: string, manifest: BankManifest) {
+  const bank = studyBank(doc, full, manifest),
+    level = doc.learning.level,
     plan = doc.learning.plans[dayKey(today, level)]
   if (!plan) return { items: [] as QuizItem[], missing: [] as StudyKind[] }
   const kinds = ORDER.filter((k) => requiredKinds(plan).includes(k))
@@ -80,8 +82,9 @@ export function todayQueue(doc: AppStateDoc, bank: LevelBank, today: string) {
 }
 
 // 加練（app-design §4.1）：同份量的下一組，優先到期→錯題→未學（移植的排序規則），排除今天做過的。
-export function extraQueue(doc: AppStateDoc, bank: LevelBank, today: string): { items: QuizItem[] } {
-  const level = doc.learning.level,
+export function extraQueue(doc: AppStateDoc, full: LevelBank, today: string, manifest: BankManifest): { items: QuizItem[] } {
+  const bank = studyBank(doc, full, manifest),
+    level = doc.learning.level,
     plan = doc.learning.plans[dayKey(today, level)],
     day = doc.learning.days[dayKey(today, level)],
     limits = DAILY_LIMITS[doc.settings.dailyMinutes]

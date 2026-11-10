@@ -1,5 +1,7 @@
 // AppStateDoc 的交易：每個函式回傳完整 next doc，由 store 一次寫入（handoff §2.2「單一擁有者」）。
 import type { LevelBank } from '../data/bank'
+import { accessibleBank } from '../domain/access'
+import type { BankManifest } from '../domain/bank/manifest'
 import { addDays, localDate } from '../domain/learning/calendar'
 import { DAILY_LIMITS, planBranch, planKinds, requiredKinds } from '../domain/learning/daily'
 import { generateGroup, inspectGroup, refsFor, repairGroup } from '../domain/learning/plans'
@@ -113,9 +115,19 @@ export function completeReading(doc: AppStateDoc, input: ArticleCompletion, cloc
   return { doc: r.doc, goalCompleted: r.goalCompleted }
 }
 
+// 今日任務、修復與加練只從可用的課取題（未購 N3–N1 只有第 1 課，D16）。
+export const studyBank = (doc: AppStateDoc, bank: LevelBank, manifest: BankManifest) =>
+  accessibleBank(bank, manifest.levels[doc.learning.level], doc.entitlement.owned)
+
 // 建立或補齊今天的任務（移植網頁版 buildPlan，題庫同步載入）；份量依每日分鐘數（handoff §2.5）。
 // 已開始的深入練習不換分支；已排好的任務當天不因改分鐘數而變動。
-export function ensurePlan(doc: AppStateDoc, branch: 'reading' | 'listening', clock: Clock, bank: LevelBank): AppStateDoc {
+export function ensurePlan(
+  doc: AppStateDoc,
+  branch: 'reading' | 'listening',
+  clock: Clock,
+  bank: LevelBank,
+  manifest: BankManifest,
+): AppStateDoc {
   const date = localDate(clock()),
     level = doc.learning.level,
     key = dayKey(date, level),
@@ -123,7 +135,8 @@ export function ensurePlan(doc: AppStateDoc, branch: 'reading' | 'listening', cl
     minutes = doc.settings.dailyMinutes
   const want = old?.started ? old.branch : planBranch(minutes, branch)
   if (old && old.branch === want && requiredKinds(old).every((k) => old.groups[k])) return doc
-  const next = cloneState(doc.learning)
+  const next = cloneState(doc.learning),
+    pool = studyBank(doc, bank, manifest)
   pruneDays(next, date)
   const plan = (next.plans[key] ??= { date, level, branch: want, started: false, groups: {} })
   if (plan.branch !== want) {
@@ -131,17 +144,17 @@ export function ensurePlan(doc: AppStateDoc, branch: 'reading' | 'listening', cl
     plan.branch = want
   }
   for (const kind of planKinds(minutes, want))
-    plan.groups[kind] ??= generateGroup(next, refsFor(kind, level, bank[kind] as never[]), kind, date, DAILY_LIMITS[minutes][kind])
+    plan.groups[kind] ??= generateGroup(next, refsFor(kind, level, pool[kind] as never[]), kind, date, DAILY_LIMITS[minutes][kind])
   return { ...doc, learning: next }
 }
 
-// 今日任務的失效目標修復（移植網頁版 repairPlan）：只換掉題庫裡已不存在的目標，原有效目標與完成量保留。
-export function repairPlan(doc: AppStateDoc, kind: StudyKind, clock: Clock, bank: LevelBank): AppStateDoc {
+// 今日任務的失效目標修復（移植網頁版 repairPlan）：只換掉題庫裡已不存在（或已不可用）的目標，原有效目標與完成量保留。
+export function repairPlan(doc: AppStateDoc, kind: StudyKind, clock: Clock, bank: LevelBank, manifest: BankManifest): AppStateDoc {
   const key = dayKey(localDate(clock()), doc.learning.level),
     plan = doc.learning.plans[key]
   if (!plan?.groups[kind]) return doc
   const next = cloneState(doc.learning)
-  next.plans[key].groups[kind] = repairGroup(next, next.plans[key], kind, bank[kind] as never[])
+  next.plans[key].groups[kind] = repairGroup(next, next.plans[key], kind, studyBank(doc, bank, manifest)[kind] as never[])
   return { ...doc, learning: next }
 }
 

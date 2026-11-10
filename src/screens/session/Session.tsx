@@ -28,22 +28,23 @@ export default function Session() {
 }
 
 function build(src: string, p: Params, bank: LevelBank, deps: ReturnType<typeof useServices>, today: string) {
-  const { store } = deps
+  const { store } = deps,
+    m = deps.bank.manifest
   const doc = () => store.getState().doc!
   if (src === 'today') {
-    store.ensurePlan(doc().learning.plans[dayKey(today, doc().learning.level)]?.branch ?? 'listening', bank)
-    let q = todayQueue(doc(), bank, today)
+    store.ensurePlan(doc().learning.plans[dayKey(today, doc().learning.level)]?.branch ?? 'listening', bank, m)
+    let q = todayQueue(doc(), bank, today, m)
     const repaired = q.missing.length > 0
     // 題庫更新後的失效目標：只修復失效部分（網頁版 repairPlan），再重新取題。
-    for (const kind of q.missing) store.repairPlan(kind, bank)
-    if (repaired) q = todayQueue(doc(), bank, today)
+    for (const kind of q.missing) store.repairPlan(kind, bank, m)
+    if (repaired) q = todayQueue(doc(), bank, today, m)
     store.startPlan()
     return { items: q.items, repaired }
   }
-  if (src === 'extra') return { items: extraQueue(doc(), bank, today).items, repaired: false }
+  if (src === 'extra') return { items: extraQueue(doc(), bank, today, m).items, repaired: false }
   if (src === 'review') return { items: reviewQueue(doc(), bank, today).items, repaired: false }
   const level = doc().learning.level
-  return { items: lessonQueue(bank, deps.bank.manifest, level, p.kind ?? 'grammar', Number(p.lesson ?? 1), p.vmode ?? 'flashcard', today), repaired: false }
+  return { items: lessonQueue(bank, m, level, p.kind ?? 'grammar', Number(p.lesson ?? 1), p.vmode ?? 'flashcard', today), repaired: false }
 }
 
 function Run({ bank }: { bank: LevelBank }) {
