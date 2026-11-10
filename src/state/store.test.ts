@@ -47,6 +47,26 @@ describe('載入', () => {
     expect(store.getState().doc?.meta.installId).toBe('old')
     expect(store.getState().snapshots).toEqual([])
   })
+
+  test('主檔不見只剩 .tmp（iOS 搬移中當機）：從 .tmp 復原，不當新使用者覆寫', async () => {
+    const doc = createDoc('old', clock)
+    const { files, store } = setup({ 'app-state.json.tmp': JSON.stringify(doc) })
+    await store.load()
+    expect(store.getState().status).toBe('ready')
+    expect(store.getState().doc?.meta.installId).toBe('old')
+    store.submitAnswer(answer())
+    await store.flush()
+    expect(saved(files).meta.installId).toBe('old')
+  })
+
+  test('只剩讀不懂的 .tmp：當作損毀、不覆寫；從頭開始時另存的是 .tmp', async () => {
+    const { files, store } = setup({ 'app-state.json.tmp': '{"schema":' })
+    await store.load()
+    expect(store.getState().status).toBe('corrupt')
+    expect(files.files['app-state.json']).toBeUndefined()
+    await store.startFresh()
+    expect(Object.entries(files.files).find(([k]) => k.startsWith('app-state.corrupt-'))?.[1]).toBe('{"schema":')
+  })
 })
 
 describe('一般保存', () => {

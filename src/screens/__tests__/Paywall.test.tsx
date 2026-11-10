@@ -1,7 +1,7 @@
 // S14 付費畫面、S14a 第一天說明（含還原購買，S15 狀態表）。
 import { router } from 'expo-router'
 import { act, fireEvent, screen } from 'expo-router/testing-library'
-import { Linking } from 'react-native'
+import { AccessibilityInfo, Linking } from 'react-native'
 import { PRODUCT_ID } from '../../state/doc'
 import { makeServices, readyDoc, renderApp } from '../../test/harness'
 
@@ -90,9 +90,11 @@ describe('S14 付費畫面', () => {
   })
   test('成功：購買完成寫入 entitlement 並進入原本要進的課', async () => {
     const s = await open({}, '/paywall?kind=grammar&lesson=2')
+    const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility')
     await fireEvent.press(await buyBtn())
     await act(() => s.gateway.emit(PRODUCT_ID))
     expect(s.store.getState().doc!.entitlement.owned).toBe(true)
+    expect(announce).toHaveBeenCalledWith('已解鎖 N3–N1 完整版')
     expect(await screen.findByText('1／2')).toBeOnTheScreen()
   })
   test('已購：顯示「你已擁有完整版」，不顯示購買鈕；還原顯示已確認', async () => {

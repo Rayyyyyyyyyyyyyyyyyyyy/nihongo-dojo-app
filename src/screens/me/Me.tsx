@@ -1,7 +1,8 @@
-// S13 我的（app-design §2、§6 S13）：段位與連勝摘要＋S14–S22 的導覽入口與隱私政策連結；只顯示推導值，沒有自己的暫態。
+// S13 我的（app-design §2、§6 S13）：段位與連勝摘要＋S14–S22 的導覽入口與隱私政策連結；只顯示推導值，沒有自己的暫態；購買狀態查詢中／失敗的提示來自 purchases 服務。
 import { useRouter } from 'expo-router'
 import { Linking, View } from 'react-native'
 import { currentStreak } from '../../state/core'
+import { usePurchaseCheck } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Card, ListRow, Screen } from '../../ui'
 import { useDoc, useNavLock, useToday } from '../hooks'
@@ -14,6 +15,7 @@ export default function Me() {
   const today = useToday()
   const router = useRouter()
   const go = useNavLock()
+  const check = usePurchaseCheck()
   const rank = rankProgress(doc.rewards.xpTotal)
   const firstDay = today === doc.meta.firstOpenDate
   const monthStamps = doc.rewards.goalCompletedDates.filter((d) => d.slice(0, 7) === today.slice(0, 7)).length
@@ -48,6 +50,8 @@ export default function Me() {
           />
         ))}
       </View>
+      {check === 'checking' && <AppText color="ink2">完整版購買狀態確認中</AppText>}
+      {check === 'failed' && <AppText color="ink2">目前無法連線 App Store，顯示上次結果</AppText>}
     </Screen>
   )
 }

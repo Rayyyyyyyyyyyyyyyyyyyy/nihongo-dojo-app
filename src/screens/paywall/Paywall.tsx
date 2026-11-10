@@ -5,7 +5,7 @@ import { Linking, View } from 'react-native'
 import { canDismiss, DISMISS_AFTER_MS } from '../../domain/purchase'
 import { useAppState, usePurchaseFlow, useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Card, EmptyState, ErrorState, Screen, Skeleton } from '../../ui'
+import { AppText, Button, Card, EmptyState, ErrorState, Screen, Skeleton, useAnnounce } from '../../ui'
 import { KIND_NAMES, levelName } from '../names'
 import { Restore } from './Restore'
 
@@ -38,6 +38,7 @@ export default function Paywall() {
 
   // 這次開啟期間購買成功：進入原本要進的課（從 S7 來時有課程參數），否則返回。
   const justBought = flow.s === 'verified' && startS.current !== 'verified'
+  useAnnounce(justBought && '已解鎖 N3–N1 完整版')
   useEffect(() => {
     if (!justBought) return
     if (!p.lesson) router.back()

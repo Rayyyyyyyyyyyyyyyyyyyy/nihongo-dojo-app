@@ -1,14 +1,14 @@
 // 首次體驗 O1–O5（app-design §3）：步驟存在 store 的 meta.onboarding（notStarted→O1、level→O2、minutes→O3、placement→O4/O5），
 // 中途關閉回到未完成的那一步；O4 作答不保留、不給 XP、不建立排程。第一天不出現價格。
 import { useRouter } from 'expo-router'
-import { useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import type { LevelBank } from '../../data/bank'
 import { LEVELS, type Level } from '../../domain/progress/state'
 import { choiceOptions, stableShuffle, suggestLevel } from '../../domain/quiz'
 import { useAppState, useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, ErrorState, Option, Screen } from '../../ui'
+import { AppText, Button, ErrorState, Option, Screen, Skeleton } from '../../ui'
 import { levelName } from '../names'
 
 const LEVEL_TEXT: Record<Level, string> = {
@@ -42,10 +42,11 @@ export default function Onboarding() {
   const advance = (from: typeof step, fn: () => void) => () => {
     if (store.getState().doc!.meta.onboarding === from) fn()
   }
-  const finish = (level?: Level) => {
+  // 題庫載入失敗後略過：用 O2 等級進 S2（S2 顯示同樣的錯誤狀態），不直接進 S3。
+  const finish = (level?: Level, toDojo = false) => {
     if (level) store.setLevel(level)
     store.setOnboarding('done')
-    router.replace({ pathname: '/session', params: { src: 'today' } })
+    router.replace(toDojo ? '/' : { pathname: '/session', params: { src: 'today' } })
   }
   if (step === 'notStarted') return <Welcome onStart={advance('notStarted', () => store.setOnboarding('level'))} />
   if (step === 'level') return <PickLevel onPick={(l) => advance('level', () => (store.setLevel(l), store.setOnboarding('minutes')))()} />
@@ -115,9 +116,9 @@ interface PQ {
   answer: string
   options: string[]
 }
-function buildPlacement(load: (l: Level) => LevelBank, seed: string): PQ[] {
-  return LEVELS.flatMap((level) => {
-    const vocab = load(level).vocab
+function buildPlacement(banks: LevelBank[], seed: string): PQ[] {
+  return LEVELS.flatMap((level, i) => {
+    const vocab = banks[i].vocab
     return stableShuffle(vocab, `${seed}|${level}`)
       .slice(0, PLACEMENT_PER_LEVEL)
       .map((v) => {
@@ -128,27 +129,41 @@ function buildPlacement(load: (l: Level) => LevelBank, seed: string): PQ[] {
 }
 
 // O4 程度測驗（約 15 題，各級單字的中文意思）→ O5 建議等級。可略過；載入失敗可重試或略過。
-function Placement({ onDone }: { onDone: (level?: Level) => void }) {
+function Placement({ onDone }: { onDone: (level?: Level, toDojo?: boolean) => void }) {
   const t = useTheme()
   const { bank } = useServices()
   const doc = useAppState((s) => s.doc!)
   const [attempt, setAttempt] = useState(0)
-  const questions = useMemo(() => {
-    try {
-      return buildPlacement((l) => bank.load(l) as LevelBank, doc.meta.installId)
-    } catch {
-      return null
+  // 題庫載入可能是非同步（AppServices.bank.load）；undefined＝載入中，null＝失敗。
+  const [questions, setQuestions] = useState<PQ[] | null | undefined>(undefined)
+  useEffect(() => {
+    let alive = true
+    setQuestions(undefined)
+    Promise.all(LEVELS.map((l) => Promise.resolve().then(() => bank.load(l))))
+      .then((banks) => buildPlacement(banks, doc.meta.installId))
+      .then(
+        (q) => alive && setQuestions(q),
+        () => alive && setQuestions(null),
+      )
+    return () => {
+      alive = false
     }
-  }, [bank, doc.meta.installId, attempt]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [bank, doc.meta.installId, attempt])
   const [answers, setAnswers] = useState<Array<{ level: Level; correct: boolean }>>([])
   const [picked, setPicked] = useState<string | null>(null)
   const [skipped, setSkipped] = useState(false)
 
+  if (questions === undefined)
+    return (
+      <Screen modal>
+        <Skeleton label="準備程度測驗" />
+      </Screen>
+    )
   if (!questions)
     return (
       <Screen modal>
         <ErrorState title="題庫載入失敗" onRetry={() => setAttempt((a) => a + 1)}>
-          <Button variant="text" label="略過測驗" onPress={() => onDone()} />
+          <Button variant="text" label="略過測驗" onPress={() => onDone(undefined, true)} />
         </ErrorState>
       </Screen>
     )
@@ -162,11 +177,17 @@ function Placement({ onDone }: { onDone: (level?: Level) => void }) {
         </Screen>
       )
     const rate = answers.length ? Math.round((answers.filter((a) => a.correct).length / answers.length) * 100) : 0
+    const mine = answers.filter((a) => a.level === suggestion)
+    const reason = !mine.length
+      ? `作答過的等級都答對 2／3 以上，${levelName(suggestion)} 還沒測到。`
+      : mine.filter((a) => a.correct).length < 2
+        ? `${levelName(suggestion)} 是你答對少於 2／3 的第一個等級。`
+        : '每個等級都答對 2／3 以上。'
     return (
       <Screen modal>
         <Title>{`建議從 ${levelName(suggestion)} 開始`}</Title>
         <AppText>
-          測驗答對 {rate}%。{levelName(suggestion)} 是你答對少於 2／3 的第一個等級。
+          測驗答對 {rate}%。{reason}
         </AppText>
         <Button label="用建議等級" onPress={() => onDone(suggestion)} />
         <Button variant="secondary" label={`維持我選的（${levelName(doc.learning.level)}）`} onPress={() => onDone()} />

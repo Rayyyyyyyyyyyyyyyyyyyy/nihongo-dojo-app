@@ -31,12 +31,12 @@ export const choiceOptions = (q: Pick<Question, 'answer' | 'distractors'>, seed:
 const SPEAKER = /(^|[。！？\s」])[\u4E00-\u9FFF\u30A0-\u30FF]{1,6}[：:]/g
 export const speechText = (script: string): string => script.replace(SPEAKER, '$1')
 
-// O5：每級出 3 題（N5→N1），建議第一個答對少於 2 題的等級；全部達標建議 N1。全部略過回傳 null。
+// O5：每級出 3 題（N5→N1），建議第一個答對少於 2 題的等級；中途略過時，作答過的等級都達標就建議下一個沒測到的等級；全部達標建議 N1。全部略過回傳 null。
 export function suggestLevel(answers: Array<{ level: Level; correct: boolean }>): Level | null {
   if (!answers.length) return null
   for (const level of LEVELS) {
     const mine = answers.filter((a) => a.level === level)
-    if (mine.length && mine.filter((a) => a.correct).length < 2) return level
+    if (!mine.length || mine.filter((a) => a.correct).length < 2) return level
   }
   return 'n1'
 }

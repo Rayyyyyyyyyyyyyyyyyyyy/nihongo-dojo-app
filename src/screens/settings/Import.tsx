@@ -10,7 +10,7 @@ import { LEVELS, type ProgressState } from '../../domain/progress/state'
 import { useAppState, useServices } from '../../state/AppProvider'
 import { importedItems } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Card, ErrorState, Screen } from '../../ui'
+import { AppText, Button, Card, ErrorState, Screen, useAnnounce } from '../../ui'
 import { levelName } from '../names'
 import { evictNote } from './Backup'
 
@@ -90,6 +90,9 @@ export default function Import() {
       setBusy(false)
     }
   }
+  const doneText = phase.s === 'done' && `匯入完成。已依掌握紀錄點亮收集冊 ${thousands(phase.lit)} 塊札。XP 從今天的修行開始累計。`
+  const undoneText = '已撤銷這次匯入，進度回到匯入前。撤銷前的進度也存成了恢復點。'
+  useAnnounce(applyError ? `沒有完成。${applyError}` : doneText || (phase.s === 'undone' && undoneText))
   const leave = () => {
     if (firstRun) {
       if (phase.s === 'done') store.setOnboarding('minutes')
@@ -181,7 +184,7 @@ export default function Import() {
         {phase.s === 'done' && (
           <>
             <Card tone="correctBg" accessibilityRole="alert" accessibilityLiveRegion="polite">
-              <AppText>匯入完成。已依掌握紀錄點亮收集冊 {thousands(phase.lit)} 塊札。XP 從今天的修行開始累計。</AppText>
+              <AppText>{doneText}</AppText>
             </Card>
             {applyError && <ErrorState title="沒有完成" message={applyError} />}
             <Button label={firstRun ? '繼續設定' : '完成'} disabled={busy} onPress={leave} />
@@ -192,7 +195,7 @@ export default function Import() {
         {phase.s === 'undone' && (
           <>
             <Card accessibilityRole="alert">
-              <AppText>已撤銷這次匯入，進度回到匯入前。撤銷前的進度也存成了恢復點。</AppText>
+              <AppText>{undoneText}</AppText>
             </Card>
             <Button label={firstRun ? '回到歡迎頁' : '完成'} onPress={leave} />
           </>

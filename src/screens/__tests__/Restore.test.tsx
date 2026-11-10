@@ -1,5 +1,6 @@
 // S15 還原購買（從「我的」推入的獨立畫面；狀態沿用 S15 狀態表）。
 import { act, fireEvent, screen } from 'expo-router/testing-library'
+import { AccessibilityInfo } from 'react-native'
 import { PRODUCT_ID } from '../../state/doc'
 import { makeServices, readyDoc, renderApp } from '../../test/harness'
 
@@ -45,8 +46,10 @@ describe('S15 還原購買', () => {
     const s = await open()
     s.gateway.owned = [PRODUCT_ID] // 啟動時查不到（例如重新安裝前），按還原才取得
     const spy = jest.spyOn(s.gateway, 'restore')
+    const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility')
     await fireEvent.press(await btn())
     expect(await screen.findByText('已還原完整版')).toBeOnTheScreen()
+    expect(announce).toHaveBeenCalledWith('已還原完整版') // iOS VoiceOver 不讀 liveRegion
     expect(s.store.getState().doc!.entitlement.owned).toBe(true)
     await fireEvent.press(screen.getByRole('button', { name: '還原購買' }))
     expect(await screen.findByText('已確認，你擁有完整版')).toBeOnTheScreen()

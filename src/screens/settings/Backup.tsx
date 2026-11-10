@@ -7,7 +7,7 @@ import { encodeCode } from '../../domain/progress/state'
 import type { BackupError, BackupFile } from '../../services/backup'
 import { MAX_SNAPSHOTS, type Snapshot } from '../../services/storage'
 import { useAppState, useServices } from '../../state/AppProvider'
-import { AppText, Button, Card, EmptyState, ErrorState, Screen } from '../../ui'
+import { AppText, Button, Card, EmptyState, ErrorState, Screen, useAnnounce } from '../../ui'
 import { useSlow } from './useSlow'
 
 export const BACKUP_ERRORS: Record<BackupError, string> = {
@@ -50,6 +50,7 @@ export function BackupPanel() {
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [code, setCode] = useState<string | null>(null)
   const slow = useSlow(busy !== null || cloud.status === 'loading')
+  useAnnounce(message && (message.ok ? message.text : `沒有完成。${message.text}`))
 
   useEffect(() => {
     let alive = true

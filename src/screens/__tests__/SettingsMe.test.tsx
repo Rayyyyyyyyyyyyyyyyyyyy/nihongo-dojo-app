@@ -112,10 +112,12 @@ describe('S18 每日目標與提醒', () => {
     await openWith(s, '/reminders')
     await screen.findByText(SUCCESS('20:00'))
     const before = replace.mock.calls.length
+    const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility')
     await fireEvent.press(screen.getByRole('button', { name: '延後 30 分鐘' }))
     await fireEvent.press(screen.getByRole('button', { name: '延後 30 分鐘' }))
     expect(settings(s).reminder.time).toBe('21:00')
     expect(await screen.findByText(SUCCESS('21:00'))).toBeOnTheScreen()
+    expect(announce).toHaveBeenCalledWith(SUCCESS('21:00'))
     expect(replace.mock.calls.length).toBe(before + 2)
     const days = notifierOf(s).scheduled.map((x) => x.t.toDateString())
     expect(new Set(days).size).toBe(days.length)
