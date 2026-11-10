@@ -1,5 +1,6 @@
 // S14 付費畫面（app-design §5.2、§5.3、§6 S14）：價格只用 StoreKit 回傳字串；無倒數、無刪除線、無限時字樣。
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
+import { goBack } from '../hooks'
 import { useEffect, useReducer, useRef } from 'react'
 import { Linking, View } from 'react-native'
 import { canDismiss, DISMISS_AFTER_MS } from '../../domain/purchase'
@@ -41,7 +42,7 @@ export default function Paywall() {
   useAnnounce(justBought && '已解鎖 N3–N1 完整版')
   useEffect(() => {
     if (!justBought) return
-    if (!p.lesson) router.back()
+    if (!p.lesson) goBack(router)
     else if (p.kind === 'vocab') router.replace({ pathname: '/practice/vocab', params: { lesson: p.lesson } })
     else router.replace({ pathname: '/session', params: { src: 'lesson', kind: p.kind!, lesson: p.lesson } })
   }, [justBought]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -49,7 +50,7 @@ export default function Paywall() {
   const closable = canDismiss(flow, clock().getTime())
   const close = () => {
     purchases.dismiss()
-    router.back()
+    goBack(router)
   }
   const price = flow.s === 'ready' || flow.s === 'purchasing' || flow.s === 'pending' ? flow.price : null
 

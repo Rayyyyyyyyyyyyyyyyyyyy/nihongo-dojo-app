@@ -10,7 +10,7 @@ import { shouldOfferReminder, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, ProgressBar, Screen, Seal } from '../../ui'
 import { todayProgress } from '../dojo/selectors'
-import { useDoc } from '../hooks'
+import { useDoc, goBack } from '../hooks'
 import { rankProgress } from '../names'
 
 export interface SessionLog {
@@ -96,7 +96,7 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   }
   const toChest = () => leave(() => router.replace({ pathname: '/chest', params: ceremony ?? {} }))
   const onContinue = () =>
-    leave(() => (ceremony ? router.replace({ pathname: '/ceremony', params: ceremony }) : router.back()))
+    leave(() => (ceremony ? router.replace({ pathname: '/ceremony', params: ceremony }) : goBack(router)))
 
   return (
     <Screen modal>

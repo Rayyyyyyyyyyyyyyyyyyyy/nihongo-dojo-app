@@ -6,7 +6,7 @@ import { AccessibilityInfo, Animated, findNodeHandle, Pressable, View } from 're
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Screen } from '../../ui'
-import { useDoc } from '../hooks'
+import { useDoc, goBack } from '../hooks'
 import { RANKS } from '../names'
 
 export default function Ceremony() {
@@ -51,7 +51,7 @@ export default function Ceremony() {
   const finish = () => {
     if (leaving.current) return
     leaving.current = true
-    router.back()
+    goBack(router)
   }
   return (
     <Screen modal tone="surfaceCeremony">

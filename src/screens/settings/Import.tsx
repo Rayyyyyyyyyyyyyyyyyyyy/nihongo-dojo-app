@@ -1,6 +1,7 @@
 // S17 從網頁版匯入 v5 進度碼：貼上 → 驗證 → 預覽 → 確認覆寫 → 結果（可撤銷）。
 // 錯誤寫在欄位下方，輸入保留。首次體驗尚未完成時是首次模式（O1 次要入口）：成功後回 O3。
 import { Stack, useRouter } from 'expo-router'
+import { goBack } from '../hooks'
 import { useState } from 'react'
 import { TextInput, View } from 'react-native'
 import type { BankManifest } from '../../domain/bank/manifest'
@@ -97,7 +98,7 @@ export default function Import() {
     if (firstRun) {
       if (phase.s === 'done') store.setOnboarding('minutes')
       router.replace('/onboarding')
-    } else router.back()
+    } else goBack(router)
   }
 
   return (

@@ -52,3 +52,9 @@ export function useNavLock() {
     fn()
   }, [])
 }
+
+// 返回上一頁；沒有上一頁時（深連結直接開、冷啟動直達、堆疊已被 replace）回道場，避免 GO_BACK 無人處理。
+export function goBack(router: { canGoBack(): boolean; back(): void; replace(href: '/'): void }) {
+  if (router.canGoBack()) router.back()
+  else router.replace('/')
+}

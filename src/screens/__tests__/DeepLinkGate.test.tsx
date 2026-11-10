@@ -1,5 +1,5 @@
 // C8 第 2 輪 N1／N2：課表以外的入口（深連結、複習）也套用 N3–N1 購買限制。
-import { screen } from 'expo-router/testing-library'
+import { fireEvent, screen } from 'expo-router/testing-library'
 import { itemKey, type StudyItemRef } from '../../domain/learning/types'
 import { fixtureBank, fixtureManifest } from '../../test/fixtures'
 import { makeServices, readyDoc, renderApp } from '../../test/harness'
@@ -59,4 +59,14 @@ test('M2：未購以深連結開 N3 第 2 課單字清單，不列單字、只�
 test('M2：第 1 課單字清單照常', async () => {
   await renderApp(makeServices({ doc: n3(false) }), '/practice/vocab?lesson=1', 'practice')
   expect(await screen.findByRole('button', { name: '翻卡' })).toBeOnTheScreen()
+})
+
+test('沒有上一頁時（直接開啟）按返回回到道場，不送出無人處理的 GO_BACK', async () => {
+  const err = jest.spyOn(console, 'error').mockImplementation(() => {})
+  await renderApp(makeServices({ doc: n3(false) }), '/session?src=lesson&kind=grammar&lesson=2')
+  fireEvent.press(await screen.findByRole('button', { name: '回道場' }))
+  expect((await screen.findAllByLabelText(/段位/)).length).toBeGreaterThan(0)
+  expect(screen.queryByText('沒有可以練習的題目')).toBeNull()
+  expect(err.mock.calls.flat().join(' ')).not.toMatch(/GO_BACK/)
+  err.mockRestore()
 })

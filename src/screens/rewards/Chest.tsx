@@ -6,7 +6,7 @@ import type { ChestResult } from '../../domain/rewards'
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, EmptyState, Screen } from '../../ui'
-import { useDoc, useToday } from '../hooks'
+import { useDoc, useToday, goBack } from '../hooks'
 import { chestText } from '../names'
 
 export const CHEST_MS = 800
@@ -73,14 +73,14 @@ export default function Chest() {
     if (leaving.current) return
     leaving.current = true
     if (params.rank) router.replace({ pathname: '/ceremony', params: { rank: params.rank, passed: params.passed ?? params.rank } })
-    else router.back()
+    else goBack(router)
   }
 
   if (!goal && !result)
     return (
       <Screen modal>
         <EmptyState title="完成今日目標就能開" message="桐箱每天一個，是完成今日修行的回饋。">
-          <Button label="回道場" onPress={() => router.back()} />
+          <Button label="回道場" onPress={() => goBack(router)} />
         </EmptyState>
       </Screen>
     )

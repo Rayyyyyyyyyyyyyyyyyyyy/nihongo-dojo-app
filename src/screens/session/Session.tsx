@@ -8,7 +8,7 @@ import { dayKey, type StudyKind } from '../../domain/learning/types'
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, EmptyState, ErrorState, Screen, Skeleton } from '../../ui'
-import { useDoc, useLevelBank, useToday } from '../hooks'
+import { useDoc, useLevelBank, useToday, goBack } from '../hooks'
 import { extraQueue, lessonQueue, reviewQueue, todayQueue, type QuizItem, type VocabMode } from './queue'
 import { Choice, Flashcard, ListeningQuestion, ReadingArticle, type Submit } from './questions'
 import { Result, type SessionLog } from './Result'
@@ -22,7 +22,7 @@ export default function Session() {
   if (bank.status === 'ready') return <Run bank={bank.bank} />
   return (
     <Screen modal>
-      <Button variant="text" label="中止" onPress={() => router.back()} />
+      <Button variant="text" label="中止" onPress={() => goBack(router)} />
       {bank.status === 'loading' ? <Skeleton label="題目載入中" /> : <ErrorState title="題庫載入失敗" onRetry={bank.retry} />}
     </Screen>
   )
@@ -93,12 +93,12 @@ function Run({ bank }: { bank: LevelBank }) {
     advanced.current = index
     if (index < items.length - 1) setIndex(index + 1)
     else if (log.answers.length) setPhase('result')
-    else router.back() // 本次 0 題（全部跳過）：不顯示結果畫面
+    else goBack(router) // 本次 0 題（全部跳過）：不顯示結果畫面
   }
   const abort = () =>
     Alert.alert('中止修行？', '已提交的作答會保留，下次從未作答的題目續做。', [
       { text: '繼續修行', style: 'cancel' },
-      { text: '中止', style: 'destructive', onPress: () => router.back() },
+      { text: '中止', style: 'destructive', onPress: () => goBack(router) },
     ])
 
   if (phase === 'result') return <Result log={log} bank={bank} today={today} src={src} />
@@ -110,7 +110,7 @@ function Run({ bank }: { bank: LevelBank }) {
           title={src === 'review' ? '沒有待複習的題目' : '沒有可以練習的題目'}
           message={src === 'today' && repaired ? '這個等級都學過了，今天可以複習錯題或換等級' : undefined}
         >
-          <Button label="回道場" onPress={() => router.back()} />
+          <Button label="回道場" onPress={() => goBack(router)} />
         </EmptyState>
       </Screen>
     )
