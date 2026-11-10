@@ -6,7 +6,7 @@ import { Animated, Pressable, View } from 'react-native'
 import type { LevelBank } from '../../data/bank'
 import { addDays } from '../../domain/learning/calendar'
 import { useAppState, useServices } from '../../state/AppProvider'
-import { shouldOfferReminder } from '../../state/core'
+import { shouldOfferReminder, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, ProgressBar, Screen, Seal } from '../../ui'
 import { todayProgress } from '../dojo/selectors'
@@ -76,7 +76,7 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   const t = useTheme()
   const doc = useDoc()
   const saveError = useAppState((s) => s.saveError)
-  const { store, haptics, sound } = useServices()
+  const { store, haptics, sound, bank: banks } = useServices()
   const router = useRouter()
   const [stamped, setStamped] = useState(false)
   const [reminderDismissed, setReminderDismissed] = useState(false)
@@ -86,7 +86,7 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   const correct = log.answers.filter((a) => a.correct).length
   const wrong = log.answers.length - correct
   const rank = rankProgress(doc.rewards.xpTotal)
-  const progress = todayProgress(doc, bank, today)
+  const progress = todayProgress(doc, studyBank(doc, bank, banks.manifest), today)
   const ceremony = log.ceremony && { rank: String(log.ceremony.rank), passed: log.ceremony.passed.join(',') }
 
   const leave = (to: () => void) => {

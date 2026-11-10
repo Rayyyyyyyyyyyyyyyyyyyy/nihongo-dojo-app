@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
 import { View } from 'react-native'
 import { useServices } from '../../state/AppProvider'
-import { currentStreak } from '../../state/core'
+import { currentStreak, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, EmptyState, ErrorState, ListRow, ProgressBar, Screen, Seal, Segmented, Skeleton } from '../../ui'
 import { useDoc, useLevelBank, useNavLock, useToday } from '../hooks'
@@ -24,7 +24,7 @@ export default function Dojo() {
   const go = useNavLock()
   const level = doc.learning.level
   const bank = useLevelBank(level)
-  const progress = bank.status === 'ready' ? todayProgress(doc, bank.bank, today) : null
+  const progress = bank.status === 'ready' ? todayProgress(doc, studyBank(doc, bank.bank, banks.manifest), today) : null
   const branch = progress?.plan.branch ?? 'listening'
 
   const loaded = bank.status === 'ready' ? bank.bank : null

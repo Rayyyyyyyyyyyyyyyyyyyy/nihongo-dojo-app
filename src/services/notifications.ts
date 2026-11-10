@@ -29,8 +29,17 @@ export const expoNotifier: Notifier = {
 
 export type SyncResult = 'scheduled' | 'off' | 'denied' | 'failed'
 
+// 同一個 notifier 的重排依序執行：replaceAll 是「全部取消再逐筆排」，兩次同時跑會交錯成重複的提醒。
+const queues = new WeakMap<Notifier, Promise<unknown>>()
+
 // App 進前景、作答後、改設定時呼叫：先清掉舊的再排，所以同一天不會重複。
-export async function syncReminders(notifier: Notifier, doc: AppStateDoc, clock: Clock): Promise<SyncResult> {
+export function syncReminders(notifier: Notifier, doc: AppStateDoc, clock: Clock): Promise<SyncResult> {
+  const run = (queues.get(notifier) ?? Promise.resolve()).then(() => syncNow(notifier, doc, clock))
+  queues.set(notifier, run)
+  return run
+}
+
+async function syncNow(notifier: Notifier, doc: AppStateDoc, clock: Clock): Promise<SyncResult> {
   try {
     if (!doc.settings.reminder.enabled) {
       await notifier.replaceAll([], '')

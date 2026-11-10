@@ -101,15 +101,26 @@ export function extraQueue(doc: AppStateDoc, full: LevelBank, today: string, man
 }
 
 // S9 複習：本等級到期單字＋待複習錯題；題庫裡找不到的 ID 列為不可用（保留紀錄，不刪除）。
-export function reviewQueue(doc: AppStateDoc, bank: LevelBank, today: string) {
+// 傳入 manifest 時套用購買限制：未開放課的題目列為 locked（紀錄保留，購買後可複習）。
+export function reviewQueue(doc: AppStateDoc, fullBank: LevelBank, today: string, manifest?: BankManifest) {
+  const bank = manifest ? studyBank(doc, fullBank, manifest) : fullBank
   const level = doc.learning.level,
     s = doc.learning
   const refs = new Map<string, StudyItemRef>()
   for (const sc of Object.values(s.schedules)) if (sc.ref.level === level && sc.dueOn <= today) refs.set(itemKey(sc.ref), sc.ref)
   for (const m of Object.values(s.mistakes)) if (m.ref.level === level && m.pending) refs.set(itemKey(m.ref), m.ref)
   const items: QuizItem[] = [],
-    unavailable: StudyItemRef[] = []
+    unavailable: StudyItemRef[] = [],
+    locked: StudyItemRef[] = []
+  const inBank = (b: LevelBank, ref: StudyItemRef) =>
+    ref.kind === 'reading'
+      ? !!b.reading.find((a) => a.id === ref.articleId)?.questions.some((x) => x.id === ref.id)
+      : (b[ref.kind] as Item[]).some((x) => idOf(ref.kind, x) === ref.id)
   for (const ref of orderRefs(s, [...refs.values()], today)) {
+    if (bank !== fullBank && !inBank(bank, ref) && inBank(fullBank, ref)) {
+      locked.push(ref)
+      continue
+    }
     if (ref.kind === 'reading') {
       const article = bank.reading.find((a) => a.id === ref.articleId),
         q = article?.questions.find((x) => x.id === ref.id)
@@ -122,7 +133,7 @@ export function reviewQueue(doc: AppStateDoc, bank: LevelBank, today: string) {
     if (!it) unavailable.push(ref)
     else items.push(toQuiz(ref.kind, it, level, bank, ref.kind === 'vocab' && s.schedules[itemKey(ref)] ? 'pronunciation' : 'flashcard', today))
   }
-  return { items, unavailable }
+  return { items, unavailable, locked }
 }
 
 // S7／S8 的課：依 manifest 的課表取題（只取題庫裡存在的）。

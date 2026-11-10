@@ -3,6 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useRef, useState } from 'react'
 import { AccessibilityInfo, Alert, View } from 'react-native'
 import type { LevelBank } from '../../data/bank'
+import { lessonAccess } from '../../domain/access'
 import { dayKey, type StudyKind } from '../../domain/learning/types'
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
@@ -42,9 +43,14 @@ function build(src: string, p: Params, bank: LevelBank, deps: ReturnType<typeof 
     return { items: q.items, repaired }
   }
   if (src === 'extra') return { items: extraQueue(doc(), bank, today, m).items, repaired: false }
-  if (src === 'review') return { items: reviewQueue(doc(), bank, today).items, repaired: false }
-  const level = doc().learning.level
-  return { items: lessonQueue(bank, m, level, p.kind ?? 'grammar', Number(p.lesson ?? 1), p.vmode ?? 'flashcard', today), repaired: false }
+  if (src === 'review') return { items: reviewQueue(doc(), bank, today, m).items, repaired: false }
+  const level = doc().learning.level,
+    lessonNo = Number(p.lesson ?? 1)
+  // 課表以外的入口（例如深連結）也要套用購買限制：未開放的課不出題。
+  const { entitlement, meta } = doc()
+  const access = lessonAccess({ free: m.levels[level].free, lessonNo, owned: entitlement.owned, today, firstOpenDate: meta.firstOpenDate })
+  if (access !== 'open') return { items: [], repaired: false }
+  return { items: lessonQueue(bank, m, level, p.kind ?? 'grammar', lessonNo, p.vmode ?? 'flashcard', today), repaired: false }
 }
 
 function Run({ bank }: { bank: LevelBank }) {
