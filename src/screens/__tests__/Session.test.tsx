@@ -150,3 +150,12 @@ test('讀音測驗：題目是單字、選項是讀音', async () => {
   await fireEvent.press(screen.getByRole('button', { name: v.r }))
   expect(await screen.findByText('+10 XP')).toBeOnTheScreen()
 })
+
+test('今日修行：建立計畫不在 render 期間寫入 store（避免 React「render 中更新其他元件」錯誤）', async () => {
+  const err = jest.spyOn(console, 'error').mockImplementation(() => {})
+  await renderApp(makeServices({ doc: readyDoc() }), '/session')
+  await screen.findByText(/／/)
+  const renderPhase = err.mock.calls.filter((c) => String(c[0]).includes('while rendering a different component'))
+  err.mockRestore()
+  expect(renderPhase).toEqual([])
+})

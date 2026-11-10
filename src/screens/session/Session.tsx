@@ -1,6 +1,6 @@
 // S3 修行（全螢幕模態）→ S4 結果。題目在進入時固定；中止要確認，已提交的作答保留。
 import { useLocalSearchParams, useRouter } from 'expo-router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AccessibilityInfo, Alert, View } from 'react-native'
 import type { LevelBank } from '../../data/bank'
 import { lessonAccess } from '../../domain/access'
@@ -61,8 +61,15 @@ function Run({ bank }: { bank: LevelBank }) {
   const src = params.src ?? 'today'
   const today = useToday()
   const router = useRouter()
-  const [{ items, repaired }] = useState(() => build(src, params, bank, services, today))
-  const [started, setStarted] = useState(!repaired)
+  const [built, setBuilt] = useState<ReturnType<typeof build> | null>(null)
+  // 建立今日計畫會寫入 store；在 render 期間做會讓其他訂閱元件於 render 中更新，所以放到 effect。
+  useEffect(() => {
+    setBuilt(build(src, params, bank, services, today))
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- 一次修行只取一次題
+  }, [])
+  const { items, repaired } = built ?? { items: [], repaired: false }
+  const [confirmed, setConfirmed] = useState(false)
+  const started = !repaired || confirmed
   const [index, setIndex] = useState(0)
   const [phase, setPhase] = useState<'question' | 'result'>('question')
   const log = useRef<SessionLog>({ answers: [], goalCompleted: false, ceremony: null }).current
@@ -103,6 +110,13 @@ function Run({ bank }: { bank: LevelBank }) {
 
   if (phase === 'result') return <Result log={log} bank={bank} today={today} src={src} />
 
+  if (!built)
+    return (
+      <Screen modal>
+        <Skeleton label="題目載入中" />
+      </Screen>
+    )
+
   if (!items.length)
     return (
       <Screen modal>
@@ -119,7 +133,7 @@ function Run({ bank }: { bank: LevelBank }) {
     return (
       <Screen modal>
         <EmptyState title="這組題目已更新，已幫你換成新的題目" message="原本做過的進度都保留。">
-          <Button label="開始" onPress={() => setStarted(true)} />
+          <Button label="開始" onPress={() => setConfirmed(true)} />
         </EmptyState>
       </Screen>
     )
