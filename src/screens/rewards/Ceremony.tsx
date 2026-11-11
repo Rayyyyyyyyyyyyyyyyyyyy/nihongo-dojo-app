@@ -5,7 +5,7 @@ import { useEffect, useRef, type ComponentRef } from 'react'
 import { AccessibilityInfo, Animated, findNodeHandle, Pressable, View } from 'react-native'
 import { useServices } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Screen } from '../../ui'
+import { AppText, Belt, Button, Screen } from '../../ui'
 import { useDoc, goBack } from '../hooks'
 import { RANKS } from '../names'
 
@@ -64,26 +64,8 @@ export default function Ceremony() {
               </AppText>
             </View>
           </Animated.View>
-          <Animated.View
-            accessible
-            accessibilityRole="image"
-            accessibilityLabel={`${info.name}的帶`}
-            style={{
-              width: 240,
-              height: 20,
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              gap: 6,
-              paddingRight: 12,
-              backgroundColor: t.belt[info.belt],
-              borderWidth: 1.5,
-              borderColor: t.colors.ceremonyOutline,
-              transform: [{ scaleX: belt }],
-            }}
-          >
-            {Array.from({ length: info.stripes }, (_, i) => (
-              <View key={i} style={{ width: 6, backgroundColor: t.belt.stripe }} />
-            ))}
+          <Animated.View style={{ transform: [{ scaleX: belt }] }}>
+            <Belt rank={rank} width={240} onCeremony />
           </Animated.View>
           <AppText variant="title1" color="onCeremony" accessibilityRole="header" style={{ fontFamily: t.font.display.family, fontSize: 40, lineHeight: 48 }}>
             {info.name}

@@ -1,5 +1,7 @@
 export { AppText } from './Text'
 export { Button, type ButtonVariant } from './Button'
+export { Belt } from './Belt'
+export { ChestIcon } from './ChestIcon'
 export { Card } from './Card'
 export { Option, type OptionState } from './Option'
 export { ProgressBar } from './ProgressBar'
