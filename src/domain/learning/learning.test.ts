@@ -320,9 +320,20 @@ describe('掌握只來自讀音測驗；翻卡自評只影響排程', () => {
     expect(Object.hasOwn(s.vKnown.n3, '水')).toBe(true)
     expect(Object.hasOwn(s.vLearning.n3, '水')).toBe(false)
     expect(Object.keys(s.mistakes)).toEqual([])
-    expect(Object.values(s.schedules)[0].stage).toBe(0)
+    expect(Object.values(s.schedules)[0].stage).toBe(1) // 已排程：不改
     const r = recordResult(defaultState(), flash('山', true, 'f2'), at)
     expect(Object.hasOwn(r.vKnown.n3, '山')).toBe(false)
     expect(Object.values(r.schedules)[0].stage).toBe(1)
+  })
+  it('已排程的字翻卡自評不改排程；新字翻卡記得才建立排程', () => {
+    const scheduled = recordResult(defaultState(), pron('水', true, 'p1'), at)
+    const before = Object.values(scheduled.schedules)[0]
+    for (const [ok, id] of [[false, 'f1'], [true, 'f2']] as const) {
+      const s = recordResult(scheduled, flash('水', ok, id), at)
+      expect(Object.values(s.schedules)[0]).toEqual(before)
+    }
+    expect(Object.values(recordResult(defaultState(), flash('山', true, 'f3'), at).schedules)[0].stage).toBe(1)
+    // 新字「還不熟」不建立排程：否則「先翻卡還不熟、同日讀音答對」會讓排程落後一級，多領一次升級 XP
+    expect(recordResult(defaultState(), flash('山', false, 'f4'), at).schedules).toEqual({})
   })
 })

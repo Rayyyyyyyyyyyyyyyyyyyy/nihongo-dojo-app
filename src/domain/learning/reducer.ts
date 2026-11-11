@@ -110,7 +110,8 @@ export function recordResult(
     old.pending = false
     old.lastResultAt = result.at
   }
-  if (kind === 'vocab') next.schedules[key] = scheduleResult(next.schedules[key], input, date)
+  // 已排程的字由讀音測驗排程；翻卡只替新字記得時建立排程（還不熟不排，避免落後一級多領升級 XP）。
+  if (kind === 'vocab' && (input.mode !== 'flashcard' || (!next.schedules[key] && input.correct))) next.schedules[key] = scheduleResult(next.schedules[key], input, date)
   const day = summary(next, date, level)
   put(day.items, key)
   day.correctItems = day.correctItems.filter((x) => x !== key)

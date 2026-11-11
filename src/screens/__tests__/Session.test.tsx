@@ -140,7 +140,7 @@ test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用�
   expect(screen.getByText('1／10')).toBeOnTheScreen()
   await fireEvent.press(screen.getByRole('button', { name: '看答案' }))
   expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
-  expect(screen.getByText('今天的複習會再出現')).toBeOnTheScreen()
+  expect(screen.getByText('之後還會再當新字出現')).toBeOnTheScreen()
   expect(screen.getByText('隔幾天再複習')).toBeOnTheScreen()
   await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
   expect(await screen.findByText('記下了')).toBeOnTheScreen()
@@ -162,11 +162,11 @@ test('單字翻卡整組結束：結果頁不顯示答對率、今天已計分�
   expect(screen.queryByText(/答對|今天已計分|錯題|現在複習/)).toBeNull()
 })
 
-test('單字翻卡：還不熟顯示「沒關係，很快會再見到」', async () => {
+test('單字翻卡：還不熟顯示「沒關係，之後還會再見到」', async () => {
   await renderApp(makeServices({ doc: readyDoc() }), '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
   await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
   await fireEvent.press(screen.getByRole('button', { name: /^還不熟/ }))
-  expect(await screen.findByText('沒關係，很快會再見到')).toBeOnTheScreen()
+  expect(await screen.findByText('沒關係，之後還會再見到')).toBeOnTheScreen()
 })
 
 test('讀音測驗：題目是單字、選項是讀音', async () => {

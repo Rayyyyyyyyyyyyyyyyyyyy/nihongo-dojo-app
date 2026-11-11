@@ -18,8 +18,8 @@ const HONEST_NON_VOCAB = Array.from({ length: 60 }, (_, i) => 10 + 3 * i)
 const HORIZON = 60
 const START = '2026-11-01'
 const ANSWERS = ['', 'C', 'W', 'CW', 'WC']
-// F／f：翻卡自評記得／還不熟（只影響排程、0 XP）。已知缺口：加入 'fC'（先翻卡還不熟、同日再讀音答對）最佳 XP 會高出誠實最佳（例：第 28 天 40 對 28），尚未處理，故不列入。
-const WITH_FLASH = [...ANSWERS, 'F', 'f', 'FC', 'CF', 'Cf']
+// F／f：翻卡自評記得／還不熟（0 XP；已排程的字不改排程、新字還不熟不排程）
+const WITH_FLASH = [...ANSWERS, 'F', 'f', 'FC', 'CF', 'fC', 'Cf']
 
 type Kind = 'vocab' | 'grammar'
 // snap：某天作答後匯出的 v5 碼，解碼一次後保留（之後每天都可以重新匯入這份舊碼）
