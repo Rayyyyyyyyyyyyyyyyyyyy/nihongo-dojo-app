@@ -88,3 +88,26 @@ test('段位與等級切換有 VoiceOver 標籤；到期項目出現在複習卡
   expect(screen.getByRole('button', { name: 'N5' })).toBeSelected()
   expect(screen.getByLabelText('段位 白帶，累積 3 XP')).toBeOnTheScreen()
 })
+
+test('桐箱卡三態：還差 N 題／可以開了＋按鈕／今天已開；卡內圖示不重複朗讀', async () => {
+  const s = makeServices({ doc: readyDoc() })
+  await renderApp(s)
+  expect(await screen.findByText('再 18 題就能開')).toBeOnTheScreen()
+  expect(screen.queryByLabelText('桐箱，還沒解鎖，再 18 題')).not.toBeOnTheScreen()
+  expect(screen.queryByRole('button', { name: '開寶箱' })).not.toBeOnTheScreen()
+
+  const s2 = makeServices({ doc: answerAll(planned()) })
+  await renderApp(s2)
+  expect(await screen.findByText('可以開了')).toBeOnTheScreen()
+    expect(screen.getByRole('button', { name: '開寶箱' })).toBeOnTheScreen()
+  s2.store.openChest()
+  expect(await screen.findByText(/今天已開，明天再來/)).toBeOnTheScreen()
+  expect(screen.queryByRole('button', { name: '開寶箱' })).not.toBeOnTheScreen()
+})
+
+test('桐箱卡退回文案：題庫載入失敗時不寫題數', async () => {
+  await renderApp(makeServices({ doc: readyDoc(), load: () => { throw Error('bad') } }))
+  expect(await screen.findByText('題庫載入失敗')).toBeOnTheScreen()
+  expect(screen.getByText('完成今日目標就能開')).toBeOnTheScreen()
+  expect(screen.queryByText(/題就能開/)).not.toBeOnTheScreen()
+})

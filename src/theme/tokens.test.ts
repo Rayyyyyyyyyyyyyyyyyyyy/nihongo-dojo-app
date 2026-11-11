@@ -16,7 +16,7 @@ test('tokens.ts 與 tokens.json 值一致', () => {
   expect(tokens).toEqual(expected);
 });
 
-test('contrastPairs 淺深兩種外觀＋fixedPairs 共 63 項全部達標（同 contrast.py）', () => {
+test('contrastPairs 淺深兩種外觀＋fixedPairs 共 71 項全部達標（同 contrast.py）', () => {
   const failures: string[] = [];
   let checked = 0;
   for (const mode of ['light', 'dark'] as const) {
@@ -31,7 +31,7 @@ test('contrastPairs 淺深兩種外觀＋fixedPairs 共 63 項全部達標（同
     checked++;
     if (contrastRatio(fg, bg) < min) failures.push(label);
   }
-  expect(checked).toBe(63);
+  expect(checked).toBe(71);
   expect(failures).toEqual([]);
 });
 

@@ -9,6 +9,7 @@ import { Belt, ChestIcon, Seal } from '../../ui'
 import { makeServices, readyDoc, renderApp } from '../../test/harness'
 import { Result, type SessionLog } from '../session/Result'
 import { fixtureBank } from '../../test/fixtures'
+import { tokens } from '../../theme/tokens'
 
 const wrap = (ui: React.ReactElement) => <ThemeProvider>{ui}</ThemeProvider>
 const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten(el.props.style as never) as Record<string, unknown>
@@ -18,9 +19,16 @@ afterEach(() => jest.restoreAllMocks())
 describe('Belt', () => {
   test('依段位上色並帶段位名標籤；黑帶有朱線', async () => {
     await render(wrap(<><Belt rank={3} /><Belt rank={9} /></>))
-    expect(flat(screen.getByLabelText('橙帶的帶'))).toMatchObject({ backgroundColor: '#E07A1F' })
+    expect(flat(screen.getAllByTestId('belt-tail')[0])).toMatchObject({ backgroundColor: tokens.color.belt.orange })
     expect(screen.getByLabelText('二段的帶')).toBeOnTheScreen()
     expect(screen.getAllByTestId('belt-stripe')).toHaveLength(2)
+  })
+  test('結構：填色帶身（白帶也不是透明）、中央結、兩條帶尾', async () => {
+    await render(wrap(<Belt rank={1} />))
+    expect(flat(screen.getByLabelText('白帶的帶')).width).toBe(160)
+    expect(screen.getByTestId('belt-knot')).toBeOnTheScreen()
+    expect(screen.getAllByTestId('belt-tail')).toHaveLength(2)
+    expect(flat(screen.getAllByTestId('belt-tail')[0]).backgroundColor).toBe(tokens.color.belt.white)
   })
 })
 
@@ -29,6 +37,25 @@ describe('ChestIcon', () => {
     await render(wrap(<><ChestIcon /><ChestIcon open /></>))
     expect(screen.getByLabelText('桐箱')).toBeOnTheScreen()
     expect(screen.getByLabelText('打開的桐箱')).toBeOnTheScreen()
+  })
+  test('上鎖態：標籤讀出還沒解鎖與剩餘題數，綁著紐、沒有鎖', async () => {
+    await render(wrap(<ChestIcon locked remaining={5} />))
+    expect(screen.getByLabelText('桐箱，還沒解鎖，再 5 題')).toBeOnTheScreen()
+    expect(screen.getByTestId('chest-cord')).toBeOnTheScreen()
+    expect(screen.queryByTestId('chest-lock')).not.toBeOnTheScreen()
+  })
+  test('上鎖態沒有題數或為 0 時標籤不寫「再 N 題」；decorative 時隱藏', async () => {
+    await render(wrap(<><ChestIcon locked /><ChestIcon locked remaining={0} /></>))
+    expect(screen.getAllByLabelText('桐箱，還沒解鎖')).toHaveLength(2)
+    await render(wrap(<ChestIcon locked remaining={3} decorative />))
+    expect(screen.queryByLabelText('桐箱，還沒解鎖，再 3 題')).not.toBeOnTheScreen()
+  })
+  test('關著時用朱色紐綁、蓋頂打結；打開時紐鬆開垂下', async () => {
+    await render(wrap(<ChestIcon />))
+    expect(flat(screen.getByTestId('chest-cord')).backgroundColor).toBe(tokens.color.light.kiriCord)
+    expect(screen.getByTestId('chest-knot')).toBeOnTheScreen()
+    await render(wrap(<ChestIcon open />))
+    expect(screen.getByTestId('chest-cord-loose')).toBeOnTheScreen()
   })
   test('減少動態：開啟時蓋子直接在打開位置', async () => {
     jest.spyOn(AccessibilityInfo, 'isReduceMotionEnabled').mockResolvedValue(true)

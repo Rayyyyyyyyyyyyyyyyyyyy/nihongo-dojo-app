@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { AccessibilityInfo, Animated, View } from 'react-native'
 import type { ChestResult } from '../../domain/rewards'
 import { useServices } from '../../state/AppProvider'
+import { studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, ChestIcon, EmptyState, Screen } from '../../ui'
-import { useDoc, useToday, goBack } from '../hooks'
+import { todayProgress } from '../dojo/selectors'
+import { useDoc, useLevelBank, useToday, goBack } from '../hooks'
 import { chestText } from '../names'
 
 export const CHEST_MS = 800
@@ -38,6 +40,27 @@ function Box({ open, result }: { open: boolean; result: ChestResult | null }) {
   )
 }
 
+// 鎖定態才載題庫算剩餘題數。
+function Locked() {
+  const doc = useDoc()
+  const today = useToday()
+  const router = useRouter()
+  const { bank: banks } = useServices()
+  const bank = useLevelBank(doc.learning.level)
+  const progress = bank.status === 'ready' ? todayProgress(doc, studyBank(doc, bank.bank, banks.manifest), today) : null
+  const remaining = progress ? progress.total - progress.done : undefined
+  return (
+    <Screen modal>
+      <EmptyState title="完成今日目標就能開" message={remaining ? `再 ${remaining} 題` : undefined}>
+        <View style={{ alignItems: 'center' }}>
+          <ChestIcon decorative locked remaining={remaining} />
+        </View>
+        <Button label="回道場" onPress={() => goBack(router)} />
+      </EmptyState>
+    </Screen>
+  )
+}
+
 export default function Chest() {
   const t = useTheme()
   const doc = useDoc()
@@ -66,14 +89,7 @@ export default function Chest() {
     else goBack(router)
   }
 
-  if (!goal && !result)
-    return (
-      <Screen modal>
-        <EmptyState title="完成今日目標就能開" message="桐箱每天一個，是完成今日修行的回饋。">
-          <Button label="回道場" onPress={() => goBack(router)} />
-        </EmptyState>
-      </Screen>
-    )
+  if (!goal && !result) return <Locked />
   return (
     <Screen modal>
       <AppText variant="title1" accessibilityRole="header" style={{ fontFamily: t.font.display.family, textAlign: 'center' }}>
