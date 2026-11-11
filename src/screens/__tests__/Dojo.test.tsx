@@ -88,3 +88,20 @@ test('段位與等級切換有 VoiceOver 標籤；到期項目出現在複習卡
   expect(screen.getByRole('button', { name: 'N5' })).toBeSelected()
   expect(screen.getByLabelText('段位 白帶，累積 3 XP')).toBeOnTheScreen()
 })
+
+test('桐箱卡三態：還差 N 題（上鎖圖示）／可以開了＋按鈕／今天已開', async () => {
+  const s = makeServices({ doc: readyDoc() })
+  await renderApp(s)
+  expect(await screen.findByText('再 18 題就能開')).toBeOnTheScreen()
+  expect(screen.getByLabelText('桐箱，還沒解鎖，再 18 題')).toBeOnTheScreen()
+  expect(screen.queryByRole('button', { name: '開寶箱' })).not.toBeOnTheScreen()
+
+  const s2 = makeServices({ doc: answerAll(planned()) })
+  await renderApp(s2)
+  expect(await screen.findByText('可以開了')).toBeOnTheScreen()
+  expect(screen.getByLabelText('桐箱')).toBeOnTheScreen()
+  expect(screen.getByRole('button', { name: '開寶箱' })).toBeOnTheScreen()
+  s2.store.openChest()
+  expect(await screen.findByLabelText('打開的桐箱')).toBeOnTheScreen()
+  expect(screen.queryByRole('button', { name: '開寶箱' })).not.toBeOnTheScreen()
+})

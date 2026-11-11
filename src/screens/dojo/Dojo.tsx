@@ -5,7 +5,7 @@ import { View } from 'react-native'
 import { useServices } from '../../state/AppProvider'
 import { currentStreak, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Belt, Button, Card, EmptyState, ErrorState, ListRow, ProgressBar, Screen, Seal, Segmented, Skeleton } from '../../ui'
+import { AppText, Belt, Button, Card, ChestIcon, EmptyState, ErrorState, ListRow, ProgressBar, Screen, Seal, Segmented, Skeleton } from '../../ui'
 import { useDoc, useLevelBank, useNavLock, useToday } from '../hooks'
 import { chestText, LEVEL_OPTIONS, rankProgress } from '../names'
 import { reviewCounts, todayProgress, yesterday } from './selectors'
@@ -38,6 +38,7 @@ export default function Dojo() {
   const goalDone = doc.rewards.goalCompletedDates.includes(today)
   const opened = doc.rewards.chest.lastOpenedDate === today
   const todays = doc.rewards.chest.log.find((e) => e.date === today)?.result
+  const remaining = progress ? progress.total - progress.done : undefined
   const rank = rankProgress(doc.rewards.xpTotal)
   const minutes = doc.settings.dailyMinutes
 
@@ -124,17 +125,20 @@ export default function Dojo() {
       )}
 
       <Card accessibilityLabel="寶箱">
-        <AppText variant="headline">桐箱</AppText>
-        {opened && todays ? (
-          <AppText color="ink2">今天已開，明天再來。今天拿到：{chestText(todays).name}</AppText>
-        ) : goalDone ? (
-          <>
-            <AppText color="ink2">今天已完成，可以開寶箱</AppText>
-            <Button label="開寶箱" onPress={() => go(() => router.push('/chest'))} />
-          </>
-        ) : (
-          <AppText color="ink2">完成今日目標就能開</AppText>
-        )}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: t.space[3] }}>
+          <ChestIcon width={64} locked={!goalDone && !opened} open={opened} remaining={remaining} />
+          <View style={{ flex: 1, gap: t.space[1] }}>
+            <AppText variant="headline">桐箱</AppText>
+            {opened && todays ? (
+              <AppText color="ink2">今天已開，明天再來。今天拿到：{chestText(todays).name}</AppText>
+            ) : goalDone ? (
+              <AppText color="ink2">可以開了</AppText>
+            ) : (
+              <AppText color="ink2" numeric>{remaining ? `再 ${remaining} 題就能開` : '完成今日目標就能開'}</AppText>
+            )}
+          </View>
+        </View>
+        {goalDone && !opened && <Button label="開寶箱" onPress={() => go(() => router.push('/chest'))} />}
       </Card>
 
       <Card onPress={() => router.navigate('/me')} accessibilityLabel={`段位 ${rank.info.name}，累積 ${doc.rewards.xpTotal} XP`} accessibilityHint="到我的分頁看段位">

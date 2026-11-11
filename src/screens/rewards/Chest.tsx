@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { AccessibilityInfo, Animated, View } from 'react-native'
 import type { ChestResult } from '../../domain/rewards'
 import { useServices } from '../../state/AppProvider'
+import { studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
 import { AppText, Button, Card, ChestIcon, EmptyState, Screen } from '../../ui'
-import { useDoc, useToday, goBack } from '../hooks'
+import { todayProgress } from '../dojo/selectors'
+import { useDoc, useLevelBank, useToday, goBack } from '../hooks'
 import { chestText } from '../names'
 
 export const CHEST_MS = 800
@@ -42,7 +44,8 @@ export default function Chest() {
   const t = useTheme()
   const doc = useDoc()
   const today = useToday()
-  const { store } = useServices()
+  const { store, bank: banks } = useServices()
+  const bank = useLevelBank(doc.learning.level)
   const router = useRouter()
   const params = useLocalSearchParams<{ rank?: string; passed?: string }>()
   const [result, setResult] = useState<ChestResult | null>(() =>
@@ -51,6 +54,8 @@ export default function Chest() {
   const [already] = useState(result !== null)
   const leaving = useRef(false)
   const goal = doc.rewards.goalCompletedDates.includes(today)
+  const progress = bank.status === 'ready' ? todayProgress(doc, studyBank(doc, bank.bank, banks.manifest), today) : null
+  const remaining = progress ? progress.total - progress.done : undefined
 
   const open = () => {
     const r = store.openChest() // 先提交，重開 App 不會換內容
@@ -69,7 +74,8 @@ export default function Chest() {
   if (!goal && !result)
     return (
       <Screen modal>
-        <EmptyState title="完成今日目標就能開" message="桐箱每天一個，是完成今日修行的回饋。">
+        <EmptyState title="完成今日目標就能開" message={`桐箱每天一個，是完成今日修行的回饋。${remaining ? `再 ${remaining} 題。` : ''}`}>
+          <ChestIcon locked remaining={remaining} />
           <Button label="回道場" onPress={() => goBack(router)} />
         </EmptyState>
       </Screen>
