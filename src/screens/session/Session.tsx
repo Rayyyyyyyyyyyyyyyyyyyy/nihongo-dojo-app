@@ -76,15 +76,16 @@ function Run({ bank }: { bank: LevelBank }) {
   const combo = useRef(0)
 
   const submit: Submit = (ref, mode, correct, attemptId) => {
+    const fresh = mode === 'flashcard' && !store.getState().doc!.learning.schedules[JSON.stringify([ref.level, ref.kind, ref.id])]
     const outcome = store.submitAnswer({ attemptId, ref, mode, correct }, bank)
     if (!outcome) return null
-    log.answers.push({ key: JSON.stringify([ref.level, ref.kind, ref.id]), correct, xp: outcome.xp, flash: mode === 'flashcard' })
+    log.answers.push({ key: JSON.stringify([ref.level, ref.kind, ref.id]), correct, xp: outcome.xp, flash: mode === 'flashcard', learned: fresh && correct })
     if (outcome.goalCompleted) log.goalCompleted = true
     if (outcome.ceremony)
       log.ceremony = { rank: outcome.ceremony.rank, passed: [...(log.ceremony?.passed ?? []), ...outcome.ceremony.passed] }
     if (mode === 'flashcard') {
       // 翻卡自評不是對錯：不震動、不出音效、不算連擊。
-      AccessibilityInfo.announceForAccessibility(correct ? '記下了' : '沒關係，很快會再見到')
+      AccessibilityInfo.announceForAccessibility(correct ? '記下了' : fresh ? '沒關係，之後還會再見到' : '沒關係，複習時再試試')
       return { xp: 0, combo: 0 }
     }
     combo.current = correct ? combo.current + 1 : 0

@@ -14,7 +14,7 @@ import { useDoc, goBack } from '../hooks'
 import { rankProgress } from '../names'
 
 export interface SessionLog {
-  answers: Array<{ key: string; correct: boolean; xp: 0 | 3 | 10 | 15; flash?: boolean }>
+  answers: Array<{ key: string; correct: boolean; xp: 0 | 3 | 10 | 15; flash?: boolean; learned?: boolean }>
   goalCompleted: boolean
   ceremony: { rank: number; passed: number[] } | null
 }
@@ -94,6 +94,7 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   // 翻卡自評不是對錯：不進答對率、今天已計分、錯題數。
   const graded = log.answers.filter((a) => !a.flash)
   const flashCount = log.answers.length - graded.length
+  const learned = log.answers.filter((a) => a.learned).length // 翻卡記得、且進題時還沒排程的新字
   const total = log.answers.reduce((n, a) => n + a.xp, 0)
   const count = (xp: number) => graded.filter((a) => a.xp === xp).length
   const correct = graded.filter((a) => a.correct).length
@@ -111,11 +112,13 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   const onContinue = () =>
     leave(() => (ceremony ? router.replace({ pathname: '/ceremony', params: ceremony }) : goBack(router)))
 
-  const xpLine = graded.length > 0 && (
+  const xpLine = (
     <>
-      <AppText variant="largeTitle" numeric style={{ textAlign: log.goalCompleted ? 'center' : undefined }} accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
-        +{total} XP
-      </AppText>
+      {graded.length > 0 && (
+        <AppText variant="largeTitle" numeric style={{ textAlign: log.goalCompleted ? 'center' : undefined }} accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
+          +{total} XP
+        </AppText>
+      )}
       {saveError && (
         <AppText variant="footnote" color="warn">
           尚未保存
@@ -136,7 +139,7 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
           </AppText>
         </>
       )}
-      {flashCount > 0 && <AppText numeric>認識了 {flashCount} 個新字</AppText>}
+      {flashCount > 0 && <AppText numeric>{learned > 0 ? `認識了 ${learned} 個新字` : `翻了 ${flashCount} 張卡`}</AppText>}
     </>
   )
 

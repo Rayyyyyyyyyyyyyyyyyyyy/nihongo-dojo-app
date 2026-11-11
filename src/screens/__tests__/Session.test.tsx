@@ -141,7 +141,7 @@ test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用�
   await fireEvent.press(screen.getByRole('button', { name: '看答案' }))
   expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
   expect(screen.getByText('之後還會再當新字出現')).toBeOnTheScreen()
-  expect(screen.getByText('隔幾天再複習')).toBeOnTheScreen()
+  expect(screen.getByText('明天再複習')).toBeOnTheScreen()
   await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
   expect(await screen.findByText('記下了')).toBeOnTheScreen()
   expect(screen.getByText('之後複習會考讀音，考過就在收集冊掛上這張札')).toBeOnTheScreen()
@@ -150,7 +150,7 @@ test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用�
   expect(Object.keys(s.store.getState().doc!.learning.vKnown.n5)).toEqual([])
 })
 
-test('單字翻卡整組結束：結果頁不顯示答對率、今天已計分、錯題，只說認識了幾個新字', async () => {
+test('單字翻卡整組結束：結果頁不顯示答對率、今天已計分、錯題，只說認識了幾個新字（還不熟的不算）', async () => {
   await renderApp(makeServices({ doc: readyDoc() }), '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
   for (let i = 0; i < 10; i++) {
     await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
@@ -158,7 +158,7 @@ test('單字翻卡整組結束：結果頁不顯示答對率、今天已計分�
     await fireEvent.press(screen.getByRole('button', { name: i === 9 ? '看結果' : '下一題' }))
   }
   expect(await screen.findByText('修行結果')).toBeOnTheScreen()
-  expect(screen.getByText('認識了 10 個新字')).toBeOnTheScreen()
+  expect(screen.getByText('認識了 9 個新字')).toBeOnTheScreen()
   expect(screen.queryByText(/答對|今天已計分|錯題|現在複習/)).toBeNull()
 })
 
@@ -167,6 +167,64 @@ test('單字翻卡：還不熟顯示「沒關係，之後還會再見到」', as
   await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
   await fireEvent.press(screen.getByRole('button', { name: /^還不熟/ }))
   expect(await screen.findByText('沒關係，之後還會再見到')).toBeOnTheScreen()
+})
+
+const flashLesson = '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard'
+async function flashAll(grade: RegExp) {
+  for (let i = 0; i < 10; i++) {
+    await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+    await fireEvent.press(screen.getByRole('button', { name: grade }))
+    await fireEvent.press(screen.getByRole('button', { name: i === 9 ? '看結果' : '下一題' }))
+  }
+  await screen.findByText('修行結果')
+}
+
+test('單字翻卡整組都還不熟：結果頁不說「認識了」，只說翻了幾張卡', async () => {
+  await renderApp(makeServices({ doc: readyDoc() }), flashLesson)
+  await flashAll(/^還不熟/)
+  expect(screen.getByText('翻了 10 張卡')).toBeOnTheScreen()
+  expect(screen.queryByText(/認識了/)).toBeNull()
+})
+
+test('單字翻卡整組結束且保存失敗：「尚未保存」仍顯示', async () => {
+  const s = makeServices({ doc: readyDoc() })
+  await renderApp(s, flashLesson)
+  s.files.failWrites = true
+  await flashAll(/^記得/)
+  expect(screen.getByText('尚未保存')).toBeOnTheScreen()
+})
+
+test('翻卡回饋依情況為真：新字還不熟不說會考讀音', async () => {
+  await renderApp(makeServices({ doc: readyDoc() }), flashLesson)
+  await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+  await fireEvent.press(screen.getByRole('button', { name: /^還不熟/ }))
+  expect(await screen.findByText('沒關係，之後還會再見到')).toBeOnTheScreen()
+  expect(screen.getByText('之後還會再當新字出現')).toBeOnTheScreen()
+  expect(screen.queryByText(/考讀音/)).toBeNull()
+})
+
+describe('已排程的字翻卡', () => {
+  const scheduled = () =>
+    readyDoc((d) => ({
+      ...d,
+      learning: {
+        ...d.learning,
+        schedules: Object.fromEntries(
+          bank.vocab.map((v) => {
+            const ref = { level: 'n5' as const, kind: 'vocab' as const, id: v.w }
+            return [JSON.stringify([ref.level, ref.kind, ref.id]), { ref, stage: 1, dueOn: '2026-11-01', lastScheduledOn: '2026-10-31', lastResult: true }]
+          }),
+        ),
+      },
+    }))
+  test('小字與回饋都說複習時間不變，不說會考讀音', async () => {
+    await renderApp(makeServices({ doc: scheduled() }), flashLesson)
+    await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+    expect(screen.getAllByText('複習時間不變')).toHaveLength(2)
+    await fireEvent.press(screen.getByRole('button', { name: /^還不熟/ }))
+    expect(await screen.findByText('沒關係，複習時再試試')).toBeOnTheScreen()
+    expect(screen.queryByText(/考讀音|之後還會再當新字/)).toBeNull()
+  })
 })
 
 test('讀音測驗：題目是單字、選項是讀音', async () => {

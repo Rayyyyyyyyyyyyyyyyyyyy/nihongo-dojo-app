@@ -165,16 +165,16 @@ export function Flashcard({ item, submit, onNext, last }: Props<'flashcard'>) {
           <View style={{ flex: 1, gap: t.space[1] }}>
             <Button label="記得" onPress={() => grade(true)} />
             <AppText variant="footnote" color="ink2" style={{ textAlign: 'center' }}>
-              {scheduled ? '複習時間不變' : '隔幾天再複習'}
+              {scheduled ? '複習時間不變' : '明天再複習'}
             </AppText>
           </View>
         </View>
       ) : (
         <Card tone="surface2" accessibilityLiveRegion="polite">
           <AppText variant="headline">{result.correct ? '記下了' : scheduled ? '沒關係，複習時再試試' : '沒關係，之後還會再見到'}</AppText>
-          {/* 使用者 2026-11-11：翻卡只認識，掌握來自之後的讀音測驗，要讓人知道下一步。 */}
+          {/* 使用者 2026-11-11：翻卡只認識，掌握來自之後的讀音測驗；說明要依這張卡實際會怎樣為真。 */}
           <AppText variant="footnote" color="ink2">
-            之後複習會考讀音，考過就在收集冊掛上這張札
+            {scheduled ? '複習時間不變' : result.correct ? '之後複習會考讀音，考過就在收集冊掛上這張札' : '之後還會再當新字出現'}
           </AppText>
         </Card>
       )}
