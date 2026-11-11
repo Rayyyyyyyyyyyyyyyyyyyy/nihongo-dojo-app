@@ -36,7 +36,7 @@ describe('每日份量依分鐘數（handoff §2.5）', () => {
     const p = plan(doc)
     let n = 0
     for (const ref of [...p.groups.vocab!.targets, ...p.groups.grammar!.targets, ...p.groups.listening!.targets])
-      doc = submitAnswer(doc, { attemptId: `a${++n}`, ref, mode: ref.kind === 'vocab' ? 'flashcard' : (ref.kind as 'grammar'), correct: true }, on(), bank).doc
+      doc = submitAnswer(doc, { attemptId: `a${++n}`, ref, mode: ref.kind === 'vocab' ? 'pronunciation' : (ref.kind as 'grammar'), correct: true }, on(), bank).doc
     expect(isGoalComplete(doc.learning, '2026-11-09', bank)).toBe(false)
   })
   test('當天改分鐘數不改已排好的今日任務', () => {

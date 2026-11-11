@@ -8,7 +8,7 @@ it('uses one target inspection for missing items, completion and resuming withou
   const ref = { level: 'n3', kind: 'vocab', id: '水' } as const
   const state = recordResult(
     defaultState(),
-    { ref, attemptId: 'water', mode: 'flashcard', correct: false },
+    { ref, attemptId: 'water', mode: 'pronunciation', correct: false },
     () => new Date('2026-10-16T12:00:00'),
   )
   const plan: DailyPlan = {
@@ -26,7 +26,7 @@ it('uses one target inspection for missing items, completion and resuming withou
   ]
   expect(inspectGroup(state, plan, 'vocab')).toMatchObject({
     done: 1,
-    total: 2,
+    total: 1,
     complete: false,
     missing: [],
     selected: [],
@@ -45,8 +45,8 @@ it('uses one target inspection for missing items, completion and resuming withou
   plan.groups.vocab = repaired
   expect(inspectGroup(state, plan, 'vocab', items)).toMatchObject({
     done: 1,
-    total: 2,
-    complete: false,
+    total: 1,
+    complete: true, // 沒排程的新字不列入目標題數
     missing: [],
     selected: [items[1]],
   })

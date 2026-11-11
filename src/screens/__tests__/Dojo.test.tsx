@@ -14,7 +14,7 @@ const targets = (d: ReturnType<typeof planned>) => {
 }
 const answerAll = (d: ReturnType<typeof planned>, refs = targets(d)) =>
   refs.reduce(
-    (doc, ref, i) => submitAnswer(doc, { attemptId: `t${i}`, ref, mode: ref.kind === 'vocab' ? 'flashcard' : (ref.kind as 'grammar'), correct: true }, clock, bank).doc,
+    (doc, ref, i) => submitAnswer(doc, { attemptId: `t${i}`, ref, mode: ref.kind === 'vocab' ? 'pronunciation' : (ref.kind as 'grammar'), correct: true }, clock, bank).doc,
     d,
   )
 
@@ -41,10 +41,10 @@ test('錯誤：題庫載入失敗顯示卡片內錯誤與重試，連勝與段�
   expect(await screen.findByRole('button', { name: '開始' })).toBeOnTheScreen()
 })
 
-test('恢復：今日任務已開始未完成時顯示「續做（已完成 n／18）」', async () => {
-  const d = answerAll(planned(), targets(planned()).slice(0, 2))
+test('恢復：今日任務已開始未完成時顯示「續做（已完成 n／8）」', async () => {
+  const d = answerAll(planned(), targets(planned()).slice(10, 12))
   await renderApp(makeServices({ doc: d }))
-  expect(await screen.findByRole('button', { name: '續做（已完成 2／18）' })).toBeOnTheScreen()
+  expect(await screen.findByRole('button', { name: '續做（已完成 2／8）' })).toBeOnTheScreen()
 })
 
 test('成功：今日目標完成顯示「今日修行完成」、加練與開寶箱', async () => {

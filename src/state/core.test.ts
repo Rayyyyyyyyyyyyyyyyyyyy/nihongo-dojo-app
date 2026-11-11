@@ -7,12 +7,14 @@ import {
   applyRestore,
   currentStreak,
   ensurePlan,
+  isGoalComplete,
   openChest,
   plannedReminders,
   refreshDay,
   shouldOfferReminder,
   submitAnswer,
 } from './core'
+import { todayProgress } from '../screens/dojo/selectors'
 import { createDoc, portable, type AppStateDoc } from './doc'
 
 const on = (day: string, hour = 12) => () => {
@@ -111,6 +113,54 @@ describe('今日任務完成 → recordGoalCompleted → 寶箱', () => {
     expect(openChest(doc, on('2026-11-01'))?.result).toEqual({ type: 'firstStamp' })
     // 加練不再回報完成
     expect(submitAnswer(doc, answer(targets[0]), on('2026-11-01'), bank).outcome?.goalCompleted).toBe(false)
+  })
+
+  describe('翻卡自評不計今日目標（2026-11-11 使用者決定）', () => {
+    const flash = (ref: StudyItemRef, correct = true): LearningInput => ({ ...answer(ref, correct), mode: 'flashcard' })
+    const day1 = () =>
+      ensurePlan({ ...fresh(), learning: { ...fresh().learning, level: 'n5' } }, 'listening', on('2026-11-01'), bank, bankManifest)
+    const progress = (doc: AppStateDoc) => todayProgress(doc, bank, '2026-11-01')!
+
+    test('只翻卡：目標進度不動、不完成、開不了寶箱，但仍維持連勝', () => {
+      let doc = day1()
+      for (const ref of doc.learning.plans[dayKey('2026-11-01', 'n5')].groups.vocab!.targets) {
+        const r = submitAnswer(doc, flash(ref), on('2026-11-01'), bank)
+        expect(r.outcome!.goalCompleted).toBe(false)
+        doc = r.doc
+      }
+      expect(progress(doc).done).toBe(0)
+      expect(isGoalComplete(doc.learning, '2026-11-01', bank)).toBe(false)
+      expect(openChest(doc, on('2026-11-01'))).toBeNull()
+      expect(doc.learning.streak).toBe(1)
+      expect(doc.learning.lastDate).toBe('2026-11-01')
+    })
+
+    test('第一天（單字全是新字）：翻卡後做完文法與聽力即可完成目標；單字不擋', () => {
+      let doc = day1()
+      const p = doc.learning.plans[dayKey('2026-11-01', 'n5')]
+      for (const ref of p.groups.vocab!.targets) doc = submitAnswer(doc, flash(ref), on('2026-11-01'), bank).doc
+      const total = progress(doc).total
+      expect(total).toBe(5 + 3)
+      let last = false
+      for (const ref of [...p.groups.grammar!.targets, ...p.groups.listening!.targets]) {
+        const r = submitAnswer(doc, answer(ref), on('2026-11-01'), bank)
+        doc = r.doc
+        last = r.outcome!.goalCompleted
+      }
+      expect(last).toBe(true)
+      expect(openChest(doc, on('2026-11-01'))).not.toBeNull()
+    })
+
+    test('已排程單字要讀音測驗答過才算進度；翻卡不算', () => {
+      const w = day1().learning.plans[dayKey('2026-11-01', 'n5')].groups.vocab!.targets[0]
+      let doc = submit(day1(), '2026-11-01', w).doc // 已排程，11-02 到期
+      doc = ensurePlan(doc, 'listening', on('2026-11-02'), bank, bankManifest)
+      expect(doc.learning.plans[dayKey('2026-11-02', 'n5')].groups.vocab!.targets.map((t) => t.id)).toContain(w.id)
+      const at = (d: AppStateDoc) => todayProgress(d, bank, '2026-11-02')!.done
+      const flashed = submitAnswer(doc, flash(w), on('2026-11-02'), bank).doc
+      expect(at(flashed)).toBe(at(doc))
+      expect(at(submitAnswer(doc, answer(w), on('2026-11-02'), bank).doc)).toBe(at(doc) + 1)
+    })
   })
 
   test('ensurePlan 已開始的分支不會被換掉；任務已齊時不產生新文件', () => {

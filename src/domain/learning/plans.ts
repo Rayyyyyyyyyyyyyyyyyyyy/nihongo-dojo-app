@@ -91,11 +91,24 @@ export function inspectGroup<K extends StudyKind>(
     })),
     missing = items === undefined ? [] : resolved.filter((x) => !x.item).map((x) => x.ref),
     valid = resolved.filter((x) => items === undefined || x.item),
-    done = (ref: StudyItemRef) =>
-      kind === 'reading' ? day?.articles.includes(ref.id) : day?.items.includes(itemKey(ref))
+    touched = (ref: StudyItemRef) =>
+      kind === 'reading' ? day?.articles.includes(ref.id) : day?.items.includes(itemKey(ref)),
+    // 翻卡自評不計目標（2026-11-11 決定）：單字要今天有讀音測驗才算完成；
+    // 今天才由翻卡建立排程或還沒排程的新字沒有可作答的題，不列入目標題數。
+    graded = new Set(
+      kind === 'vocab'
+        ? state.results.filter((r) => r.date === plan.date && r.mode !== 'flashcard').map((r) => itemKey(r.ref))
+        : [],
+    ),
+    done = (ref: StudyItemRef) => (kind === 'vocab' ? graded.has(itemKey(ref)) : touched(ref)),
+    counted = (ref: StudyItemRef) =>
+      kind !== 'vocab' ||
+      graded.has(itemKey(ref)) ||
+      (!!state.schedules[itemKey(ref)] && state.schedules[itemKey(ref)].lastScheduledOn !== plan.date),
+    required = valid.filter((x) => counted(x.ref))
   return {
-    done: valid.filter((x) => done(x.ref)).length,
-    total: targets.length,
+    done: required.filter((x) => done(x.ref)).length,
+    total: targets.length - valid.filter((x) => !counted(x.ref)).length,
     correct: valid.filter(({ ref }) =>
       kind === 'reading'
         ? state.rDone[plan.level].includes(ref.id)
@@ -105,9 +118,12 @@ export function inspectGroup<K extends StudyKind>(
       items !== undefined &&
       targets.length > 0 &&
       !missing.length &&
-      valid.every((x) => done(x.ref)),
+      required.every((x) => done(x.ref)),
     missing,
-    selected: valid.flatMap(({ ref, item }) => (item && !done(ref) ? [item] : [])),
+    // 尚未答的題；新字翻過就不再出現，但已排程而還沒讀音測驗的字要留著。
+    selected: valid.flatMap(({ ref, item }) =>
+      item && !done(ref) && (counted(ref) || !touched(ref)) ? [item] : [],
+    ),
   }
 }
 export function repairGroup<K extends StudyKind>(

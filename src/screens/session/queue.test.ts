@@ -13,7 +13,7 @@ const base = (): AppStateDoc => {
 }
 let n = 0
 const answer = (doc: AppStateDoc, ref: Parameters<typeof itemKey>[0], correct = true, attemptId = `a${++n}`) =>
-  submitAnswer(doc, { attemptId, ref, mode: ref.kind === 'vocab' ? 'flashcard' : (ref.kind as 'grammar'), correct }, on, bank).doc
+  submitAnswer(doc, { attemptId, ref, mode: ref.kind === 'vocab' ? 'pronunciation' : (ref.kind as 'grammar'), correct }, on, bank).doc
 
 describe('todayQueue：今日任務題目固定，續做從未作答的開始', () => {
   test('順序 單字 → 文法 → 聽力；已作答的不再出現', () => {

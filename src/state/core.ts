@@ -46,10 +46,9 @@ export function isGoalComplete(learning: ProgressState, date: LocalDate, bank: L
   const groups = requiredKinds(plan).map((k) => [k, plan.groups[k]] as const)
   if (groups.some(([, g]) => !g)) return false
   const ready = groups.filter(([, g]) => g!.status === 'ready')
-  return (
-    ready.length > 0 &&
-    ready.every(([k]) => inspectGroup(learning, plan, k, bank[k] as never[]).complete)
-  )
+  const inspected = ready.map(([k]) => inspectGroup(learning, plan, k, bank[k] as never[]))
+  // 至少要有一題可作答的目標，只翻卡的新字不能單獨讓目標成立。
+  return inspected.some((g) => g.total > 0) && inspected.every((g) => g.complete)
 }
 
 // 上次學習日到今天有完整錯過的日子時，自動用保護卡（rewards §4.2；冪等）。

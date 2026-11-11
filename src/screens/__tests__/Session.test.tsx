@@ -110,8 +110,9 @@ test('恢復：中止要確認；已提交的作答保留，回來從第一題�
   await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
   await fireEvent.press(screen.getByRole('button', { name: '中止' }))
   expect(Alert.alert).toHaveBeenCalled()
-  expect(await screen.findByRole('button', { name: '續做（已完成 1／18）' })).toBeOnTheScreen()
-  await fireEvent.press(screen.getByRole('button', { name: '續做（已完成 1／18）' }))
+  // 翻卡不計目標進度：仍顯示「開始」，但剩下的題從第二題接續。
+  expect(await screen.findByRole('button', { name: '開始' })).toBeOnTheScreen()
+  await fireEvent.press(screen.getByRole('button', { name: '開始' }))
   expect(await screen.findByText('1／17')).toBeOnTheScreen()
 })
 
