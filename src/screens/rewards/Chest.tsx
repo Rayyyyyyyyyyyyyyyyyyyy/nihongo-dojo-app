@@ -74,8 +74,10 @@ export default function Chest() {
   if (!goal && !result)
     return (
       <Screen modal>
-        <EmptyState title="完成今日目標就能開" message={`桐箱每天一個，是完成今日修行的回饋。${remaining ? `再 ${remaining} 題。` : ''}`}>
-          <ChestIcon locked remaining={remaining} />
+        <EmptyState title="完成今日目標就能開" message={remaining ? `再 ${remaining} 題` : undefined}>
+          <View style={{ alignItems: 'center' }}>
+            <ChestIcon locked remaining={remaining} />
+          </View>
           <Button label="回道場" onPress={() => goBack(router)} />
         </EmptyState>
       </Screen>

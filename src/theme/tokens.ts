@@ -27,7 +27,9 @@ export const tokens = {
       "separator": "#DDE3E6",
       "outline": "#5B6470",
       "onCeremony": "#FFFFFF",
-      "ceremonyOutline": "#FFFFFF"
+      "ceremonyOutline": "#FFFFFF",
+      "kiri": "#EFE3CC",
+      "kiriDeep": "#D9C6A3"
     },
     "dark": {
       "bg": "#0E1620",
@@ -54,7 +56,9 @@ export const tokens = {
       "separator": "#2A3847",
       "outline": "#A9B3BF",
       "onCeremony": "#E9ECEA",
-      "ceremonyOutline": "#A9B3BF"
+      "ceremonyOutline": "#A9B3BF",
+      "kiri": "#B8A583",
+      "kiriDeep": "#9A8765"
     },
     "belt": {
       "white": "#FFFFFF",

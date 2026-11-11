@@ -38,15 +38,18 @@ describe('ChestIcon', () => {
     expect(screen.getByLabelText('桐箱')).toBeOnTheScreen()
     expect(screen.getByLabelText('打開的桐箱')).toBeOnTheScreen()
   })
-  test('上鎖態：標籤讀出還沒解鎖與剩餘題數，有掛鎖、沒有朱色扣', async () => {
+  test('上鎖態：標籤讀出還沒解鎖與剩餘題數，綁著紐、沒有鎖', async () => {
     await render(wrap(<ChestIcon locked remaining={5} />))
     expect(screen.getByLabelText('桐箱，還沒解鎖，再 5 題')).toBeOnTheScreen()
-    expect(screen.getByTestId('chest-lock')).toBeOnTheScreen()
-    expect(screen.queryByTestId('chest-clasp')).not.toBeOnTheScreen()
+    expect(screen.getByTestId('chest-cord')).toBeOnTheScreen()
+    expect(screen.queryByTestId('chest-lock')).not.toBeOnTheScreen()
   })
-  test('關著時有朱色扣', async () => {
+  test('關著時用朱色紐綁、蓋頂打結；打開時紐鬆開垂下', async () => {
     await render(wrap(<ChestIcon />))
-    expect(flat(screen.getByTestId('chest-clasp')).backgroundColor).toBe(tokens.color.light.seal)
+    expect(flat(screen.getByTestId('chest-cord')).backgroundColor).toBe(tokens.color.light.seal)
+    expect(screen.getByTestId('chest-knot')).toBeOnTheScreen()
+    await render(wrap(<ChestIcon open />))
+    expect(screen.getByTestId('chest-cord-loose')).toBeOnTheScreen()
   })
   test('減少動態：開啟時蓋子直接在打開位置', async () => {
     jest.spyOn(AccessibilityInfo, 'isReduceMotionEnabled').mockResolvedValue(true)

@@ -1,12 +1,13 @@
-// 桐箱插圖：關／開兩態，另有上鎖態（壓暗、掛鎖）。用 View 組形狀：木色取帶色 brown、板縫與紋理用墨線疊層、扣為朱印色。
-// 開啟時蓋子掀開；減少動態時直接在打開位置。width 可縮放（預設 168），內部尺寸依比例。
+// 桐箱（kiri-bako）插圖：淡米白的桐木盒，平蓋略寬於盒身，以朱色真田紐一字綁、蓋頂打結。關／開／上鎖三態：
+// 開啟時蓋子掀起、紐鬆開垂在一側；上鎖（今日目標未完成）是同一個綁緊的盒子，疊一層淡墨降彩度，不畫鎖。
+// 木色取 tokens kiri／kiriDeep；減少動態時蓋子直接在打開位置。width 可縮放（預設 168），內部尺寸依比例。
 import { useEffect, useRef } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 import { useTheme } from '../theme/ThemeProvider'
 
 export const CHEST_LID_MS = 400
 const OPEN_DEG = -28
-const GRAIN: [number, number, number][] = [[10, 8, 34], [60, 15, 22], [104, 11, 38], [26, 38, 28], [86, 46, 30], [12, 62, 24], [70, 70, 36]] // [left, top, width]
+const GRAIN: [number, number, number][] = [[10, 10, 40], [70, 22, 26], [108, 8, 36], [24, 36, 30], [90, 48, 34], [14, 62, 22], [76, 70, 40]] // [left, top, width]
 
 export function ChestIcon({ open = false, locked = false, remaining, width = 168 }: { open?: boolean; locked?: boolean; remaining?: number; width?: number }) {
   const t = useTheme()
@@ -17,41 +18,39 @@ export function ChestIcon({ open = false, locked = false, remaining, width = 168
     else Animated.timing(lid, { toValue: open ? 1 : 0, duration: CHEST_LID_MS, useNativeDriver: true }).start()
   }, [open, lid, t.motion.reduceMotion])
   const rotate = lid.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${OPEN_DEG}deg`] })
-  const wood = t.belt.brown
   const edge = t.colors.outline
-  const bw = Math.max(1, 2 * u)
+  const bw = Math.max(1, 1.5 * u)
+  const cord = t.colors.seal
   const label = locked ? `桐箱，還沒解鎖${remaining ? `，再 ${remaining} 題` : ''}` : open ? '打開的桐箱' : '桐箱'
-  const dim = locked && <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: t.belt.black, opacity: 0.4 }]} />
-  const line = (style: object, opacity: number, color: string = t.belt.black) => <View style={{ position: 'absolute', height: Math.max(1, u), backgroundColor: color, opacity, ...style }} />
+  const dim = locked && <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: t.belt.black, opacity: 0.22 }]} />
+  const band = (testID?: string) => <View testID={testID} style={{ position: 'absolute', top: 0, bottom: 0, left: '50%', marginLeft: -4 * u, width: 8 * u, backgroundColor: cord }} />
+  const tail = (deg: number, len: number) => (
+    <View style={{ position: 'absolute', top: 8 * u, left: '50%', marginLeft: -3.5 * u, width: 7 * u, height: len * u, borderRadius: 1.5 * u, backgroundColor: cord, borderWidth: Math.max(1, u), borderColor: edge, transform: [{ rotate: `${deg}deg` }], transformOrigin: 'top center' }} />
+  )
   return (
-    <View accessible accessibilityRole="image" accessibilityLabel={label} style={{ width, alignItems: 'center' }}>
+    <View accessible accessibilityRole="image" accessibilityLabel={label} style={{ width, alignItems: 'center', paddingTop: 8 * u }}>
       <Animated.View
         testID="chest-lid"
-        style={{ width, height: 30 * u, overflow: 'hidden', borderTopLeftRadius: t.radius.surface, borderTopRightRadius: t.radius.surface, backgroundColor: wood, borderWidth: bw, borderColor: edge, transform: [{ rotate }], transformOrigin: 'left bottom' }}
+        style={{ width, height: 26 * u, overflow: 'hidden', borderRadius: 3 * u, backgroundColor: t.colors.kiri, borderWidth: bw, borderColor: edge, transform: [{ rotate }], transformOrigin: 'left bottom' }}
       >
-        {line({ left: 6 * u, right: 6 * u, top: 3 * u }, 0.3, t.belt.white)}
-        {line({ left: 20 * u, top: 12 * u, width: 40 * u }, 0.18)}
-        {line({ left: 96 * u, top: 17 * u, width: 44 * u }, 0.18)}
+        {GRAIN.slice(0, 3).map(([l, tp, w], i) => <View key={i} style={{ position: 'absolute', left: l * u, top: tp * u, width: w * u, height: Math.max(1, u * 0.8), backgroundColor: t.belt.black, opacity: 0.07 }} />)}
+        {!open && band()}
         {dim}
       </Animated.View>
-      <View style={{ width: width - 8 * u, height: 92 * u, overflow: 'hidden', backgroundColor: wood, borderWidth: bw, borderTopWidth: 0, borderColor: edge, borderBottomLeftRadius: t.radius.chip, borderBottomRightRadius: t.radius.chip }}>
-        {line({ left: 0, right: 0, top: 0, height: 7 * u }, 0.3 /* 蓋下的陰影，分開蓋與箱身 */)}
-        {[1, 2, 3].map((i) => <View key={i} style={{ position: 'absolute', left: 0, right: 0, top: 23 * u * i, height: Math.max(1, 1.5 * u), backgroundColor: edge, opacity: 0.55 }} />)}
-        {GRAIN.map(([l, tp, w], i) => <View key={i} style={{ position: 'absolute', left: l * u, top: tp * u + (i % 2) * 2 * u, width: w * u, height: Math.max(1, u), backgroundColor: t.belt.black, opacity: 0.16 }} />)}
+      <View style={{ width: width - 14 * u, height: 84 * u, overflow: 'hidden', backgroundColor: t.colors.kiriDeep, borderWidth: bw, borderTopWidth: 0, borderColor: edge, borderBottomLeftRadius: 3 * u, borderBottomRightRadius: 3 * u }}>
+        <View style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 6 * u, backgroundColor: t.belt.black, opacity: 0.12 /* 蓋下的陰影 */ }} />
+        {GRAIN.map(([l, tp, w], i) => <View key={i} style={{ position: 'absolute', left: l * u, top: tp * u + 8 * u, width: w * u, height: Math.max(1, u * 0.8), backgroundColor: t.belt.black, opacity: 0.07 }} />)}
+        {!open && band('chest-cord')}
         {dim}
       </View>
-      {!open && !locked && (
-        <View testID="chest-clasp" style={{ position: 'absolute', top: 22 * u, width: 24 * u, height: 32 * u, borderRadius: t.radius.chip, backgroundColor: t.colors.seal, borderWidth: bw, borderColor: edge, alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ width: 6 * u, height: 6 * u, borderRadius: 3 * u, backgroundColor: t.colors.onAccent }} />
+      {!open ? (
+        <View testID="chest-knot" style={{ position: 'absolute', top: 0, width: 0, height: 0, alignItems: 'center' }}>
+          {tail(18, 22)}
+          {tail(-24, 17)}
+          <View style={{ position: 'absolute', top: 0, width: 20 * u, height: 14 * u, borderRadius: 7 * u, backgroundColor: cord, borderWidth: Math.max(1, u), borderColor: edge }} />
         </View>
-      )}
-      {locked && (
-        <View testID="chest-lock" style={{ position: 'absolute', top: 14 * u, alignItems: 'center' }}>
-          <View style={{ width: 20 * u, height: 16 * u, borderTopLeftRadius: 10 * u, borderTopRightRadius: 10 * u, borderWidth: 3 * u, borderBottomWidth: 0, borderColor: t.belt.white }} />
-          <View style={{ width: 32 * u, height: 26 * u, borderRadius: t.radius.chip, backgroundColor: t.belt.black, borderWidth: bw, borderColor: t.belt.white, alignItems: 'center', justifyContent: 'center' }}>
-            <View style={{ width: 6 * u, height: 10 * u, borderRadius: 3 * u, backgroundColor: t.belt.white }} />
-          </View>
-        </View>
+      ) : (
+        <View testID="chest-cord-loose" style={{ position: 'absolute', right: 2 * u, top: 40 * u, width: 7 * u, height: 54 * u, borderRadius: 3 * u, backgroundColor: cord, borderWidth: Math.max(1, u), borderColor: edge, transform: [{ rotate: '10deg' }], transformOrigin: 'top center' }} />
       )}
     </View>
   )
