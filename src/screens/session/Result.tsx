@@ -8,7 +8,7 @@ import { addDays } from '../../domain/learning/calendar'
 import { useAppState, useServices } from '../../state/AppProvider'
 import { shouldOfferReminder, studyBank } from '../../state/core'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Button, Card, ProgressBar, Screen, Seal } from '../../ui'
+import { AppText, Belt, Button, Card, ProgressBar, Screen, Seal } from '../../ui'
 import { todayProgress } from '../dojo/selectors'
 import { useDoc, goBack } from '../hooks'
 import { rankProgress } from '../names'
@@ -21,8 +21,9 @@ export interface SessionLog {
 
 export const STAMP_HOLD_MS = 300
 
-function StampButton({ onStamp }: { onStamp: () => void }) {
+function StampButton({ onStamp, onTap }: { onStamp: () => void; onTap: () => void }) {
   const t = useTheme()
+  const [nudge, setNudge] = useState(false)
   const y = useRef(new Animated.Value(t.motion.reduceMotion ? 0 : -24)).current
   const o = useRef(new Animated.Value(0)).current
   const [stamped, setStamped] = useState(false)
@@ -39,10 +40,11 @@ function StampButton({ onStamp }: { onStamp: () => void }) {
   if (stamped)
     return (
       <Animated.View style={{ opacity: o, transform: [{ translateY: y }], alignSelf: 'center' }}>
-        <Seal text="稽古" size={72} label="今天的修行印已蓋下" />
+        <Seal text="稽古" size={120} label="今天的修行印已蓋下" />
       </Animated.View>
     )
   return (
+    <View style={{ alignItems: 'center', gap: t.space[2] }}>
     <Pressable
       accessibilityRole="button"
       accessibilityLabel="蓋下今天的印"
@@ -51,6 +53,10 @@ function StampButton({ onStamp }: { onStamp: () => void }) {
       onAccessibilityAction={stamp}
       delayLongPress={STAMP_HOLD_MS}
       onLongPress={stamp}
+      onPress={() => {
+        setNudge(true) // 輕點不會蓋印：給回饋，不要什麼都不發生
+        onTap()
+      }}
       style={({ pressed }) => ({
         alignSelf: 'center',
         minWidth: 120,
@@ -66,9 +72,13 @@ function StampButton({ onStamp }: { onStamp: () => void }) {
       })}
     >
       <AppText variant="headline" color="seal">
-        按住蓋印
+        按住這裡蓋印
       </AppText>
     </Pressable>
+    <AppText variant="footnote" color={nudge ? 'seal' : 'ink2'} accessibilityLiveRegion="polite">
+      {nudge ? '按住不放才會蓋下' : '按住約 0.3 秒，印就蓋下'}
+    </AppText>
+    </View>
   )
 }
 
@@ -98,30 +108,64 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   const onContinue = () =>
     leave(() => (ceremony ? router.replace({ pathname: '/ceremony', params: ceremony }) : goBack(router)))
 
+  const xpLine = (
+    <>
+      <AppText variant="largeTitle" numeric style={{ textAlign: log.goalCompleted ? 'center' : undefined }} accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
+        +{total} XP
+      </AppText>
+      {saveError && (
+        <AppText variant="footnote" color="warn">
+          尚未保存
+        </AppText>
+      )}
+    </>
+  )
+  const breakdown = (
+    <>
+      <AppText color="ink2" numeric>
+        首次答對 {count(10)}・到期複習 {count(15)}・練習 {count(3)}
+        {count(0) ? `・今天已計分 ${count(0)}` : ''}
+      </AppText>
+      <AppText numeric>
+        答對 {correct}／{log.answers.length}（{Math.round((correct / log.answers.length) * 100)}%）
+      </AppText>
+    </>
+  )
+
   return (
     <Screen modal>
-      <AppText variant="title1" accessibilityRole="header" style={{ fontFamily: t.font.display.family }}>
+      {log.goalCompleted && (
+        <Card style={{ alignItems: 'stretch' }}>
+          <AppText variant="title2" accessibilityRole="header" style={{ textAlign: 'center' }}>
+            今日修行完成
+          </AppText>
+          <StampButton
+            onTap={() => void haptics.play('selection')}
+            onStamp={() => {
+              setStamped(true)
+              void haptics.play('stamp')
+              sound.play('stamp')
+            }}
+          />
+          {xpLine}
+          {stamped && <Button label="開寶箱" onPress={toChest} />}
+          <Button label="先回道場" variant={stamped ? 'text' : 'secondary'} onPress={onContinue} />
+        </Card>
+      )}
+      <AppText variant={log.goalCompleted ? 'headline' : 'title1'} accessibilityRole="header" style={{ fontFamily: t.font.display.family }}>
         修行結果
       </AppText>
-      <Card>
-        <AppText variant="largeTitle" numeric accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
-          +{total} XP
-        </AppText>
-        {saveError && (
-          <AppText variant="footnote" color="warn">
-            尚未保存
-          </AppText>
-        )}
-        <AppText color="ink2" numeric>
-          首次答對 {count(10)}・到期複習 {count(15)}・練習 {count(3)}
-          {count(0) ? `・今天已計分 ${count(0)}` : ''}
-        </AppText>
-        <AppText numeric>
-          答對 {correct}／{log.answers.length}（{Math.round((correct / log.answers.length) * 100)}%）
-        </AppText>
-      </Card>
+      {log.goalCompleted ? (
+        <Card>{breakdown}</Card>
+      ) : (
+        <Card>
+          {xpLine}
+          {breakdown}
+        </Card>
+      )}
       <Card>
         <AppText variant="headline">段位　{rank.info.name}</AppText>
+        <Belt rank={rank.rank} />
         {rank.next !== undefined && (
           <ProgressBar label="段位進度" value={doc.rewards.xpTotal - rank.floor} max={rank.next - rank.floor} text={`再 ${rank.toNext} XP 升${rank.nextName}`} />
         )}
@@ -141,35 +185,23 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
         </Card>
       )}
       {log.goalCompleted ? (
-        <Card style={{ alignItems: 'stretch' }}>
-          <AppText variant="title2" accessibilityRole="header" style={{ textAlign: 'center' }}>
-            今日修行完成
-          </AppText>
-          <StampButton
-            onStamp={() => {
-              setStamped(true)
-              void haptics.play('stamp')
-              sound.play('stamp')
-            }}
-          />
-          {stamped && <Button label="開寶箱" onPress={toChest} />}
-          {shouldOfferReminder(doc, today) && !reminderDismissed && (
-            <Card tone="surface2">
-              <AppText>要不要每天提醒你修行？你選時段，每天最多 1 則</AppText>
-              <View style={{ flexDirection: 'row', gap: t.space[2] }}>
-                <Button label="設定提醒" variant="secondary" onPress={() => router.push('/reminders')} />
-                <Button
-                  label="之後再說"
-                  variant="text"
-                  onPress={() => {
-                    setReminderDismissed(true)
-                    store.updateSettings({ reminder: { ...doc.settings.reminder, askAfter: addDays(today, 3) } })
-                  }}
-                />
-              </View>
-            </Card>
-          )}
-        </Card>
+        shouldOfferReminder(doc, today) &&
+        !reminderDismissed && (
+          <Card tone="surface2">
+            <AppText>要不要每天提醒你修行？你選時段，每天最多 1 則</AppText>
+            <View style={{ flexDirection: 'row', gap: t.space[2] }}>
+              <Button label="設定提醒" variant="secondary" onPress={() => router.push('/reminders')} />
+              <Button
+                label="之後再說"
+                variant="text"
+                onPress={() => {
+                  setReminderDismissed(true)
+                  store.updateSettings({ reminder: { ...doc.settings.reminder, askAfter: addDays(today, 3) } })
+                }}
+              />
+            </View>
+          </Card>
+        )
       ) : (
         <Button label="繼續" onPress={onContinue} />
       )}

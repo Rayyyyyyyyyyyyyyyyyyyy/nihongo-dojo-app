@@ -4,7 +4,7 @@ import { Linking, View } from 'react-native'
 import { currentStreak } from '../../state/core'
 import { usePurchaseCheck } from '../../state/AppProvider'
 import { useTheme } from '../../theme/ThemeProvider'
-import { AppText, Card, ListRow, Screen } from '../../ui'
+import { AppText, Belt, Card, ListRow, Screen } from '../../ui'
 import { useDoc, useNavLock, useToday } from '../hooks'
 import { rankProgress } from '../names'
 import { PRIVACY_URL } from '../paywall/Paywall'
@@ -34,6 +34,7 @@ export default function Me() {
     <Screen>
       <Card accessibilityLabel={`段位 ${rank.info.name}，累積 ${doc.rewards.xpTotal} XP，連勝 ${currentStreak(doc, today)} 天，保護卡 ${doc.rewards.protectionCards} 張，本月修行印 ${monthStamps} 個`}>
         <AppText variant="title2">{rank.info.name}</AppText>
+        <Belt rank={rank.rank} />
         <AppText color="ink2" numeric>
           累積 {doc.rewards.xpTotal} XP・連勝 {currentStreak(doc, today)} 天・保護卡 {doc.rewards.protectionCards}・本月修行印 {monthStamps}
         </AppText>
