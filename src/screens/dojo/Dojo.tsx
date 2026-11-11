@@ -126,7 +126,7 @@ export default function Dojo() {
 
       <Card accessibilityLabel="寶箱">
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: t.space[3] }}>
-          <ChestIcon width={64} locked={!goalDone && !opened} open={opened} remaining={remaining} />
+          <ChestIcon decorative width={64} locked={!goalDone && !opened} open={opened} remaining={remaining} />
           <View style={{ flex: 1, gap: t.space[1] }}>
             <AppText variant="headline">桐箱</AppText>
             {opened && todays ? (

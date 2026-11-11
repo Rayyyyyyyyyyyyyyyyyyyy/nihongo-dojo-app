@@ -44,9 +44,15 @@ describe('ChestIcon', () => {
     expect(screen.getByTestId('chest-cord')).toBeOnTheScreen()
     expect(screen.queryByTestId('chest-lock')).not.toBeOnTheScreen()
   })
+  test('上鎖態沒有題數或為 0 時標籤不寫「再 N 題」；decorative 時隱藏', async () => {
+    await render(wrap(<><ChestIcon locked /><ChestIcon locked remaining={0} /></>))
+    expect(screen.getAllByLabelText('桐箱，還沒解鎖')).toHaveLength(2)
+    await render(wrap(<ChestIcon locked remaining={3} decorative />))
+    expect(screen.queryByLabelText('桐箱，還沒解鎖，再 3 題')).not.toBeOnTheScreen()
+  })
   test('關著時用朱色紐綁、蓋頂打結；打開時紐鬆開垂下', async () => {
     await render(wrap(<ChestIcon />))
-    expect(flat(screen.getByTestId('chest-cord')).backgroundColor).toBe(tokens.color.light.seal)
+    expect(flat(screen.getByTestId('chest-cord')).backgroundColor).toBe(tokens.color.light.kiriCord)
     expect(screen.getByTestId('chest-knot')).toBeOnTheScreen()
     await render(wrap(<ChestIcon open />))
     expect(screen.getByTestId('chest-cord-loose')).toBeOnTheScreen()

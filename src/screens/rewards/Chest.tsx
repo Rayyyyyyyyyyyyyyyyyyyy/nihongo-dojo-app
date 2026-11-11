@@ -40,12 +40,32 @@ function Box({ open, result }: { open: boolean; result: ChestResult | null }) {
   )
 }
 
+// 鎖定態才載題庫算剩餘題數。
+function Locked() {
+  const doc = useDoc()
+  const today = useToday()
+  const router = useRouter()
+  const { bank: banks } = useServices()
+  const bank = useLevelBank(doc.learning.level)
+  const progress = bank.status === 'ready' ? todayProgress(doc, studyBank(doc, bank.bank, banks.manifest), today) : null
+  const remaining = progress ? progress.total - progress.done : undefined
+  return (
+    <Screen modal>
+      <EmptyState title="完成今日目標就能開" message={remaining ? `再 ${remaining} 題` : undefined}>
+        <View style={{ alignItems: 'center' }}>
+          <ChestIcon decorative locked remaining={remaining} />
+        </View>
+        <Button label="回道場" onPress={() => goBack(router)} />
+      </EmptyState>
+    </Screen>
+  )
+}
+
 export default function Chest() {
   const t = useTheme()
   const doc = useDoc()
   const today = useToday()
-  const { store, bank: banks } = useServices()
-  const bank = useLevelBank(doc.learning.level)
+  const { store } = useServices()
   const router = useRouter()
   const params = useLocalSearchParams<{ rank?: string; passed?: string }>()
   const [result, setResult] = useState<ChestResult | null>(() =>
@@ -54,8 +74,6 @@ export default function Chest() {
   const [already] = useState(result !== null)
   const leaving = useRef(false)
   const goal = doc.rewards.goalCompletedDates.includes(today)
-  const progress = bank.status === 'ready' ? todayProgress(doc, studyBank(doc, bank.bank, banks.manifest), today) : null
-  const remaining = progress ? progress.total - progress.done : undefined
 
   const open = () => {
     const r = store.openChest() // 先提交，重開 App 不會換內容
@@ -71,17 +89,7 @@ export default function Chest() {
     else goBack(router)
   }
 
-  if (!goal && !result)
-    return (
-      <Screen modal>
-        <EmptyState title="完成今日目標就能開" message={remaining ? `再 ${remaining} 題` : undefined}>
-          <View style={{ alignItems: 'center' }}>
-            <ChestIcon locked remaining={remaining} />
-          </View>
-          <Button label="回道場" onPress={() => goBack(router)} />
-        </EmptyState>
-      </Screen>
-    )
+  if (!goal && !result) return <Locked />
   return (
     <Screen modal>
       <AppText variant="title1" accessibilityRole="header" style={{ fontFamily: t.font.display.family, textAlign: 'center' }}>

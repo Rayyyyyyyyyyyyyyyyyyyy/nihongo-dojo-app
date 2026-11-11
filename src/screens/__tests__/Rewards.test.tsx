@@ -25,11 +25,12 @@ describe('S5 開寶箱', () => {
     await renderApp(makeServices({ doc: readyDoc() }), '/chest')
     expect(await screen.findByText('完成今日目標就能開')).toBeOnTheScreen()
     expect(screen.queryByRole('button', { name: '打開桐箱' })).not.toBeOnTheScreen()
+    expect(screen.queryByText(/再 \d+ 題/)).not.toBeOnTheScreen() // 還沒建計畫：不寫題數
   })
-  test('鎖定態：顯示上鎖的桐箱與剩餘題數', async () => {
+  test('鎖定態：文字寫剩餘題數，圖示不重複朗讀', async () => {
     await renderApp(makeServices({ doc: ensurePlan(readyDoc(), 'listening', () => NOW, fixtureBank('n5'), fixtureManifest) }), '/chest')
-    expect(await screen.findByLabelText('桐箱，還沒解鎖，再 18 題')).toBeOnTheScreen()
-    expect(screen.getByText(/再 18 題/)).toBeOnTheScreen()
+    expect(await screen.findByText('再 18 題')).toBeOnTheScreen()
+    expect(screen.queryByLabelText(/還沒解鎖/)).not.toBeOnTheScreen()
   })
   test('成功：第一次固定初稽古印並寫明「第一次修行的記念」；結果在動畫前先提交', async () => {
     const s = makeServices({ doc: goalDone() })

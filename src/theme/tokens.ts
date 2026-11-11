@@ -29,7 +29,9 @@ export const tokens = {
       "onCeremony": "#FFFFFF",
       "ceremonyOutline": "#FFFFFF",
       "kiri": "#EFE3CC",
-      "kiriDeep": "#D9C6A3"
+      "kiriDeep": "#D9C6A3",
+      "kiriCord": "#B3352A",
+      "kiriInk": "#5A4A33"
     },
     "dark": {
       "bg": "#0E1620",
@@ -58,7 +60,9 @@ export const tokens = {
       "onCeremony": "#E9ECEA",
       "ceremonyOutline": "#A9B3BF",
       "kiri": "#B8A583",
-      "kiriDeep": "#9A8765"
+      "kiriDeep": "#9A8765",
+      "kiriCord": "#6B1C14",
+      "kiriInk": "#2B2216"
     },
     "belt": {
       "white": "#FFFFFF",
@@ -73,6 +77,26 @@ export const tokens = {
     }
   },
   "contrastPairs": [
+    [
+      "kiriCord",
+      "kiri",
+      3
+    ],
+    [
+      "kiriCord",
+      "kiriDeep",
+      3
+    ],
+    [
+      "kiriInk",
+      "kiri",
+      3
+    ],
+    [
+      "kiriInk",
+      "kiriDeep",
+      3
+    ],
     [
       "ink",
       "bg",
