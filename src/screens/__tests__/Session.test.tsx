@@ -144,6 +144,7 @@ test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用�
   expect(screen.getByText('隔幾天再複習')).toBeOnTheScreen()
   await fireEvent.press(screen.getByRole('button', { name: /^記得/ }))
   expect(await screen.findByText('記下了')).toBeOnTheScreen()
+  expect(screen.getByText('之後複習會考讀音，考過就在收集冊掛上這張札')).toBeOnTheScreen()
   expect(screen.queryByText(/XP|答對|答錯/)).toBeNull()
   expect(s.store.getState().doc!.rewards.xpTotal).toBe(0)
   expect(Object.keys(s.store.getState().doc!.learning.vKnown.n5)).toEqual([])
