@@ -18,6 +18,8 @@ const HONEST_NON_VOCAB = Array.from({ length: 60 }, (_, i) => 10 + 3 * i)
 const HORIZON = 60
 const START = '2026-11-01'
 const ANSWERS = ['', 'C', 'W', 'CW', 'WC']
+// F／f：翻卡自評記得／還不熟（0 XP；已排程的字不改排程、新字還不熟不排程）
+const WITH_FLASH = [...ANSWERS, 'F', 'f', 'FC', 'CF', 'fC', 'Cf']
 
 type Kind = 'vocab' | 'grammar'
 // snap：某天作答後匯出的 v5 碼，解碼一次後保留（之後每天都可以重新匯入這份舊碼）
@@ -66,7 +68,7 @@ function bestByHorizon(kind: Kind, answers: string[], withImport: boolean): numb
           let doc = s.doc,
             xp = 0
           for (const c of a) {
-            const input: LearningInput = { attemptId: `t${++seq}`, ref, mode: kind === 'vocab' ? 'flashcard' : 'grammar', correct: c === 'C' }
+            const input: LearningInput = { attemptId: `t${++seq}`, ref, mode: c === 'F' || c === 'f' ? 'flashcard' : kind === 'vocab' ? 'pronunciation' : 'grammar', correct: c === 'C' || c === 'F' }
             const r = submitAnswer(doc, input, clock)
             doc = r.doc
             xp += r.outcome!.xp
@@ -110,6 +112,10 @@ describe('性質（接線後）：單一項目 ≤60 天，任何作答策略經
     ['grammar', HONEST_NON_VOCAB],
   ] as const)('%s：{不練、答對、答錯、先對後錯、先錯後對} 窮舉的最佳 = 誠實最佳', (kind, honest) => {
     expect(bestByHorizon(kind, ANSWERS, false)).toEqual(honest)
+  })
+
+  test('vocab：穿插翻卡自評不能提高最佳 XP', () => {
+    expect(bestByHorizon('vocab', WITH_FLASH, false)).toEqual(HONEST_VOCAB)
   })
 
   test.each([

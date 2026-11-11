@@ -3,7 +3,7 @@ import type { LevelBank } from '../../data/bank'
 import type { BankManifest } from '../../domain/bank/manifest'
 import type { Listening, Reading, Vocab } from '../../domain/bank/types'
 import { DAILY_LIMITS, requiredKinds } from '../../domain/learning/daily'
-import { inspectGroup, orderRefs, refsFor } from '../../domain/learning/plans'
+import { inspectGroup, lessonBatch, orderRefs, refsFor } from '../../domain/learning/plans'
 import { dayKey, itemKey, type StudyItemRef, type StudyKind } from '../../domain/learning/types'
 import type { Level, ProgressState } from '../../domain/progress/state'
 import { choiceOptions, stableShuffle } from '../../domain/quiz'
@@ -32,6 +32,10 @@ export type QuizItem =
 const ORDER: StudyKind[] = ['vocab', 'grammar', 'reading', 'listening']
 type Item = LevelBank[StudyKind][number]
 const idOf = (kind: StudyKind, item: Item) => (kind === 'vocab' ? (item as Vocab).w : (item as { id: string }).id)
+
+// 已學過（有排程）的單字用讀音測驗計分與掌握；新字先翻卡認識。
+const vocabMode = (s: ProgressState, level: Level, kind: StudyKind, item: Item): VocabMode =>
+  kind === 'vocab' && s.schedules[itemKey({ level, kind, id: idOf(kind, item) })] ? 'pronunciation' : 'flashcard'
 
 function toQuiz(kind: StudyKind, item: Item, level: Level, bank: LevelBank, vmode: VocabMode, seed: string): QuizItem {
   const ref: StudyItemRef = { level, kind, id: idOf(kind, item), ...(kind === 'reading' ? { articleId: idOf(kind, item) } : {}) }
@@ -76,7 +80,7 @@ export function todayQueue(doc: AppStateDoc, full: LevelBank, today: string, man
   for (const kind of kinds) {
     const g = inspectGroup(doc.learning, plan, kind, bank[kind] as never[])
     if (g.missing.length) missing.push(kind)
-    for (const it of g.selected as Item[]) items.push(toQuiz(kind, it, level, bank, 'flashcard', today))
+    for (const it of g.selected as Item[]) items.push(toQuiz(kind, it, level, bank, vocabMode(doc.learning, level, kind, it), today))
   }
   return { items, missing }
 }
@@ -95,7 +99,10 @@ export function extraQueue(doc: AppStateDoc, full: LevelBank, today: string, man
     const fresh = orderRefs(doc.learning, refsFor(kind, level, list as never[]), today).filter((r) =>
       kind === 'reading' ? !day?.articles.includes(r.id) : !day?.items.includes(itemKey(r)),
     )
-    for (const r of fresh.slice(0, limits[kind])) items.push(toQuiz(kind, list.find((x) => idOf(kind, x) === r.id)!, level, bank, 'flashcard', `${today}|extra`))
+    for (const r of fresh.slice(0, limits[kind])) {
+      const it = list.find((x) => idOf(kind, x) === r.id)!
+      items.push(toQuiz(kind, it, level, bank, vocabMode(doc.learning, level, kind, it), `${today}|extra`))
+    }
   }
   return { items }
 }
@@ -136,7 +143,7 @@ export function reviewQueue(doc: AppStateDoc, fullBank: LevelBank, today: string
   return { items, unavailable, locked }
 }
 
-// S7／S8 的課：依 manifest 的課表取題（只取題庫裡存在的）。
+// S7／S8 的課：依 manifest 的課表取題（只取題庫裡存在的）；單字課一次只出 10 張。
 export function lessonQueue(
   bank: LevelBank,
   manifest: BankManifest,
@@ -145,8 +152,10 @@ export function lessonQueue(
   lessonNo: number,
   vmode: VocabMode,
   today: string,
+  learning: ProgressState,
 ): QuizItem[] {
-  const ids = manifest.levels[level].lessons[kind].find((l) => l.lessonNo === lessonNo)?.itemIds ?? []
+  const all = manifest.levels[level].lessons[kind].find((l) => l.lessonNo === lessonNo)?.itemIds ?? []
+  const ids = kind === 'vocab' ? lessonBatch(learning, level, all, today) : all
   const list = bank[kind] as Item[]
   return ids.flatMap((id) => {
     const it = list.find((x) => idOf(kind, x) === id)

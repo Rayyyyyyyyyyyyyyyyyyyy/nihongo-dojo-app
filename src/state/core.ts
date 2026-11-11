@@ -100,9 +100,10 @@ export function submitAnswer(
     date: today,
     isDue: vocab && !!before && before.dueOn <= today,
     stageBefore: vocab ? (before?.stage ?? null) : null,
-    stageAfter: vocab ? learning.schedules[key].stage : null,
+    stageAfter: vocab ? (learning.schedules[key]?.stage ?? null) : null,
   }
-  const { state: rewards, xp } = applyAnswer(p.state, event)
+  // 翻卡自評不給 XP，也不占用當天計分（之後的讀音測驗仍可首次答對 +10）。
+  const { state: rewards, xp } = input.mode === 'flashcard' ? { state: p.state, xp: 0 as const } : applyAnswer(p.state, event)
   const r = finish(doc, learning, rewards, today, bank)
   return { doc: r.doc, outcome: { xp, ceremony: r.ceremony, goalCompleted: r.goalCompleted, protectedNow: p.protectedNow } }
 }

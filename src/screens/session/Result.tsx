@@ -14,7 +14,7 @@ import { useDoc, goBack } from '../hooks'
 import { rankProgress } from '../names'
 
 export interface SessionLog {
-  answers: Array<{ key: string; correct: boolean; xp: 0 | 3 | 10 | 15 }>
+  answers: Array<{ key: string; correct: boolean; xp: 0 | 3 | 10 | 15; flash?: boolean; learned?: boolean }>
   goalCompleted: boolean
   ceremony: { rank: number; passed: number[] } | null
 }
@@ -91,10 +91,14 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   const [stamped, setStamped] = useState(false)
   const [reminderDismissed, setReminderDismissed] = useState(false)
   const leaving = useRef(false)
+  // 翻卡自評不是對錯：不進答對率、今天已計分、錯題數。
+  const graded = log.answers.filter((a) => !a.flash)
+  const flashCount = log.answers.length - graded.length
+  const learned = log.answers.filter((a) => a.learned).length // 翻卡記得、且進題時還沒排程的新字
   const total = log.answers.reduce((n, a) => n + a.xp, 0)
-  const count = (xp: number) => log.answers.filter((a) => a.xp === xp).length
-  const correct = log.answers.filter((a) => a.correct).length
-  const wrong = log.answers.length - correct
+  const count = (xp: number) => graded.filter((a) => a.xp === xp).length
+  const correct = graded.filter((a) => a.correct).length
+  const wrong = graded.length - correct
   const rank = rankProgress(doc.rewards.xpTotal)
   const progress = todayProgress(doc, studyBank(doc, bank, banks.manifest), today)
   const ceremony = log.ceremony && { rank: String(log.ceremony.rank), passed: log.ceremony.passed.join(',') }
@@ -110,9 +114,11 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
 
   const xpLine = (
     <>
-      <AppText variant="largeTitle" numeric style={{ textAlign: log.goalCompleted ? 'center' : undefined }} accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
-        +{total} XP
-      </AppText>
+      {graded.length > 0 && (
+        <AppText variant="largeTitle" numeric style={{ textAlign: log.goalCompleted ? 'center' : undefined }} accessibilityLabel={`本次 ${total} XP${saveError ? '，尚未保存' : ''}`}>
+          +{total} XP
+        </AppText>
+      )}
       {saveError && (
         <AppText variant="footnote" color="warn">
           尚未保存
@@ -122,13 +128,18 @@ export function Result({ log, bank, today, src }: { log: SessionLog; bank: Level
   )
   const breakdown = (
     <>
-      <AppText color="ink2" numeric>
-        首次答對 {count(10)}・到期複習 {count(15)}・練習 {count(3)}
-        {count(0) ? `・今天已計分 ${count(0)}` : ''}
-      </AppText>
-      <AppText numeric>
-        答對 {correct}／{log.answers.length}（{Math.round((correct / log.answers.length) * 100)}%）
-      </AppText>
+      {graded.length > 0 && (
+        <>
+          <AppText color="ink2" numeric>
+            首次答對 {count(10)}・到期複習 {count(15)}・練習 {count(3)}
+            {count(0) ? `・今天已計分 ${count(0)}` : ''}
+          </AppText>
+          <AppText numeric>
+            答對 {correct}／{graded.length}（{Math.round((correct / graded.length) * 100)}%）
+          </AppText>
+        </>
+      )}
+      {flashCount > 0 && <AppText numeric>{learned > 0 ? `認識了 ${learned} 個新字` : `翻了 ${flashCount} 張卡`}</AppText>}
     </>
   )
 
