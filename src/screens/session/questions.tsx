@@ -155,13 +155,13 @@ export function Flashcard({ item, submit, onNext, last }: Props<'flashcard'>) {
       ) : !result ? (
         <View style={{ flexDirection: 'row', gap: t.space[3] }}>
           <View style={{ flex: 1, gap: t.space[1] }}>
-            <Button label="還不熟" accessibilityLabel="還不熟，今天的複習會再出現" variant="secondary" onPress={() => grade(false)} />
+            <Button label="還不熟" variant="secondary" onPress={() => grade(false)} />
             <AppText variant="footnote" color="ink2" style={{ textAlign: 'center' }}>
               今天的複習會再出現
             </AppText>
           </View>
           <View style={{ flex: 1, gap: t.space[1] }}>
-            <Button label="記得" accessibilityLabel="記得，隔幾天再複習" onPress={() => grade(true)} />
+            <Button label="記得" onPress={() => grade(true)} />
             <AppText variant="footnote" color="ink2" style={{ textAlign: 'center' }}>
               隔幾天再複習
             </AppText>

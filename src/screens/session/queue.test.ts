@@ -56,6 +56,25 @@ describe('extraQueue：加練優先到期 → 錯題 → 未學，排除今天�
   })
 })
 
+describe('已學過的單字出讀音測驗、新字出翻卡', () => {
+  const on10 = () => new Date(2026, 10, 10, 12)
+  const day2 = () => {
+    let doc = base()
+    for (const i of todayQueue(doc, bank, '2026-11-09', fixtureManifest).items.slice(0, 3)) doc = answer(doc, i.refs[0]) // 翻卡認識 3 字
+    return ensurePlan(doc, 'listening', on10, bank, fixtureManifest)
+  }
+  test('todayQueue：到期（有排程）的字是讀音測驗，新字仍是翻卡', () => {
+    const v = todayQueue(day2(), bank, '2026-11-10', fixtureManifest).items.slice(0, 10)
+    expect(v.map((i) => (i.type === 'choice' ? i.mode : i.type))).toEqual([...Array(3).fill('pronunciation'), ...Array(7).fill('flashcard')])
+  })
+  test('extraQueue：同規則', () => {
+    const v = extraQueue(day2(), bank, '2026-11-10', fixtureManifest).items.filter((i) => i.refs[0].kind === 'vocab')
+    const learned = v.filter((i) => i.type === 'choice')
+    expect(learned.length).toBeGreaterThan(0)
+    expect(v.filter((i) => i.type === 'flashcard').length).toBe(v.length - learned.length)
+  })
+})
+
 describe('reviewQueue：到期與錯題；題庫找不到的列為不可用', () => {
   test('錯題（文法）與到期單字都進入複習；不存在的 ID 進 unavailable', () => {
     let doc = base()

@@ -78,7 +78,7 @@ function Run({ bank }: { bank: LevelBank }) {
   const submit: Submit = (ref, mode, correct, attemptId) => {
     const outcome = store.submitAnswer({ attemptId, ref, mode, correct }, bank)
     if (!outcome) return null
-    log.answers.push({ key: JSON.stringify([ref.level, ref.kind, ref.id]), correct, xp: outcome.xp })
+    log.answers.push({ key: JSON.stringify([ref.level, ref.kind, ref.id]), correct, xp: outcome.xp, flash: mode === 'flashcard' })
     if (outcome.goalCompleted) log.goalCompleted = true
     if (outcome.ceremony)
       log.ceremony = { rank: outcome.ceremony.rank, passed: [...(log.ceremony?.passed ?? []), ...outcome.ceremony.passed] }

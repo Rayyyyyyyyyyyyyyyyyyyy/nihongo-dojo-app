@@ -150,6 +150,18 @@ test('單字翻卡：先看指示，看答案不給 XP，自評後回饋不用�
   expect(Object.keys(s.store.getState().doc!.learning.vKnown.n5)).toEqual([])
 })
 
+test('單字翻卡整組結束：結果頁不顯示答對率、今天已計分、錯題，只說認識了幾個新字', async () => {
+  await renderApp(makeServices({ doc: readyDoc() }), '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
+  for (let i = 0; i < 10; i++) {
+    await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))
+    await fireEvent.press(screen.getByRole('button', { name: i === 0 ? /^還不熟/ : /^記得/ }))
+    await fireEvent.press(screen.getByRole('button', { name: i === 9 ? '看結果' : '下一題' }))
+  }
+  expect(await screen.findByText('修行結果')).toBeOnTheScreen()
+  expect(screen.getByText('認識了 10 個新字')).toBeOnTheScreen()
+  expect(screen.queryByText(/答對|今天已計分|錯題|現在複習/)).toBeNull()
+})
+
 test('單字翻卡：還不熟顯示「沒關係，很快會再見到」', async () => {
   await renderApp(makeServices({ doc: readyDoc() }), '/session?src=lesson&kind=vocab&lesson=1&vmode=flashcard')
   await fireEvent.press(await screen.findByRole('button', { name: '看答案' }))

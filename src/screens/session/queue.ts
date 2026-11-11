@@ -33,6 +33,10 @@ const ORDER: StudyKind[] = ['vocab', 'grammar', 'reading', 'listening']
 type Item = LevelBank[StudyKind][number]
 const idOf = (kind: StudyKind, item: Item) => (kind === 'vocab' ? (item as Vocab).w : (item as { id: string }).id)
 
+// 已學過（有排程）的單字用讀音測驗計分與掌握；新字先翻卡認識。
+const vocabMode = (s: ProgressState, level: Level, kind: StudyKind, item: Item): VocabMode =>
+  kind === 'vocab' && s.schedules[itemKey({ level, kind, id: idOf(kind, item) })] ? 'pronunciation' : 'flashcard'
+
 function toQuiz(kind: StudyKind, item: Item, level: Level, bank: LevelBank, vmode: VocabMode, seed: string): QuizItem {
   const ref: StudyItemRef = { level, kind, id: idOf(kind, item), ...(kind === 'reading' ? { articleId: idOf(kind, item) } : {}) }
   const key = itemKey(ref),
@@ -76,7 +80,7 @@ export function todayQueue(doc: AppStateDoc, full: LevelBank, today: string, man
   for (const kind of kinds) {
     const g = inspectGroup(doc.learning, plan, kind, bank[kind] as never[])
     if (g.missing.length) missing.push(kind)
-    for (const it of g.selected as Item[]) items.push(toQuiz(kind, it, level, bank, 'flashcard', today))
+    for (const it of g.selected as Item[]) items.push(toQuiz(kind, it, level, bank, vocabMode(doc.learning, level, kind, it), today))
   }
   return { items, missing }
 }
@@ -95,7 +99,10 @@ export function extraQueue(doc: AppStateDoc, full: LevelBank, today: string, man
     const fresh = orderRefs(doc.learning, refsFor(kind, level, list as never[]), today).filter((r) =>
       kind === 'reading' ? !day?.articles.includes(r.id) : !day?.items.includes(itemKey(r)),
     )
-    for (const r of fresh.slice(0, limits[kind])) items.push(toQuiz(kind, list.find((x) => idOf(kind, x) === r.id)!, level, bank, 'flashcard', `${today}|extra`))
+    for (const r of fresh.slice(0, limits[kind])) {
+      const it = list.find((x) => idOf(kind, x) === r.id)!
+      items.push(toQuiz(kind, it, level, bank, vocabMode(doc.learning, level, kind, it), `${today}|extra`))
+    }
   }
   return { items }
 }
